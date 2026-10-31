@@ -26,24 +26,6 @@ export const SHOW_DISCOUNTS = false;
 // While false: package cards say "Price confirmed on WhatsApp" and Service schema carries no offers.
 export const SHOW_PRICES = true;
 
-export interface Service {
-  slug: string;
-  name: Record<Locale, string>;
-}
-
-// Main services: each gets its own page. Client-approved order: Newborn & Mother Care (featured, one
-// combined page with its sub-services), the three core services (Babysitting, Elderly Companionship,
-// Home Cleaning), then "more help at home".
-export const mainServices: Service[] = [
-  { slug: 'newborn-care', name: { en: 'Newborn & Mother Care', ar: 'رعاية المواليد والأمهات' } }, // REVIEW-AR
-  { slug: 'babysitting', name: { en: 'Babysitting', ar: 'رعاية الأطفال' } },
-  { slug: 'elderly-companionship', name: { en: 'Elderly Companionship', ar: 'مرافقة كبار السن' } },
-  { slug: 'home-cleaning', name: { en: 'Home Cleaning', ar: 'تنظيف المنازل' } },
-  { slug: 'errands', name: { en: 'Errands & Personal Assistance', ar: 'المشتريات والمساعدة الشخصية' } },
-  { slug: 'pick-up-drop-off', name: { en: 'Pick-up & Drop-off', ar: 'التوصيل والاستقبال' } },
-  { slug: 'pet-sitting', name: { en: 'Dog & Cat Sitting', ar: 'رعاية الكلاب والقطط' } },
-];
-
 // Lives on the Packages page.
 export const personalizedCarePlans = {
   name: { en: 'Personalized Care Plans', ar: 'خطط رعاية مخصصة' },

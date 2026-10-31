@@ -1,20 +1,17 @@
 // Night Nanny for newborns. Keyword: مربية ليلية للمولود. Night shift only (business.shifts.night).
 // Help and comfort only: feeds follow the mother's instructions; never nursing, medical or clinical care.
 // Booking preselects Newborn Care in the Book Your Service card. REVIEW-AR
-import type { ServiceContent } from '../services';
+import type { ServicePage } from '../services';
 import { business } from '../business';
 
 const { night } = business.shifts;
 
-const page: ServiceContent = {
+const page: ServicePage = {
   slug: 'night-nanny',
   tier: 'more',
   icon: 'sleep',
   photo: 'newborn-care',
   photoAlt: { ar: 'مربية ليلية بالحجاب تحمل مولوداً نائماً في قماطه بجانب أمه المرتاحة', en: 'A night nanny in a hijab holding a sleeping, swaddled newborn beside the resting mother' },
-  name: { ar: 'المربية الليلية', en: 'Night Nanny' },
-  card: { ar: 'ليلة هادئة للمولود، ونوم متصل لكم', en: 'A settled night for baby, and real sleep for you' },
-  tagline: { ar: 'ناموا الليلة، ومولودكم في أيدٍ أمينة', en: 'Sleep tonight; your baby is in safe hands' },
   intro: {
     title: { ar: 'ماذا تفعل المربية الليلية للمولود؟', en: 'What a night nanny does for your newborn' },
     text: [

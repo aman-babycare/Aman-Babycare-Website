@@ -1,6 +1,6 @@
 // Elderly Companionship. Keyword: مرافقة كبار السن (secondary: رعاية كبار السن، مرافقة الوالدين).
 // Companionship and everyday help only: never nursing, medical or patient care. REVIEW-AR
-import type { ServiceContent } from '../services';
+import type { ServicePage } from '../services';
 import { business } from '../business';
 import { fromRate } from '../packages';
 import { rate } from '../../i18n/ui';
@@ -8,13 +8,10 @@ import { rate } from '../../i18n/ui';
 const { day, night } = business.shifts;
 const from = fromRate('elderly-companionship');
 
-const page: ServiceContent = {
+const page: ServicePage = {
   slug: 'elderly-companionship',
   tier: 'core',
   icon: 'elder',
-  name: { ar: 'مرافقة كبار السن', en: 'Elderly Companionship' },
-  card: { ar: 'صحبة طيبة ومساعدة يومية لوالديكم', en: 'Warm company and everyday help for your parents' },
-  tagline: { ar: 'صحبة طيبة لمن ربّونا', en: 'Kind company for the ones who raised us' },
   intro: {
     title: { ar: 'مرافقة الوالدين وكبار السن في بيتهم', en: 'Companionship for your parents, in their own home' },
     text: [

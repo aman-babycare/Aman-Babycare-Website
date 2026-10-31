@@ -1,16 +1,13 @@
 // Errands & Personal Assistance. Keyword: مساعدة شخصية ومقاضي البيت. REVIEW-AR
-import type { ServiceContent } from '../services';
+import type { ServicePage } from '../services';
 import { business } from '../business';
 
 const { day } = business.shifts;
 
-const page: ServiceContent = {
+const page: ServicePage = {
   slug: 'errands',
   tier: 'more',
   icon: 'bag',
-  name: { ar: 'المشتريات والمساعدة الشخصية', en: 'Errands & Personal Assistance' },
-  card: { ar: 'مقاضي البيت والمشاوير الصغيرة عنكم', en: 'Groceries and small errands, off your list' },
-  tagline: { ar: 'قائمة مهامكم، أقصر من اليوم', en: 'Your to-do list, shorter from today' },
   intro: {
     title: { ar: 'مساعدة شخصية في مقاضي البيت ومهامه الصغيرة', en: 'A personal assistant for groceries and home jobs' },
     text: [

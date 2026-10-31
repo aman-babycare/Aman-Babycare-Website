@@ -1,4 +1,6 @@
-// Service pages: types, order and helpers. Each page's copy lives in src/data/service-pages/<slug>.ts.
+// Service pages: types, order and helpers. Each page's copy lives in src/data/service-pages/<slug>.ts; the
+// order, on/off switch, name, card line and tagline live in src/content-data/services.json (edited from the
+// admin panel), checked against src/lib/content-schema.ts.
 // Titles, descriptions and H1s live in src/data/seo.ts. Rules: docs/build/service-pages.md,
 // docs/build/culture-and-copy.md. Help and companionship only: never nursing, medical or clinical care.
 // REVIEW-AR: all Arabic copy in src/data/service-pages/ is a first draft and needs a native review.
@@ -6,6 +8,8 @@ import type { L } from '../i18n/ui';
 import type { IconName } from '../components/icons';
 import type { Moded } from './seo';
 import { business } from './business';
+import servicesData from '../content-data/services.json';
+import type { ServiceEntry } from '../lib/content-schema';
 import newbornCare from './service-pages/newborn-care';
 import babysitting from './service-pages/babysitting';
 import elderlyCompanionship from './service-pages/elderly-companionship';
@@ -71,18 +75,20 @@ export interface ServiceContent {
   hub: { bestFor: L; shifts: L; combine: string[] };
 }
 
-// Client-approved order: Newborn & Mother Care first, then the core services, then "more help at home".
-export const services: ServiceContent[] = [
-  newbornCare,
-  babysitting,
-  elderlyCompanionship,
-  homeCleaning,
-  nightNanny,
-  liveInNanny,
-  errands,
-  pickUpDropOff,
-  petSitting,
-];
+/** A service page module: everything except the fields edited in services.json. */
+export type ServicePage = Omit<ServiceContent, 'name' | 'card' | 'tagline'>;
+
+const pages: ServicePage[] = [newbornCare, babysitting, elderlyCompanionship, homeCleaning, nightNanny, liveInNanny, errands, pickUpDropOff, petSitting];
+
+// Order and copy from services.json (client-approved order: Newborn & Mother Care first, then the core
+// services, then "more help at home"). Only enabled services are built, listed or linked.
+export const services: ServiceContent[] = (servicesData as ServiceEntry[])
+  .filter((e) => e.enabled)
+  .map((e) => {
+    const page = pages.find((p) => p.slug === e.slug);
+    if (!page) throw new Error(`services.json: no page module for "${e.slug}"`);
+    return { ...page, name: e.name, card: e.card, tagline: e.tagline };
+  });
 
 // Pages under /packages/ built on the service layout. Only enabled ones are built, listed or linked.
 export const packagePages: ServiceContent[] = [fortyDays].filter((p) => p.enabled !== false);

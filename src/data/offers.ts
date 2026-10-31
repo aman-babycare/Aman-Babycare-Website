@@ -1,126 +1,16 @@
-// Seasonal event offers. Rules: docs/build/offers-and-events.md
+// Seasonal event offers. Values live in src/content-data/offers.json (edited from the admin panel), checked
+// against src/lib/content-schema.ts. Rules: docs/build/offers-and-events.md
 // Exactly one offer is `featured`. Discounts stay [DISCOUNT] until the client sends real numbers.
+// startDate is set ahead of the event: hourly-help searches peak just before Ramadan and the Eids (Ramadan
+// 2027 goes live on 1 Feb, a week before ~8 Feb 2027).
 // REVIEW-AR: Arabic is a first draft.
-import type { L } from '../i18n/ui';
 import type { IconName } from '../components/icons';
+import data from '../content-data/offers.json';
+import type { OfferEntry } from '../lib/content-schema';
 
-export interface Offer {
-  id: string;
-  icon: IconName;
-  event: L;
-  when: L;
-  hijri?: boolean; // date depends on moon sighting
-  /** ISO date the offer goes live (move `featured` to it then). Set ahead of the event: hourly-help
-   *  searches peak just before Ramadan and the Eids. */
-  startDate?: string;
-  endsAt?: string; // ISO; drives the countdown
-  featured?: boolean;
-  title: L;
-  text: L;
-  services: string[]; // slugs included in the bundle
-  discount: string;
-}
+export type Offer = OfferEntry & { icon: IconName };
 
-export const offers: Offer[] = [
-  {
-    id: 'white-friday',
-    icon: 'tag',
-    event: { ar: 'الجمعة البيضاء', en: 'White Friday' },
-    when: { ar: 'نوفمبر 2026', en: 'November 2026' },
-    endsAt: '2026-11-30T23:59:00+03:00',
-    featured: true,
-    title: { ar: 'أفضل أسعار السنة على الخطط الشهرية', en: 'Our best prices of the year on monthly plans' },
-    text: {
-      ar: 'احجزوا أي خطة شهرية لرعاية الأطفال أو مرافقة كبار السن خلال الجمعة البيضاء بأفضل أسعار السنة.',
-      en: 'Book any monthly babysitting or elderly companionship plan during White Friday at our best prices of the year.',
-    },
-    services: ['babysitting', 'elderly-companionship'],
-    discount: '[DISCOUNT]',
-  },
-  {
-    id: 'ramadan',
-    icon: 'crescent',
-    event: { ar: 'رمضان المبارك', en: 'Ramadan' },
-    when: { ar: 'فبراير 2027', en: 'February 2027' },
-    hijri: true,
-    // Live a week before Ramadan (~8 Feb 2027), not at its start.
-    startDate: '2027-02-01',
-    title: { ar: 'رمضان أهدأ: رعاية وقت الإفطار وتنظيف قبل الضيوف', en: 'A calmer Ramadan: iftar-time babysitting and cleaning before guests' },
-    text: {
-      ar: 'تفرغوا للعبادة والعزائم، ونحن نهتم بالأطفال وقت الإفطار والتراويح، ونجهز البيت لضيوفكم.',
-      en: 'Make time for worship and family gatherings while we look after the children at iftar and taraweeh, and get the house ready for guests.',
-    },
-    services: ['babysitting', 'home-cleaning'],
-    discount: '[DISCOUNT]',
-  },
-  {
-    id: 'founding-day',
-    icon: 'palm',
-    event: { ar: 'يوم التأسيس', en: 'Saudi Founding Day' },
-    when: { ar: '22 فبراير', en: '22 February' },
-    title: { ar: 'يوم للعائلة: توصيل ورعاية أطفال', en: 'A family day out: rides and babysitting' },
-    text: {
-      ar: 'احتفلوا بيوم التأسيس براحة: نوصلكم ونرعى الصغار حين تحتاجون.',
-      en: 'Celebrate Founding Day with ease: we handle the rides and look after the little ones when you need.',
-    },
-    services: ['pick-up-drop-off', 'babysitting'],
-    discount: '[DISCOUNT]',
-  },
-  {
-    id: 'eid-al-fitr',
-    icon: 'crescent',
-    event: { ar: 'عيد الفطر', en: 'Eid al-Fitr' },
-    when: { ar: 'مارس 2027', en: 'March 2027' },
-    hijri: true,
-    title: { ar: 'جاهزون للعيد: تنظيف ومشتريات العيد', en: 'Ready for Eid: deep clean and Eid shopping' },
-    text: {
-      ar: 'بيت نظيف وضيافة جاهزة وهدايا مرتبة قبل صباح العيد.',
-      en: 'A clean home, hospitality ready and gifts wrapped before Eid morning.',
-    },
-    services: ['home-cleaning', 'errands'],
-    discount: '[DISCOUNT]',
-  },
-  {
-    id: 'eid-al-adha',
-    icon: 'crescent',
-    event: { ar: 'عيد الأضحى', en: 'Eid al-Adha' },
-    when: { ar: 'مايو 2027', en: 'May 2027' },
-    hijri: true,
-    title: { ar: 'مسافرون في العيد؟ بيتكم وحيواناتكم في رعايتنا', en: 'Travelling for Eid? We look after your home and pets' },
-    text: {
-      ar: 'زيارات يومية للقطط والكلاب، واستلام الطرود، وبيت نظيف بانتظار عودتكم.',
-      en: 'Daily visits for your cats and dogs, parcels collected, and a clean home waiting for your return.',
-    },
-    services: ['pet-sitting', 'home-cleaning'],
-    discount: '[DISCOUNT]',
-  },
-  {
-    id: 'back-to-school',
-    icon: 'book',
-    event: { ar: 'العودة للمدارس', en: 'Back to school' },
-    when: { ar: 'أغسطس', en: 'August' },
-    title: { ar: 'مشوار المدرسة وما بعده', en: 'The school run, and the afternoon after' },
-    text: {
-      ar: 'توصيل يومي للمدرسة، ورعاية في البيت حتى عودتكم من الدوام.',
-      en: 'Daily school runs, and care at home until you are back from work.',
-    },
-    services: ['pick-up-drop-off', 'babysitting'],
-    discount: '[DISCOUNT]',
-  },
-  {
-    id: 'national-day',
-    icon: 'palm',
-    event: { ar: 'اليوم الوطني', en: 'Saudi National Day' },
-    when: { ar: '23 سبتمبر', en: '23 September' },
-    title: { ar: 'خطة أسبوعية لرعاية الأطفال بمناسبة اليوم الوطني', en: 'A National Day weekly babysitting plan' },
-    text: {
-      ar: 'أسبوع كامل من الرعاية مع الشخص نفسه من فريق الرعاية، بسعر خاص للمناسبة.',
-      en: 'A full week of care with the same caregiver, at a special price for the occasion.',
-    },
-    services: ['babysitting'],
-    discount: '[DISCOUNT]',
-  },
-];
+export const offers = data as Offer[];
 
 export const featuredOffer = offers.find((o) => o.featured) ?? offers[0];
 export const upcomingOffers = offers.filter((o) => o !== featuredOffer);

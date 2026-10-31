@@ -1,0 +1,92 @@
+{
+  "brand": {
+    "en": "Aman Babycare & Home Services",
+    "ar": "أمان لرعاية المواليد والخدمات المنزلية"
+  },
+  "shortName": {
+    "en": "Aman",
+    "ar": "أمان"
+  },
+  "shortBrand": {
+    "en": "Aman Babycare",
+    "ar": "أمان لرعاية المواليد"
+  },
+  "tagline": {
+    "en": "Your Comfort, Our Priority",
+    "ar": "راحتكم أولويتنا"
+  },
+  "legalName": {
+    "ar": "شركة عادل احمد منصور عكاش للتجارة والمقاولات",
+    "en": "Adel Ahmed Mansour Akkash Trading & Contracting Company"
+  },
+  "crNumber": "7049385276",
+  "whatsapp": "+966 59 500 2539",
+  "phone": "+966 59 500 2539",
+  "email": "[EMAIL]",
+  "privacyEmail": "[PRIVACY_EMAIL]",
+  "address": {
+    "en": "[ADDRESS]",
+    "ar": "[ADDRESS]"
+  },
+  "hours": {
+    "opens": "08:00",
+    "closes": "20:00",
+    "label": {
+      "ar": "ساعات الحجز: 8 صباحاً – 8 مساءً",
+      "en": "Booking hours: 8am–8pm"
+    },
+    "time": {
+      "ar": "8 صباحاً – 8 مساءً",
+      "en": "8am–8pm"
+    }
+  },
+  "areaServed": {
+    "en": "Riyadh",
+    "ar": "الرياض"
+  },
+  "country": {
+    "en": "Saudi Arabia",
+    "ar": "المملكة العربية السعودية"
+  },
+  "countryCode": "SA",
+  "languages": {
+    "ar": "الإنجليزية والعربية الأساسية",
+    "en": "English and basic Arabic"
+  },
+  "shifts": {
+    "day": {
+      "label": {
+        "ar": "الفترة الصباحية",
+        "en": "Day shift"
+      },
+      "time": {
+        "ar": "8 صباحاً – 8 مساءً",
+        "en": "8am–8pm"
+      }
+    },
+    "night": {
+      "label": {
+        "ar": "الفترة الليلية",
+        "en": "Night shift"
+      },
+      "time": {
+        "ar": "8 مساءً – 8 صباحاً",
+        "en": "8pm–8am"
+      }
+    }
+  },
+  "liveIn": true,
+  "liveOut": true,
+  "caregiverGenderChoice": true,
+  "backgroundChecked": {
+    "en": "Background-checked staff",
+    "ar": "فريق عمل خضع للتحقق من الخلفية"
+  },
+  "certified": {
+    "en": "Certified caregivers and nannies",
+    "ar": "مقدّمو رعاية ومربيات معتمدون"
+  },
+  "domesticWorkerKeywords": false,
+  "caregiverNationalityChoice": null,
+  "businessSaBadge": null
+}

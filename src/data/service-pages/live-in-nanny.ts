@@ -1,20 +1,17 @@
 // Live-in Nanny. Keyword: مربية مقيمة. 12 working hours a day (pricing.ts TIMINGS['stay-in'],
 // TODO(client): confirm 12 billable hours/day). Shows the stay-in package; booking preselects Babysitting.
 // TODO(client): confirm what live-in families provide (room, meals, weekly day off). REVIEW-AR
-import type { ServiceContent } from '../services';
+import type { ServicePage } from '../services';
 import { business } from '../business';
 
 const { day, night } = business.shifts;
 
-const page: ServiceContent = {
+const page: ServicePage = {
   slug: 'live-in-nanny',
   tier: 'more',
   icon: 'home',
   photo: 'babysitting',
   photoAlt: { ar: 'مربية مقيمة تبني بيتاً من المكعبات الخشبية مع طفل صغير في بيت العائلة بالرياض', en: 'A live-in nanny building a wooden block house with a toddler in a Riyadh family home' },
-  name: { ar: 'المربية المقيمة', en: 'Live-in Nanny' },
-  card: { ar: 'مربية تعيش مع عائلتكم، ويد ثابتة كل يوم', en: 'A nanny who lives with your family, there every day' },
-  tagline: { ar: 'يد ثابتة في بيتكم، من الصباح حتى المساء', en: 'A steady pair of hands at home, morning to evening' },
   intro: {
     title: { ar: 'المربية المقيمة: رعاية يومية دون مواعيد وصول', en: 'A live-in nanny: daily care without the commute' },
     text: [

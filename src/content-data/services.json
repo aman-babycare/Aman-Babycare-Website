@@ -1,0 +1,146 @@
+[
+  {
+    "slug": "newborn-care",
+    "enabled": true,
+    "name": {
+      "ar": "رعاية المواليد والأمهات",
+      "en": "Newborn & Mother Care"
+    },
+    "card": {
+      "ar": "يد حانية لمولودكم، وراحة للأم في أسابيعها الأولى",
+      "en": "Gentle hands for your newborn, and rest for mum in the early weeks"
+    },
+    "tagline": {
+      "ar": "أسابيعكم الأولى مع المولود، بهدوء وطمأنينة",
+      "en": "Your first weeks with baby, calmer and well rested"
+    }
+  },
+  {
+    "slug": "babysitting",
+    "enabled": true,
+    "name": {
+      "ar": "رعاية الأطفال",
+      "en": "Babysitting"
+    },
+    "card": {
+      "ar": "وقت آمن وممتع لأطفالكم في البيت",
+      "en": "Safe, happy time for your children at home"
+    },
+    "tagline": {
+      "ar": "أطفالكم في أمان، وأنتم مطمئنون",
+      "en": "Your children are safe, and you can breathe"
+    }
+  },
+  {
+    "slug": "elderly-companionship",
+    "enabled": true,
+    "name": {
+      "ar": "مرافقة كبار السن",
+      "en": "Elderly Companionship"
+    },
+    "card": {
+      "ar": "صحبة طيبة ومساعدة يومية لوالديكم",
+      "en": "Warm company and everyday help for your parents"
+    },
+    "tagline": {
+      "ar": "صحبة طيبة لمن ربّونا",
+      "en": "Kind company for the ones who raised us"
+    }
+  },
+  {
+    "slug": "home-cleaning",
+    "enabled": true,
+    "name": {
+      "ar": "تنظيف المنازل",
+      "en": "Home Cleaning"
+    },
+    "card": {
+      "ar": "بيت مرتب ونظيف دون أن تشغلوا بالكم",
+      "en": "A clean, calm home without the effort"
+    },
+    "tagline": {
+      "ar": "بيت نظيف يستقبلكم ويستقبل ضيوفكم",
+      "en": "A clean home, ready for you and your guests"
+    }
+  },
+  {
+    "slug": "night-nanny",
+    "enabled": true,
+    "name": {
+      "ar": "المربية الليلية",
+      "en": "Night Nanny"
+    },
+    "card": {
+      "ar": "ليلة هادئة للمولود، ونوم متصل لكم",
+      "en": "A settled night for baby, and real sleep for you"
+    },
+    "tagline": {
+      "ar": "ناموا الليلة، ومولودكم في أيدٍ أمينة",
+      "en": "Sleep tonight; your baby is in safe hands"
+    }
+  },
+  {
+    "slug": "live-in-nanny",
+    "enabled": true,
+    "name": {
+      "ar": "المربية المقيمة",
+      "en": "Live-in Nanny"
+    },
+    "card": {
+      "ar": "مربية تعيش مع عائلتكم، ويد ثابتة كل يوم",
+      "en": "A nanny who lives with your family, there every day"
+    },
+    "tagline": {
+      "ar": "يد ثابتة في بيتكم، من الصباح حتى المساء",
+      "en": "A steady pair of hands at home, morning to evening"
+    }
+  },
+  {
+    "slug": "errands",
+    "enabled": true,
+    "name": {
+      "ar": "المشتريات والمساعدة الشخصية",
+      "en": "Errands & Personal Assistance"
+    },
+    "card": {
+      "ar": "مقاضي البيت والمشاوير الصغيرة عنكم",
+      "en": "Groceries and small errands, off your list"
+    },
+    "tagline": {
+      "ar": "قائمة مهامكم، أقصر من اليوم",
+      "en": "Your to-do list, shorter from today"
+    }
+  },
+  {
+    "slug": "pick-up-drop-off",
+    "enabled": true,
+    "name": {
+      "ar": "التوصيل والاستقبال",
+      "en": "Pick-up & Drop-off"
+    },
+    "card": {
+      "ar": "مرافقة الأطفال إلى المدرسة والنادي، بأمان",
+      "en": "Someone trusted by your child’s side on school runs"
+    },
+    "tagline": {
+      "ar": "مشاوير العائلة في أيدٍ أمينة",
+      "en": "Your family's comings and goings, in trusted hands"
+    }
+  },
+  {
+    "slug": "pet-sitting",
+    "enabled": true,
+    "name": {
+      "ar": "رعاية الكلاب والقطط",
+      "en": "Dog & Cat Sitting"
+    },
+    "card": {
+      "ar": "طعام ولعب ونظافة لحيوانكم الأليف في بيته",
+      "en": "Meals, play and a clean litter box, in their own home"
+    },
+    "tagline": {
+      "ar": "قطتكم وكلبكم في بيتهما، وأنتم مطمئنون",
+      "en": "Your cat or dog stays home, and you stay at ease"
+    }
+  }
+]

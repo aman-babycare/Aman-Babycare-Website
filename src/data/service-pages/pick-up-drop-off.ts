@@ -1,18 +1,15 @@
 // Pick-up & Drop-off. Keyword: مرافقة الأطفال في مشاوير المدرسة.
 // TODO(client): do caregivers drive? Until confirmed, describe accompanying the child only: no «سائق»,
 // "driver" or "we drive" wording, and no promise of a car. REVIEW-AR
-import type { ServiceContent } from '../services';
+import type { ServicePage } from '../services';
 import { business } from '../business';
 
 const { day } = business.shifts;
 
-const page: ServiceContent = {
+const page: ServicePage = {
   slug: 'pick-up-drop-off',
   tier: 'more',
   icon: 'car',
-  name: { ar: 'التوصيل والاستقبال', en: 'Pick-up & Drop-off' },
-  card: { ar: 'مرافقة الأطفال إلى المدرسة والنادي، بأمان', en: 'Someone trusted by your child’s side on school runs' },
-  tagline: { ar: 'مشاوير العائلة في أيدٍ أمينة', en: "Your family's comings and goings, in trusted hands" },
   intro: {
     title: { ar: 'مرافقة الطفل من الباب إلى الباب', en: 'Door to door, by your child’s side' },
     text: [

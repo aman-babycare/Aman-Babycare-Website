@@ -1,18 +1,15 @@
 // Home Cleaning. Keyword (care): تنظيف وترتيب المنزل بالساعة; (worker): عاملات نظافة بالساعة, with
 // تنظيف شقق وفلل and عاملة منزلية بالساعة as secondaries. Never target «شركة تنظيف» or deep cleaning
 // (tanks, sofas, AC): Aman is everyday home help. REVIEW-AR
-import type { ServiceContent } from '../services';
+import type { ServicePage } from '../services';
 import { business } from '../business';
 
 const { day } = business.shifts;
 
-const page: ServiceContent = {
+const page: ServicePage = {
   slug: 'home-cleaning',
   tier: 'core',
   icon: 'sparkle',
-  name: { ar: 'تنظيف المنازل', en: 'Home Cleaning' },
-  card: { ar: 'بيت مرتب ونظيف دون أن تشغلوا بالكم', en: 'A clean, calm home without the effort' },
-  tagline: { ar: 'بيت نظيف يستقبلكم ويستقبل ضيوفكم', en: 'A clean home, ready for you and your guests' },
   intro: {
     title: { ar: 'تنظيف شقق وفلل بالساعة، لبيت مرتب كل يوم', en: 'Hourly cleaning for apartments and villas' },
     text: [

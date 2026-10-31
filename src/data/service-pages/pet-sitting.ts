@@ -1,17 +1,14 @@
 // Dog & Cat Sitting. Keyword: رعاية القطط والكلاب في المنزل. Search demand is low, so this page is
 // shorter (~400 words, 4 FAQs) by design. REVIEW-AR
-import type { ServiceContent } from '../services';
+import type { ServicePage } from '../services';
 import { business } from '../business';
 
 const { day } = business.shifts;
 
-const page: ServiceContent = {
+const page: ServicePage = {
   slug: 'pet-sitting',
   tier: 'more',
   icon: 'paw',
-  name: { ar: 'رعاية الكلاب والقطط', en: 'Dog & Cat Sitting' },
-  card: { ar: 'طعام ولعب ونظافة لحيوانكم الأليف في بيته', en: 'Meals, play and a clean litter box, in their own home' },
-  tagline: { ar: 'قطتكم وكلبكم في بيتهما، وأنتم مطمئنون', en: 'Your cat or dog stays home, and you stay at ease' },
   intro: {
     title: { ar: 'زيارات منزلية لقطتكم أو كلبكم', en: 'Home visits for your cat or dog' },
     text: [

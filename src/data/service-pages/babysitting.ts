@@ -1,5 +1,5 @@
 // Babysitting. Keyword: جليسة أطفال (secondary: مربية أطفال بالساعة). REVIEW-AR
-import type { ServiceContent } from '../services';
+import type { ServicePage } from '../services';
 import { business } from '../business';
 import { fromRate } from '../packages';
 import { rate } from '../../i18n/ui';
@@ -7,13 +7,10 @@ import { rate } from '../../i18n/ui';
 const { day, night } = business.shifts;
 const from = fromRate('babysitting');
 
-const page: ServiceContent = {
+const page: ServicePage = {
   slug: 'babysitting',
   tier: 'core',
   icon: 'child',
-  name: { ar: 'رعاية الأطفال', en: 'Babysitting' },
-  card: { ar: 'وقت آمن وممتع لأطفالكم في البيت', en: 'Safe, happy time for your children at home' },
-  tagline: { ar: 'أطفالكم في أمان، وأنتم مطمئنون', en: 'Your children are safe, and you can breathe' },
   intro: {
     title: { ar: 'مربية أطفال أو جليسة بالساعة، حسب يومكم', en: 'A nanny or an hourly babysitter, whatever your day needs' },
     text: [

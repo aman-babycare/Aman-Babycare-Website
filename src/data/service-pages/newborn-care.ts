@@ -1,16 +1,13 @@
 // Newborn & Mother Care. Help and support only: never nursing, medical or clinical care. REVIEW-AR
-import type { ServiceContent } from '../services';
+import type { ServicePage } from '../services';
 import { business } from '../business';
 
 const { day, night } = business.shifts;
 
-const page: ServiceContent = {
+const page: ServicePage = {
   slug: 'newborn-care',
   tier: 'featured',
   icon: 'baby',
-  name: { ar: 'رعاية المواليد والأمهات', en: 'Newborn & Mother Care' },
-  card: { ar: 'يد حانية لمولودكم، وراحة للأم في أسابيعها الأولى', en: 'Gentle hands for your newborn, and rest for mum in the early weeks' },
-  tagline: { ar: 'أسابيعكم الأولى مع المولود، بهدوء وطمأنينة', en: 'Your first weeks with baby, calmer and well rested' },
   subservices: [
     { icon: 'baby', name: { ar: 'رعاية المولود في المنزل', en: 'Newborn care at home' }, text: { ar: 'عناية يومية لطيفة بمولودكم في بيته.', en: 'Gentle everyday care for your baby, at home.' } },
     { icon: 'bottle', name: { ar: 'دعم الرضاعة والتغذية', en: 'Feeding support' }, text: { ar: 'تجهيز الرضّاعات وتعقيمها، والتجشئة والتهدئة بعد الرضعة.', en: 'Bottles prepared and sterilised; burping and settling after feeds.' } },
