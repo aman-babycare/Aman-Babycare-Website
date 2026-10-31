@@ -35,9 +35,6 @@ export interface ServicePricing {
   homeSizePercent?: Record<string, number> | null; // cleaning only, keyed "apartment:1-2" etc.
 }
 
-// "draft" keeps the "Draft prices" note under every total until the client's own price list replaces these.
-export const PRICE_LIST_STATUS: 'draft' | 'final' = 'draft';
-
 export const WEEKS_PER_MONTH = 4; // TODO(client): confirm a month is billed as 4 weeks
 export const VAT_RATE: number | null = null; // TODO(client): VAT-registered? e.g. 0.15 adds a VAT line
 // TODO(client): when one caregiver does several services in the same hours, is the price summed, or the
@@ -72,10 +69,11 @@ export const TIMINGS: Record<TimingId, { label: L; hoursPerDay: number | null; w
 // Validated at build time (the content-validate integration in astro.config.mjs); the browser bundle gets the data only.
 const pricing = data as Pricing;
 
-// The engine's shape: packages grouped by tier, the rate as hourlyRateOverride.
+// The engine's shape: packages grouped by tier, the rate as hourlyRateOverride. A service with showPrice off
+// gets no packages and no rate, so every line for it reads "Price on WhatsApp".
 const toEngine = (s: ServicePricingEntry): ServicePricing => {
   const tiers: ServicePricing['tiers'] = {};
-  for (const p of s.packages) {
+  for (const p of s.showPrice ? s.packages : []) {
     (tiers[p.tier] ??= []).push({
       id: p.id,
       price: p.price,
@@ -89,7 +87,7 @@ const toEngine = (s: ServicePricingEntry): ServicePricing => {
   return {
     unit: s.unit,
     tiers,
-    ...(s.hourlyRate && { hourlyRateOverride: s.hourlyRate }),
+    ...(s.showPrice && s.hourlyRate && { hourlyRateOverride: s.hourlyRate }),
     minHours: s.minHours,
     extraPersonPercent: s.extraPersonPercent,
     timingPercent: s.timingPercent,
@@ -103,6 +101,9 @@ export const PRICING_DATA = pricing.services;
 export const PRICING: Record<string, ServicePricing> = Object.fromEntries(
   Object.entries(pricing.services).map(([id, s]) => [id, toEngine(s)]),
 );
+
+/** Services whose prices carry the "Draft prices" note. */
+export const draftServices = Object.entries(pricing.services).filter(([, s]) => s.draft).map(([id]) => id);
 
 const allRefPackages = Object.values(PRICING).flatMap((s) => Object.values(s.tiers).flat());
 

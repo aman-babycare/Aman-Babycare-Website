@@ -6,7 +6,7 @@ Goal: rank on Google for Riyadh home-care searches and turn visitors into WhatsA
 Deadline: Saturday Oct 31, 2026, 6 PM. MVP first; mark later work with `// PHASE 2`.
 
 ## Always Do First
-- Read `src/data/business.ts` (all business facts), `src/config/site.ts` (site settings) and this file before any change.
+- Read `src/content-data/business.json` (all business facts, read through `src/data/business.ts`), `src/config/site.ts` (site settings) and this file before any change.
 - Do not start any design work until the `frontend-design` skill is installed and activated. Invoke it before writing UI code.
 - Check `brand_assets/` for logo, colors, and images. Use real assets over placeholders. Style references live in `brand_assets/references/`.
 - Read the matching rules file in `docs/build/` (index: `docs/build/README.md`) before working on that area: design system, brand/logo, culture & copy, imagery, services, service pages, packages, offers, header, engagement, visual QA, contact details.
@@ -20,9 +20,9 @@ Deadline: Saturday Oct 31, 2026, 6 PM. MVP first; mark later work with `// PHASE
 - Host: Cloudflare Pages.
 
 ## Business Facts (never invent)
-- Every fact comes from `src/data/business.ts`. Unknown values stay as placeholders like `[PHONE]`, `[ADDRESS]`, `[PRICE]` in the data, but are never rendered raw: hide the line or show words such as "Price on WhatsApp".
+- Every fact comes from `src/content-data/business.json` (via `src/data/business.ts`). Unknown values stay as placeholders like `[PHONE]`, `[ADDRESS]`, `[PRICE]` in the data, but are never rendered raw: hide the line or show words such as "Price on WhatsApp".
 - Do NOT write: licensed, certified, nurse, nursing, medical, hospital-grade, MOH, 24/7, "500+ families", or any number/credential not in `business.ts`.
-- Prices and pricing rules come only from `src/data/pricing.ts` (engine: `src/lib/pricing.ts`, `npm test`); offers from `src/data/offers.ts`. Current prices are client-approved DRAFTS (from a reference site); they must be confirmed before `isLive` is set to true. Missing numbers stay `null` + `TODO(client)` and show "Price on WhatsApp".
+- Prices come only from `src/content-data/pricing.json`, pricing rules from `src/data/pricing.ts` (engine: `src/lib/pricing.ts`, `npm test`); offers from `src/content-data/offers.json`. Everything in `src/content-data/` is edited by the admin panel (separate project in `../The admin panel`) and must keep matching `src/lib/content-schema.ts`; change the schema in both projects together. Current prices are client-approved DRAFTS (from a reference site); they must be confirmed before `isLive` is set to true. Missing numbers stay `null` + `TODO(client)` and show "Price on WhatsApp".
 - Allowed trust claim: staff are background-checked.
 - Never invent reviews, testimonials, ratings, or star icons. Only real, consented reviews go in `src/data/reviews.ts`; the Reviews section shows once 3+ have `consent: true`. Until then the honest "Be among our first families" block carries the page.
 - No Review or AggregateRating schema.

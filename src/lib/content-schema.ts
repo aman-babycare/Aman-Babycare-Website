@@ -72,6 +72,11 @@ export const packageSchema = z.object({
 
 export const servicePricingSchema = z.object({
   unit: z.enum(['hour', 'visit', 'trip']),
+  // false: no figures for this service anywhere (cards say "Price confirmed on WhatsApp", the booking card
+  // says "Price on WhatsApp", Service schema carries no offers).
+  showPrice: z.boolean(),
+  // true: a "Draft prices" note under this service's prices until the client's own price list replaces them.
+  draft: z.boolean(),
   hourlyRate: z.object({ oneTime: sar, weekly: sar, monthly: sar }).partial().optional(),
   minHours: z.number().int().positive().nullable(),
   extraPersonPercent: percent.nullable(),

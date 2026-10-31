@@ -23,9 +23,6 @@ export const site = {
 // Turn on only once the client confirms the discounts are real.
 export const SHOW_DISCOUNTS = false;
 
-// While false: package cards say "Price confirmed on WhatsApp" and Service schema carries no offers.
-export const SHOW_PRICES = true;
-
 // Lives on the Packages page.
 export const personalizedCarePlans = {
   name: { en: 'Personalized Care Plans', ar: 'خطط رعاية مخصصة' },

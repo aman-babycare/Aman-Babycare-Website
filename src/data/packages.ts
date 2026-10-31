@@ -4,7 +4,6 @@
 // https://feelvaleo.com/en-sa/riyadh/babysitting — confirm every price before site.isLive = true.
 import type { L } from '../i18n/ui';
 import { PRICING_DATA } from './pricing';
-import { SHOW_PRICES } from '../config/site';
 
 export type PackageGroup = 'on-demand' | 'monthly' | 'elderly';
 
@@ -17,7 +16,8 @@ export interface Package {
   price: number | null; // SAR; null = ask on WhatsApp
   was?: number;
   perHour?: number;
-  draft: boolean;
+  showPrice: boolean; // the service's "show price" switch
+  draft: boolean; // the service's "draft price" switch
 }
 
 // tab: short label for the Packages page ribbon. REVIEW-AR
@@ -65,7 +65,8 @@ export const packages: Package[] = groups.flatMap((g) =>
         price: p.price,
         ...(p.was != null && { was: p.was }),
         ...(p.perHour != null && { perHour: p.perHour }),
-        draft: true,
+        showPrice: s.showPrice,
+        draft: s.draft,
       })),
   ),
 );
@@ -84,6 +85,9 @@ export const packagesIn = (group: PackageGroup) => packages.filter((p) => p.grou
 
 /** Lowest hourly rate among a service's packages (for price answers); null while prices are hidden. */
 export const fromRate = (service: string): number | null => {
-  const rates = packagesFor(service).map((p) => p.perHour).filter((r): r is number => typeof r === 'number');
-  return SHOW_PRICES && rates.length ? Math.min(...rates) : null;
+  const rates = packagesFor(service)
+    .filter((p) => p.showPrice)
+    .map((p) => p.perHour)
+    .filter((r): r is number => typeof r === 'number');
+  return rates.length ? Math.min(...rates) : null;
 };

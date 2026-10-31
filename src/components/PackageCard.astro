@@ -1,6 +1,6 @@
 ---
 import Icon from './Icon.astro';
-import { SHOW_DISCOUNTS, SHOW_PRICES, whatsappUrl, type Locale } from '../config/site';
+import { SHOW_DISCOUNTS, whatsappUrl, type Locale } from '../config/site';
 import type { Package } from '../data/packages';
 import { href, money, rate, ui } from '../i18n/ui';
 import { anchorFor } from '../data/seo';
@@ -15,9 +15,9 @@ interface Props {
 const { lang, pkg: p, headingLevel: H = 'h3', current } = Astro.props;
 const message =
   lang === 'ar' ? `السلام عليكم، أرغب بالاستفسار عن باقة: ${p.name.ar}` : `Hello, I'd like to ask about the package: ${p.name.en}`;
-// SHOW_PRICES off: no figures at all, only "Price confirmed on WhatsApp".
-const price = SHOW_PRICES ? p.price : null;
-const perHour = SHOW_PRICES ? p.perHour : undefined;
+// The service's "show price" switch off: no figures at all, only "Price confirmed on WhatsApp".
+const price = p.showPrice ? p.price : null;
+const perHour = p.showPrice ? p.perHour : undefined;
 const was = SHOW_DISCOUNTS ? p.was : undefined;
 const saving = was && price ? was - price : 0;
 ---
@@ -66,7 +66,7 @@ const saving = was && price ? was - price : 0;
             )}
           </p>
         ) : (
-          <p class="text-xl font-semibold text-green-700 max-md:text-base">{SHOW_PRICES ? ui.askPrice[lang] : ui.priceConfirmed[lang]}</p>
+          <p class="text-xl font-semibold text-green-700 max-md:text-base">{p.showPrice ? ui.askPrice[lang] : ui.priceConfirmed[lang]}</p>
         )
       }
       {

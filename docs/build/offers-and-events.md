@@ -1,6 +1,6 @@
 # Offers & events
 
-Data: `src/data/offers.ts`. Seasonal offers layer a discount on top of the packages.
+Data: `src/content-data/offers.json` (read through `src/data/offers.ts`, edited from the admin panel). Seasonal offers layer a discount on top of the packages.
 
 ## Calendar (from Oct 2026)
 | Event | Arabic | Date | Type |

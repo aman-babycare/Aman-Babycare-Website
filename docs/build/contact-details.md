@@ -1,6 +1,6 @@
 # Contact details
 
-All business facts live in `src/data/business.ts` (site settings such as `isLive` stay in `src/config/site.ts`).
+All business facts live in `src/content-data/business.json` (read through `src/data/business.ts`, edited from the admin panel) (site settings such as `isLive` stay in `src/config/site.ts`).
 
 | Fact | Status |
 | --- | --- |

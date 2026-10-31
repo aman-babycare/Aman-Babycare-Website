@@ -1,9 +1,9 @@
 # Packages & pricing
 
-Prices and pricing rules: `src/data/pricing.ts` (the only place to edit a price). Engine: `src/lib/pricing.ts`, tested by `npm test`. The Packages page cards (`src/data/packages.ts`) read their prices from `pricing.ts` with `refPrice()`.
+Per-service prices, hourly rates and packages (schedule, price, card name and detail): `src/content-data/pricing.json`, the only place to edit a price, edited from the admin panel and checked against `src/lib/content-schema.ts` at build time. Global pricing rules (timings, weeks per month, VAT, multi-service rule) and the client decisions behind the JSON: `src/data/pricing.ts`. Engine: `src/lib/pricing.ts`, tested by `npm test`. The Packages page cards (`src/data/packages.ts`) are built from the same JSON.
 
 - The structure is modelled on the client-supplied Valeo Riyadh babysitting page (https://feelvaleo.com/en-sa/riyadh/babysitting).
-- **All prices are DRAFT** (`PRICE_LIST_STATUS = 'draft'`, `draft: true` on package cards), copied from that page as a starting point. The client must confirm or replace them before `site.isLive` becomes true. While draft, every total says "Draft prices".
+- **All prices are DRAFT** (`draft: true` on every service in `pricing.json`), copied from that page as a starting point. The client must confirm or replace them before `site.isLive` becomes true. While a service is draft, its package cards and any booking total that includes it say "Draft prices". `showPrice: false` on a service hides all its figures (cards, booking card, Service schema offers).
 - Elderly plans are named **companionship**, never "care" or "nursing".
 - Groups: On-demand (hourly, weekly), Monthly babysitting (5/6/7 days, stay-in), Monthly elderly companionship (5/6/7 days), Welcome offer.
 - Currency: «ر.س» in Arabic, "SAR" in English. Prices use Western digits in both languages with thousands separators ("SAR 5,143" / "5,143 ر.س").

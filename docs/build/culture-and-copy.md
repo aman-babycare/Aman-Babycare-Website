@@ -14,7 +14,7 @@ Warm, respectful, calm, confident. Plain words. Speak to the family ("your home"
 - Islamic courtesy where natural (e.g. «بإذن الله») in moderation. No religious claims.
 
 ## Never write
-licensed, certified, nurse, nursing, medical, hospital-grade, MOH, 24/7, "500+ families" or any statistic, reviews, testimonials, ratings, stars. No prices beyond `src/data/packages.ts` (draft).
+licensed, certified, nurse, nursing, medical, hospital-grade, MOH, 24/7, "500+ families" or any statistic, reviews, testimonials, ratings, stars. No prices beyond `src/content-data/pricing.json` (draft).
 
 ## Allowed trust claims
 - Staff are background-checked.

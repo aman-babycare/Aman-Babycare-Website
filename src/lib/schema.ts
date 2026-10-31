@@ -1,5 +1,5 @@
 // JSON-LD builders. LocalBusiness is added by BaseLayout on every page.
-import { SHOW_PRICES, type Locale } from '../config/site';
+import type { Locale } from '../config/site';
 import type { Package } from '../data/packages';
 import { business } from '../data/business';
 import type { L } from '../i18n/ui';
@@ -33,7 +33,7 @@ export const serviceSchema = (
   s: { name: string; serviceType: string; description: string; url: string; site: URL | undefined; packages: Package[] },
 ) => {
   // Offers only when prices are shown and set; never a Review or AggregateRating.
-  const priced = SHOW_PRICES ? s.packages.filter((p) => p.price) : [];
+  const priced = s.packages.filter((p) => p.showPrice && p.price);
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
