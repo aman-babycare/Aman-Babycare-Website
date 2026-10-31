@@ -94,6 +94,9 @@ export const services: ServiceContent[] = (servicesData as ServiceEntry[])
 export const packagePages: ServiceContent[] = [fortyDays].filter((p) => p.enabled !== false);
 
 export const serviceBySlug = (slug: string) => services.find((s) => s.slug === slug)!;
+/** The enabled services among these slugs, in the given order. Switching a service off in the admin panel
+ *  drops it from every list, link and combination that names it. */
+export const liveServices = (slugs: string[]) => slugs.map((s) => services.find((x) => x.slug === s)).filter((s): s is ServiceContent => !!s);
 export const featuredServices = services.filter((s) => s.tier === 'featured');
 export const coreServices = services.filter((s) => s.tier === 'core');
 export const moreServices = services.filter((s) => s.tier === 'more');

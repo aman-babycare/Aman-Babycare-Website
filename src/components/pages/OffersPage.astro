@@ -10,7 +10,7 @@ import Visual from '../Visual.astro';
 import { whatsappUrl, type Locale } from '../../config/site';
 import { featuredOffer as featured, upcomingOffers } from '../../data/offers';
 import { welcomeOffer } from '../../data/packages';
-import { serviceBySlug } from '../../data/services';
+import { liveServices } from '../../data/services';
 import { href, ui } from '../../i18n/ui';
 import { breadcrumbSchema } from '../../lib/schema';
 
@@ -77,9 +77,9 @@ const welcomeMsg = lang === 'ar' ? `السلام عليكم، أرغب بـ${wel
       <p class="col-span-2 text-sm text-cream-200 lg:col-span-1 lg:col-start-2">{featured.text[lang]}</p>
       <div class="col-span-2 flex flex-wrap items-center gap-2 text-xs text-cream-200 lg:col-span-1 lg:col-start-2 lg:self-start">
         <span>{t.includes}:</span>
-        {featured.services.map((s) => (
+        {liveServices(featured.services).map(({ slug: s, name }) => (
           <a href={href(lang, `services/${s}`)} class="inline-flex min-h-11 items-center rounded-full px-3 ring-1 ring-cream-50/20 hover:bg-cream-50/10 active:scale-[0.98]">
-            {serviceBySlug(s).name[lang]}
+            {name[lang]}
           </a>
         ))}
         {featured.endsAt && (

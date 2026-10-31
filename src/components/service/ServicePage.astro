@@ -14,7 +14,7 @@ import FAQ from '../FAQ.astro';
 import PackageCard from '../PackageCard.astro';
 import ServiceCard from '../ServiceCard.astro';
 import { whatsappUrl, type Locale } from '../../config/site';
-import { serviceFaq, serviceBySlug, type ServiceContent, type ShiftId } from '../../data/services';
+import { serviceFaq, liveServices, type ServiceContent, type ShiftId } from '../../data/services';
 import { packages, packagesFor } from '../../data/packages';
 import { offers, featuredOffer } from '../../data/offers';
 import { business, telUrl } from '../../data/business';
@@ -38,8 +38,8 @@ const crumbs = [
   { name: ui.nav[section][lang], url: href(lang, section) },
   { name: s.name[lang], url: href(lang, path) },
 ];
-const pkgs = s.packages.ids ? s.packages.ids.map((id) => packages.find((p) => p.id === id)!) : packagesFor(slug);
-const related = s.related.map(serviceBySlug);
+const pkgs = s.packages.ids ? s.packages.ids.map((id) => packages.find((p) => p.id === id)).filter((p) => !!p) : packagesFor(slug);
+const related = liveServices(s.related);
 const faq = serviceFaq(s);
 // The featured offer if it includes this service, otherwise the next offer that does.
 const offer = featuredOffer.services.includes(slug) ? featuredOffer : offers.find((o) => o.services.includes(slug));

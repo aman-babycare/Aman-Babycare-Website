@@ -15,7 +15,7 @@ import FAQ from '../FAQ.astro';
 import BookingCard from '../BookingCard.astro';
 import Reviews from '../Reviews.astro';
 import { whatsappUrl, type Locale } from '../../config/site';
-import { coreServices, featuredServices, moreServices, serviceBySlug } from '../../data/services';
+import { coreServices, featuredServices, liveServices, moreServices, serviceBySlug } from '../../data/services';
 import { featuredOffer as featured, upcomingOffers } from '../../data/offers';
 import { packages, welcomeOffer } from '../../data/packages';
 import { href, ui } from '../../i18n/ui';
@@ -136,7 +136,9 @@ const c = {
 const offerMessage = (event: string) =>
   lang === 'ar' ? `السلام عليكم، أرغب بالاستفادة من عرض ${event}.` : `Hello, I'd like to book the ${event} offer.`;
 const welcomeMsg = lang === 'ar' ? `السلام عليكم، أرغب بـ${welcomeOffer.name.ar}.` : `Hello, I'd like the ${welcomeOffer.name.en}.`;
-const teaser = ['hourly-babysitting', 'monthly-6', 'stay-in'].map((id) => packages.find((p) => p.id === id)!);
+// Three signature packages; if a service switched off in the admin took one away, show the first three that remain.
+const signature = ['hourly-babysitting', 'monthly-6', 'stay-in'].flatMap((id) => packages.find((p) => p.id === id) ?? []);
+const teaser = signature.length === 3 ? signature : packages.slice(0, 3);
 ---
 
 <!-- Hero. Phones: headline, trust points, buttons, then the photo. Desktop: text and buttons beside the
@@ -234,9 +236,9 @@ const teaser = ['hourly-babysitting', 'monthly-6', 'stay-in'].map((id) => packag
       <p class="col-span-2 line-clamp-2 text-sm text-cream-200 lg:col-span-1 lg:col-start-2">{featured.text[lang]}</p>
       <div class="col-span-2 flex flex-wrap items-center gap-2 text-xs text-cream-200 lg:col-span-1 lg:col-start-2 lg:self-start">
         <span>{c.includes}:</span>
-        {featured.services.map((s) => (
+        {liveServices(featured.services).map(({ slug: s, name }) => (
           <a href={href(lang, `services/${s}`)} class="inline-flex min-h-8 items-center rounded-full px-3 ring-1 ring-cream-50/20 hover:bg-cream-50/10 active:scale-[0.98]">
-            {serviceBySlug(s).name[lang]}
+            {name[lang]}
           </a>
         ))}
         {featured.endsAt && (
@@ -336,6 +338,7 @@ const teaser = ['hourly-babysitting', 'monthly-6', 'stay-in'].map((id) => packag
 </section>
 
 <!-- Packages teaser -->
+{teaser.length > 0 && (
 <section id="packages" class="scroll-mt-28 bg-cream-200/60 py-16 md:py-24">
   <div class="container-x">
     <div class="flex flex-wrap items-end justify-between gap-6">
@@ -353,6 +356,7 @@ const teaser = ['hourly-babysitting', 'monthly-6', 'stay-in'].map((id) => packag
     </div>
   </div>
 </section>
+)}
 
 <!-- Book Your Service -->
 <div class="container-x py-12 md:py-16">
@@ -399,7 +403,7 @@ const teaser = ['hourly-babysitting', 'monthly-6', 'stay-in'].map((id) => packag
     </div>
     <ul class="grid gap-3">
       {
-        c.combos.map((combo) => (
+        c.combos.filter((combo) => liveServices([combo.a, combo.b]).length === 2).map((combo) => (
           <li class="flex items-center gap-4 rounded-2xl bg-cream-50 p-4 ring-1 ring-green-700/5">
             <span class="flex -space-x-2 rtl:space-x-reverse">
               <span class="flex size-10 items-center justify-center rounded-full bg-green-700 text-cream-50 ring-2 ring-cream-50">

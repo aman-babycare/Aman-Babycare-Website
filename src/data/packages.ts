@@ -4,6 +4,7 @@
 // https://feelvaleo.com/en-sa/riyadh/babysitting — confirm every price before site.isLive = true.
 import type { L } from '../i18n/ui';
 import { PRICING_DATA } from './pricing';
+import servicesData from '../content-data/services.json';
 
 export type PackageGroup = 'on-demand' | 'monthly' | 'elderly';
 
@@ -51,10 +52,13 @@ export const groups: { id: PackageGroup; name: L; tab: L; intro: L }[] = [
   },
 ];
 
+// A service switched off in services.json has no page, so its packages are not listed either.
+const switchedOff = new Set(servicesData.filter((s) => !s.enabled).map((s) => s.slug));
+
 // Packages page order: tab by tab, then service order within a tab.
 export const packages: Package[] = groups.flatMap((g) =>
   Object.entries(PRICING_DATA).flatMap(([service, s]) =>
-    s.packages
+    (switchedOff.has(service) ? [] : s.packages)
       .filter((p) => p.group === g.id)
       .map((p) => ({
         id: p.id,

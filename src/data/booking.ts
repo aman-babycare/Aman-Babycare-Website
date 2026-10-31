@@ -5,6 +5,7 @@
 import type { L } from '../i18n/ui';
 import type { IconName } from '../components/icons';
 import type { Tier, TimingId } from './pricing';
+import servicesData from '../content-data/services.json';
 
 export type Opt = { id: string; label: L };
 export type ScheduleUnit = 'days' | 'visits' | 'trips';
@@ -67,7 +68,7 @@ const supportTimings: TimingId[] = ['hourly', 'day-shift', 'night', 'stay-in'];
 const n = (a: Answers, key: string) => (typeof a[key] === 'number' ? (a[key] as number) : 1);
 
 // Client-requested order.
-export const bookingServices: BookingService[] = [
+const allBookingServices: BookingService[] = [
   {
     id: 'newborn-care',
     page: 'newborn-care',
@@ -257,6 +258,10 @@ export const bookingServices: BookingService[] = [
     people: () => 1,
   },
 ];
+
+// A service switched off in services.json (admin panel) can't be booked either.
+const switchedOff = new Set(servicesData.filter((x) => !x.enabled).map((x) => x.slug));
+export const bookingServices: BookingService[] = allBookingServices.filter((x) => !switchedOff.has(x.page));
 
 function n0(a: Answers, key: string) {
   return typeof a[key] === 'number' ? (a[key] as number) : 0;

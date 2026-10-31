@@ -10,7 +10,7 @@ import FAQ from '../FAQ.astro';
 import { hasPhoto } from '../../lib/photos';
 import CtaBand from '../CtaBand.astro';
 import type { Locale } from '../../config/site';
-import { coreServices, featuredServices, moreServices, serviceBySlug, services } from '../../data/services';
+import { coreServices, featuredServices, liveServices, moreServices, services } from '../../data/services';
 import { business } from '../../data/business';
 import { href, ui } from '../../i18n/ui';
 import { breadcrumbSchema, faqSchema } from '../../lib/schema';
@@ -154,10 +154,10 @@ const faq = t.faq.map((f) => ({ q: { ar: f.q, en: f.q }, a: { ar: f.a, en: f.a }
                   <td class="px-6 py-4 text-ink-700">{s.hub.bestFor[lang]}</td>
                   <td class="px-6 py-4 text-ink-700">{s.hub.shifts[lang]}</td>
                   <td class="px-6 py-4 text-ink-700">
-                    {s.hub.combine.map((c, i) => (
+                    {liveServices(s.hub.combine).map(({ slug: c, name }, i) => (
                       <>
                         {i > 0 && (lang === 'ar' ? '، ' : ', ')}
-                        <a href={href(lang, `services/${c}`)} class="text-gold-800 underline-offset-2 hover:underline">{anchorFor(c, lang, serviceBySlug(c).name[lang])}</a>
+                        <a href={href(lang, `services/${c}`)} class="text-gold-800 underline-offset-2 hover:underline">{anchorFor(c, lang, name[lang])}</a>
                       </>
                     ))}
                   </td>

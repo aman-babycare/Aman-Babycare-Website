@@ -7,7 +7,7 @@ import CtaBand from '../CtaBand.astro';
 import ServiceCard from '../ServiceCard.astro';
 import { render } from 'astro:content';
 import type { Locale } from '../../config/site';
-import { serviceBySlug } from '../../data/services';
+import { liveServices } from '../../data/services';
 import { business } from '../../data/business';
 import { href, ui } from '../../i18n/ui';
 import { breadcrumbSchema, businessId } from '../../lib/schema';
@@ -28,7 +28,7 @@ const crumbs = [
   { name: meta.title, url: href(lang, path) },
 ];
 const { Content } = await render(post);
-const related = post.data.relatedServices.map(serviceBySlug);
+const related = liveServices(post.data.relatedServices);
 const article = {
   '@context': 'https://schema.org',
   '@type': 'Article',
