@@ -1,0 +1,48 @@
+# Test, build and deploy the site to Cloudflare.
+# Runs on every push to main (including admin-panel publishes), by hand from the Actions tab, and daily at
+# 00:05 Riyadh so offers start and expire on their dates without anyone publishing.
+# A failed step stops the run before `wrangler deploy`, so the live site stays as it was.
+#
+# Setup (repo Settings → Secrets and variables → Actions):
+#   secrets   CLOUDFLARE_API_TOKEN (Workers Scripts: Edit), CLOUDFLARE_ACCOUNT_ID
+#   variables PUBLIC_SITE_URL, PUBLIC_INDEXING ("true" on production only), PUBLIC_GA4_ID,
+#             PUBLIC_META_PIXEL_ID, PUBLIC_SNAP_PIXEL_ID
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '5 21 * * *' # 00:05 Asia/Riyadh (UTC+3)
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PUBLIC_SITE_URL: ${{ vars.PUBLIC_SITE_URL }}
+      PUBLIC_INDEXING: ${{ vars.PUBLIC_INDEXING }}
+      PUBLIC_GA4_ID: ${{ vars.PUBLIC_GA4_ID }}
+      PUBLIC_META_PIXEL_ID: ${{ vars.PUBLIC_META_PIXEL_ID }}
+      PUBLIC_SNAP_PIXEL_ID: ${{ vars.PUBLIC_SNAP_PIXEL_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - run: npm run seo-check
+      - name: Deploy to Cloudflare
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
