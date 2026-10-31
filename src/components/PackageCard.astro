@@ -1,6 +1,7 @@
 ---
 import Icon from './Icon.astro';
-import { SHOW_DISCOUNTS, whatsappUrl, type Locale } from '../config/site';
+import { whatsappUrl, type Locale } from '../config/site';
+import { discountLicensed } from '../data/offers';
 import type { Package } from '../data/packages';
 import { href, money, rate, ui } from '../i18n/ui';
 import { anchorFor } from '../data/seo';
@@ -18,12 +19,14 @@ const message =
 // The service's "show price" switch off: no figures at all, only "Price confirmed on WhatsApp".
 const price = p.showPrice ? p.price : null;
 const perHour = p.showPrice ? p.perHour : undefined;
-const was = SHOW_DISCOUNTS ? p.was : undefined;
+// Strike-through only under a running offer with a discount licence (src/data/offers.ts).
+const was = discountLicensed(p.service) ? p.was : undefined;
+const discountRow = discountLicensed();
 const saving = was && price ? was - price : 0;
 ---
 
 <article class="flex flex-col md:h-full rounded-3xl bg-cream-50 p-6 shadow-soft max-md:rounded-2xl max-md:p-3 ring-1 ring-green-700/5" data-tilt>
-  <div class:list={['flex items-start', SHOW_DISCOUNTS && 'min-h-7']}>
+  <div class:list={['flex items-start', discountRow && 'min-h-7']}>
     {
       saving > 0 && (
         <span class="shimmer rounded-full bg-gold-50 px-3 py-1 text-xs font-semibold text-gold-700 ring-1 ring-gold-500/30">
@@ -32,7 +35,7 @@ const saving = was && price ? was - price : 0;
       )
     }
   </div>
-  <H class:list={['text-lg text-green-800 max-md:text-base', SHOW_DISCOUNTS && 'mt-3']}>{p.name[lang]}</H>
+  <H class:list={['text-lg text-green-800 max-md:text-base', discountRow && 'mt-3']}>{p.name[lang]}</H>
   <p class="mt-1 text-sm text-ink-500 max-md:text-xs">{p.detail[lang]}</p>
   {
     p.service !== current && (

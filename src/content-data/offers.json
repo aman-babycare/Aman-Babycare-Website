@@ -24,7 +24,8 @@
       "babysitting",
       "elderly-companionship"
     ],
-    "discount": "[DISCOUNT]"
+    "discount": "[DISCOUNT]",
+    "discountLicence": null
   },
   {
     "id": "ramadan",
@@ -51,7 +52,8 @@
       "babysitting",
       "home-cleaning"
     ],
-    "discount": "[DISCOUNT]"
+    "discount": "[DISCOUNT]",
+    "discountLicence": null
   },
   {
     "id": "founding-day",
@@ -76,7 +78,8 @@
       "pick-up-drop-off",
       "babysitting"
     ],
-    "discount": "[DISCOUNT]"
+    "discount": "[DISCOUNT]",
+    "discountLicence": null
   },
   {
     "id": "eid-al-fitr",
@@ -102,7 +105,8 @@
       "home-cleaning",
       "errands"
     ],
-    "discount": "[DISCOUNT]"
+    "discount": "[DISCOUNT]",
+    "discountLicence": null
   },
   {
     "id": "eid-al-adha",
@@ -128,7 +132,8 @@
       "pet-sitting",
       "home-cleaning"
     ],
-    "discount": "[DISCOUNT]"
+    "discount": "[DISCOUNT]",
+    "discountLicence": null
   },
   {
     "id": "back-to-school",
@@ -153,7 +158,8 @@
       "pick-up-drop-off",
       "babysitting"
     ],
-    "discount": "[DISCOUNT]"
+    "discount": "[DISCOUNT]",
+    "discountLicence": null
   },
   {
     "id": "national-day",
@@ -177,6 +183,7 @@
     "services": [
       "babysitting"
     ],
-    "discount": "[DISCOUNT]"
+    "discount": "[DISCOUNT]",
+    "discountLicence": null
   }
 ]

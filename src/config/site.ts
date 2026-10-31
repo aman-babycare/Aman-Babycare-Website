@@ -19,10 +19,6 @@ export const site = {
   },
 } as const;
 
-// While false: no "was" prices, strike-throughs or "Save SAR" badges anywhere on the site.
-// Turn on only once the client confirms the discounts are real.
-export const SHOW_DISCOUNTS = false;
-
 // Lives on the Packages page.
 export const personalizedCarePlans = {
   name: { en: 'Personalized Care Plans', ar: 'خطط رعاية مخصصة' },

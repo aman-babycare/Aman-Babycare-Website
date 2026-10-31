@@ -93,20 +93,33 @@ export const pricingSchema = z
   }, 'Duplicate package id');
 
 // ── Offers ───────────────────────────────────────────────────────────────────────────────────────────────
-export const offerSchema = z.object({
-  id: z.string().regex(/^[a-z0-9-]+$/),
-  icon: text,
-  event: L,
-  when: L,
-  hijri: z.boolean().optional(), // date depends on moon sighting
-  startDate: isoDate.optional(), // the offer goes live on this date
-  endsAt: isoDateTime.optional(), // the offer expires at this moment; drives the countdown
-  featured: z.boolean().optional(),
-  title: L,
-  text: L,
-  services: z.array(z.string()).min(1), // service slugs in the bundle
-  discount: text,
-});
+const isPlaceholderValue = (s: string) => s === '' || /^\[.+\]$/.test(s);
+
+export const offerSchema = z
+  .object({
+    id: z.string().regex(/^[a-z0-9-]+$/),
+    icon: text,
+    event: L,
+    when: L,
+    hijri: z.boolean().optional(), // date depends on moon sighting
+    startDate: isoDate.optional(), // the offer goes live on this date (none = live until it ends)
+    endsAt: isoDateTime.optional(), // the offer expires at this moment; drives the countdown
+    featured: z.boolean().optional(),
+    title: L,
+    text: L,
+    services: z.array(z.string()).min(1), // service slugs in the bundle
+    discount: text, // "[DISCOUNT]" until the client sends a real figure
+    // Ministry of Commerce discount licence number. Without it no strike-through price can go live.
+    discountLicence: text.nullable(),
+  })
+  .refine((o) => isPlaceholderValue(o.discount) || !!o.discountLicence, {
+    message: 'A discount needs a discount licence number',
+    path: ['discountLicence'],
+  })
+  .refine((o) => !o.startDate || !o.endsAt || Date.parse(o.startDate) < Date.parse(o.endsAt), {
+    message: 'The end date must be after the start date',
+    path: ['endsAt'],
+  });
 
 export const offersSchema = z
   .array(offerSchema)
