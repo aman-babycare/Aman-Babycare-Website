@@ -2,7 +2,8 @@
 // "Book Your Service": pick services, answer one question per screen for each, review "Your Package"
 // (itemised, with an estimated total), then a short form builds a booking request and opens it in WhatsApp.
 // Config: src/data/booking.ts (questions), src/data/pricing.ts (prices/rules), src/lib/pricing.ts (engine).
-// Nothing is stored: every answer lives in memory until the visitor sends it.
+// Answers live in memory until the visitor sends them; on send, the request is also saved to the admin panel
+// (PUBLIC_ADMIN_API_URL) alongside the WhatsApp message. WhatsApp opens whether or not the save succeeds.
 // REVIEW-AR: Arabic is a first draft, in the respectful plural address.
 import Icon from './Icon.astro';
 import { whatsappUrl, type Locale } from '../config/site';
@@ -38,8 +39,10 @@ const t = {
     bookNow: 'احجزوا الآن',
     noscript: 'لإكمال الحجز، راسلونا مباشرة على واتساب.',
     formTitle: 'طلب الحجز',
-    formIntro: 'بعض التفاصيل لنجهّز طلبكم. رقمكم يصلنا من واتساب، والعنوان نأخذه في المحادثة.',
+    formIntro: 'بعض التفاصيل لنجهّز طلبكم، والعنوان نأخذه في المحادثة.',
     name: 'الاسم الأول',
+    phone: 'رقم الجوال',
+    phoneHint: '05xxxxxxxx',
     district: 'الحي',
     districtHint: 'مثال: الملقا',
     date: 'تاريخ البدء',
@@ -49,7 +52,7 @@ const t = {
     languagesNote: `مقدّمو الرعاية يتحدثون ${business.languages.ar}.`,
     optional: 'اختياري',
     notes: 'ملاحظات',
-    consentA: 'أوافق على إرسال هذه التفاصيل عبر واتساب وفق',
+    consentA: 'أوافق على إرسال هذه التفاصيل عبر واتساب وحفظها لدى أمان لمتابعة طلبي، وفق',
     consentLink: 'سياسة الخصوصية',
     submit: 'أرسلوا طلب الحجز عبر واتساب',
     close: 'إغلاق',
@@ -72,8 +75,10 @@ const t = {
     bookNow: 'Book Now',
     noscript: 'To finish your booking request, message us directly on WhatsApp.',
     formTitle: 'Booking request',
-    formIntro: "A few details to prepare your request. WhatsApp gives us your number, and we'll take the address in the chat.",
+    formIntro: "A few details to prepare your request. We'll take the address in the chat.",
     name: 'First name',
+    phone: 'Mobile number',
+    phoneHint: '05xxxxxxxx',
     district: 'District',
     districtHint: 'e.g. Al Malqa',
     date: 'Start date',
@@ -83,7 +88,7 @@ const t = {
     languagesNote: `Caregivers speak ${business.languages.en}.`,
     optional: 'optional',
     notes: 'Notes',
-    consentA: 'I agree to send these details via WhatsApp per the',
+    consentA: 'I agree to send these details via WhatsApp and for Aman to keep them to follow up my request, per the',
     consentLink: 'Privacy Policy',
     submit: 'Send booking request via WhatsApp',
     close: 'Close',
@@ -98,6 +103,9 @@ const t = {
 const config = {
   lang,
   draftServices,
+  // Where booking requests are saved (the admin panel). Empty: nothing is saved, WhatsApp only.
+  api: import.meta.env.PUBLIC_ADMIN_API_URL ? `${import.meta.env.PUBLIC_ADMIN_API_URL.replace(/\/+$/, '')}/api/bookings` : '',
+  turnstileKey: import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '',
   base: whatsappUrl('').replace(/\?text=$/, ''),
   startTimes: Object.fromEntries(startTimes.map((d) => [d.id, d.label[lang]])),
   preferences: Object.fromEntries(caregiverPreferences.map((d) => [d.id, d.label[lang]])),
@@ -208,6 +216,7 @@ const config = {
     lang === 'ar'
       ? {
           name: 'اكتبوا الاسم الأول.',
+          phone: 'اكتبوا رقم جوال صحيحاً، مثل 0501234567.',
           district: 'اكتبوا اسم الحي.',
           preference: 'اختاروا تفضيل مقدّم الرعاية.',
           date: 'اختاروا تاريخ البدء.',
@@ -217,6 +226,7 @@ const config = {
         }
       : {
           name: 'Enter your first name.',
+          phone: 'Enter a valid mobile number, e.g. 0501234567.',
           district: 'Enter your district.',
           preference: 'Choose a caregiver preference.',
           date: 'Choose a start date.',
@@ -340,6 +350,17 @@ const err = 'mt-1 text-sm font-medium text-pink-800';
       </div>
 
       <div>
+        <label for="bk-phone" class="text-sm font-medium text-green-800">{t.phone}</label>
+        <input id="bk-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" dir="ltr" placeholder={t.phoneHint} class:list={[field, 'placeholder:text-ink-500', lang === 'ar' ? 'text-end' : 'text-start']} aria-describedby="bk-phone-err" />
+        <p id="bk-phone-err" class={err} hidden></p>
+      </div>
+      {/* Honeypot: hidden from people, filled in by bots; the admin panel drops those requests. */}
+      <div class="hidden" aria-hidden="true">
+        <label for="bk-website">Website</label>
+        <input id="bk-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <div>
         <label for="bk-district" class="text-sm font-medium text-green-800">{t.district}</label>
         <input id="bk-district" name="district" type="text" maxlength="40" required placeholder={t.districtHint} class:list={[field, 'placeholder:text-ink-500']} aria-describedby="bk-district-err" />
         <p id="bk-district-err" class={err} hidden></p>
@@ -409,6 +430,7 @@ const err = 'mt-1 text-sm font-medium text-pink-800';
         </label>
         <p id="bk-consent-err" class={err} hidden></p>
       </div>
+      <div data-turnstile></div>
 
       <button type="submit" class="btn btn-primary w-full">
         <Icon name="whatsapp" class="size-5" />
@@ -442,6 +464,8 @@ const err = 'mt-1 text-sm font-medium text-pink-800';
   type Config = {
     lang: Lang;
     draftServices: string[]; // services whose prices are drafts (pricing.json)
+    api: string;
+    turnstileKey: string;
     base: string;
     startTimes: Record<string, string>;
     preferences: Record<string, string>;
@@ -455,6 +479,7 @@ const err = 'mt-1 text-sm font-medium text-pink-800';
     lines: { service: string; spec: string; price: number | null }[];
     total: number | null;
     name: string;
+    phone: string;
     district: string;
     date: string;
     time: string;
@@ -463,11 +488,30 @@ const err = 'mt-1 text-sm font-medium text-pink-800';
     notes: string;
   };
 
-  /**
-   * PHASE 2 hook: save the booking request to the admin panel / database.
-   * Today it does nothing; the request only travels inside the visitor's WhatsApp message.
-   */
-  async function submitBooking(_payload: BookingPayload): Promise<void> {}
+  // Turnstile (bot check) loads only when the booking form first opens, and only if a site key is set.
+  let turnstileToken = '';
+  let turnstileLoaded = false;
+  function loadTurnstile(key: string, box: HTMLElement) {
+    if (!key || turnstileLoaded) return;
+    turnstileLoaded = true;
+    const w = window as unknown as { onAmanTurnstile?: () => void; turnstile?: { render: (el: HTMLElement, o: object) => void } };
+    w.onAmanTurnstile = () =>
+      w.turnstile?.render(box, { sitekey: key, appearance: 'interaction-only', callback: (token: string) => (turnstileToken = token) });
+    const script = document.createElement('script');
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onAmanTurnstile';
+    script.async = true;
+    document.head.append(script);
+  }
+
+  /** Save the request in the admin panel. Never throws: the WhatsApp message is the fallback record. */
+  async function submitBooking(api: string, body: object): Promise<void> {
+    if (!api) return;
+    try {
+      await fetch(api, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    } catch {
+      // Offline or blocked: the request still reaches us on WhatsApp.
+    }
+  }
 
   const MAX_MESSAGE = 1500;
   const esc = (s: string) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
@@ -827,6 +871,7 @@ const err = 'mt-1 text-sm font-medium text-pink-800';
       if (!added.length) return;
       opener = e.currentTarget as HTMLElement;
       date.min = today();
+      loadTurnstile(cfg.turnstileKey, $('[data-turnstile]'));
       form.hidden = false;
       sent.hidden = true;
       dialog.showModal();
@@ -844,6 +889,11 @@ const err = 'mt-1 text-sm font-medium text-pink-800';
     });
     notes.addEventListener('input', () => ($('[data-notes-count]').textContent = `${notes.value.length} / 300`));
 
+    // Saudi mobile (05x / 5x / 9665x / +9665x) or any international number with its + prefix.
+    const validPhone = (v: string) => {
+      const d = v.replace(/[\u0660-\u0669]/g, (c) => String(c.charCodeAt(0) - 0x660)).replace(/[^\d+]/g, '');
+      return /^(?:0?5\d{8}|(?:\+|00)?9665\d{8})$/.test(d) || /^(?:\+|00)(?!966)\d{8,15}$/.test(d);
+    };
     const fieldError = (id: string, msg: string) => {
       const el = $(`#${id}`);
       const p = $(`#${id}-err`);
@@ -856,6 +906,7 @@ const err = 'mt-1 text-sm font-medium text-pink-800';
       const add = (id: string, msg: string, focus = id) => errors.push({ id, focus, msg });
       $$('[id$="-err"]', form).forEach((p) => fieldError(p.id.replace(/-err$/, ''), ''));
       if (!$<HTMLInputElement>('#bk-name').value.trim()) add('bk-name', cfg.errors.name);
+      if (!validPhone($<HTMLInputElement>('#bk-phone').value)) add('bk-phone', cfg.errors.phone);
       if (!district.value.trim()) add('bk-district', cfg.errors.district);
       if (!date.value) add('bk-date', cfg.errors.date);
       else if (date.value < today()) add('bk-date', cfg.errors.datePast);
@@ -894,6 +945,7 @@ const err = 'mt-1 text-sm font-medium text-pink-800';
         lines: added.map((id, i) => ({ service: id, spec: specText(svcById(id), answers[id], lang), price: lines[i].priced ? lines[i].lineTotal : null })),
         total: tot.pricedCount ? tot.total : null,
         name: $<HTMLInputElement>('#bk-name').value.trim(),
+        phone: $<HTMLInputElement>('#bk-phone').value.trim(),
         district: district.value.trim(),
         date: date.value,
         time: checked('input[name=time]'),
@@ -929,12 +981,27 @@ const err = 'mt-1 text-sm font-medium text-pink-800';
       if (!validate()) return;
       const payload = buildPayload();
       const url = `${cfg.base}?text=${encodeURIComponent(buildMessage(payload))}`;
-      submitBooking(payload);
+      // Labels, not ids, so the admin shows what the customer saw; money in whole SAR (lines are rounded to
+      // whole riyals by the engine, which counts in halalas).
+      const toSar = (halalas: number | null) => (halalas == null ? null : Math.round(halalas / 100));
+      const saving = submitBooking(cfg.api, {
+        ...payload,
+        lines: payload.lines.map((l) => ({ ...l, name: svcById(l.service).name[lang], price: toSar(l.price) })),
+        total: toSar(payload.total),
+        time: cfg.startTimes[payload.time] ?? payload.time,
+        preference: cfg.preferences[payload.preference] ?? payload.preference,
+        caregiverType: cfg.types[payload.caregiverType] ?? payload.caregiverType,
+        page: location.pathname,
+        consent: true,
+        token: turnstileToken,
+        website: $<HTMLInputElement>('#bk-website').value,
+      });
       track('booking_whatsapp_submit', { services: added.join(','), packages: added.map((id) => answers[id].tier).join(',') });
       $<HTMLAnchorElement>('[data-again]').href = url;
       const win = window.open(url, '_blank');
       if (win) win.opener = null;
-      else location.href = url;
+      // Pop-up blocked: this tab goes to WhatsApp, so give the save a moment to leave first.
+      else Promise.race([saving, new Promise((r) => setTimeout(r, 1500))]).then(() => (location.href = url));
       form.hidden = true;
       sent.hidden = false;
       $('[data-sent-title]').focus();

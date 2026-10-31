@@ -6,7 +6,7 @@
 # Setup (repo Settings → Secrets and variables → Actions):
 #   secrets   CLOUDFLARE_API_TOKEN (Workers Scripts: Edit), CLOUDFLARE_ACCOUNT_ID
 #   variables PUBLIC_SITE_URL, PUBLIC_INDEXING ("true" on production only), PUBLIC_GA4_ID,
-#             PUBLIC_META_PIXEL_ID, PUBLIC_SNAP_PIXEL_ID
+#             PUBLIC_META_PIXEL_ID, PUBLIC_SNAP_PIXEL_ID, PUBLIC_ADMIN_API_URL, PUBLIC_TURNSTILE_SITE_KEY
 name: Deploy
 
 on:
@@ -30,6 +30,8 @@ jobs:
       PUBLIC_GA4_ID: ${{ vars.PUBLIC_GA4_ID }}
       PUBLIC_META_PIXEL_ID: ${{ vars.PUBLIC_META_PIXEL_ID }}
       PUBLIC_SNAP_PIXEL_ID: ${{ vars.PUBLIC_SNAP_PIXEL_ID }}
+      PUBLIC_ADMIN_API_URL: ${{ vars.PUBLIC_ADMIN_API_URL }}
+      PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.PUBLIC_TURNSTILE_SITE_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

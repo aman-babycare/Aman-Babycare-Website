@@ -1,6 +1,8 @@
 ---
 // Privacy policy (PDPL-style). Describes what the site and WhatsApp booking actually do today:
-// one booking form that only builds a WhatsApp message (nothing stored or sent to us), no accounts, no analytics or ad cookies. Update it when any of that changes.
+// one booking form that builds a WhatsApp message and saves the same request in our booking records (the admin
+// panel, hosted on Cloudflare), no accounts, no analytics or ad cookies. Update it when any of that changes.
+// REVIEW-AR: the booking-records sentences (Oct 2026).
 // REVIEW-LEGAL: a Saudi lawyer should review before site.isLive = true. REVIEW-AR: Arabic is a first draft.
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../Breadcrumbs.astro';
@@ -40,7 +42,7 @@ const t: { title: string; description: string; h1: string; lead: string; updated
         h: 'البيانات التي نجمعها',
         p: [
           'عبر واتساب: عندما تراسلوننا نحصل على اسمكم ورقم جوالكم والرسائل التي ترسلونها، وما تختارون مشاركته لترتيب الزيارة: العنوان أو الحي، والخدمات والمواعيد المطلوبة، ومعلومات عمّن سنرعاه، مثل عمر الطفل وروتينه، أو احتياجات الوالدين، أو معلومات عن حيواناتكم الأليفة.',
-          'عبر هذا الموقع: لا توجد حسابات. نموذج «احجزوا خدمتكم» يجهّز رسالة واتساب فقط: ما تكتبونه فيه (الاسم الأول، الحي، الموعد، وتفاصيل مثل أعمار الأطفال) يبقى في متصفحكم ولا يُرسل إلينا ولا يُحفظ، إلى أن تضغطوا «أرسلوا طلب الحجز عبر واتساب» فيصلنا ضمن رسالتكم. يعالج مزوّد الاستضافة (Cloudflare) بيانات تقنية مثل عنوان IP ونوع المتصفح والصفحات المطلوبة، لتشغيل الموقع وحمايته. لا يستخدم الموقع حالياً ملفات تعريف ارتباط للتحليلات أو الإعلانات، وإن أضفناها مستقبلاً فلن تعمل إلا بعد موافقتكم.',
+          'عبر هذا الموقع: لا توجد حسابات. ما تكتبونه في نموذج «احجزوا خدمتكم» (الاسم الأول، رقم الجوال، الحي، الموعد، الخدمات المختارة، وتفاصيل مثل أعمار الأطفال) يبقى في متصفحكم إلى أن تضغطوا «أرسلوا طلب الحجز عبر واتساب»، وحينها يصلنا ضمن رسالتكم، ونحفظ الطلب نفسه في سجل الحجوزات لدينا لنتابعه معكم. يعالج مزوّد الاستضافة (Cloudflare) بيانات تقنية مثل عنوان IP ونوع المتصفح والصفحات المطلوبة، لتشغيل الموقع وحمايته. لا يستخدم الموقع حالياً ملفات تعريف ارتباط للتحليلات أو الإعلانات، وإن أضفناها مستقبلاً فلن تعمل إلا بعد موافقتكم.',
           'البيانات الحساسة: بعض ما قد تشاركونه، مثل الحساسية أو تعليمات الدواء، يُعدّ بيانات حساسة. لا نطلب منها إلا ما يلزم لرعاية آمنة، والقرار في مشاركتها لكم.',
         ],
       },
@@ -57,7 +59,7 @@ const t: { title: string; description: string; h1: string; lead: string; updated
         h: 'مع من نشاركها',
         list: [
           'فريق الرعاية المكلّف بزيارتكم، بالقدر الذي يحتاجه لأداء العمل.',
-          'مزوّدو خدمات يعملون لصالحنا: واتساب (Meta) للمراسلة، وCloudflare لاستضافة الموقع. تخضع رسائل واتساب أيضاً لسياسة الخصوصية الخاصة بواتساب.',
+          'مزوّدو خدمات يعملون لصالحنا: واتساب (Meta) للمراسلة، وCloudflare لاستضافة الموقع وسجل الحجوزات. تخضع رسائل واتساب أيضاً لسياسة الخصوصية الخاصة بواتساب.',
           'الجهات الرسمية عندما يُلزمنا النظام بذلك.',
           'قد يعالج هؤلاء المزوّدون البيانات خارج المملكة، ولا نعتمد عليهم إلا بالقدر الذي يسمح به النظام.',
         ],
@@ -65,7 +67,7 @@ const t: { title: string; description: string; h1: string; lead: string; updated
       {
         h: 'مدة الاحتفاظ',
         p: [
-          'نحتفظ ببياناتكم ما دامت لازمة للغرض الذي جُمعت له: محادثات الحجز وتفاصيل الرعاية للمدة اللازمة لتقديم الخدمة ووفق ما يقتضيه النظام، والفواتير للمدة التي يحددها النظام. بعد ذلك نحذفها أو نجعلها غير قابلة لتحديد هويتكم.',
+          'نحتفظ ببياناتكم ما دامت لازمة للغرض الذي جُمعت له: طلبات الحجز ومحادثاته وتفاصيل الرعاية للمدة اللازمة لتقديم الخدمة ووفق ما يقتضيه النظام، والفواتير للمدة التي يحددها النظام. بعد ذلك نحذفها أو نجعلها غير قابلة لتحديد هويتكم.',
         ],
       },
       {
@@ -121,7 +123,7 @@ const t: { title: string; description: string; h1: string; lead: string; updated
         h: 'What we collect',
         p: [
           "Through WhatsApp: when you message us we receive your name, phone number and the messages you send, plus whatever you choose to share to arrange a visit: your address or neighbourhood, the services and times you need, and details about who we'll look after, such as a child's age and routine, a parent's needs, or your pets.",
-          "Through this website: there are no accounts. The “Book Your Service” form only prepares a WhatsApp message: what you type (first name, district, timing, and details such as children's ages) stays in your browser and is neither sent to us nor stored until you press “Send booking request via WhatsApp”, when it reaches us as part of your message. Our hosting provider (Cloudflare) processes technical data such as your IP address, browser type and the pages you request, to run and protect the site. The site uses no analytics or advertising cookies today; if we add them, they'll only run after you agree.",
+          "Through this website: there are no accounts. What you type in the “Book Your Service” form (first name, mobile number, district, timing, the services you choose, and details such as children's ages) stays in your browser until you press “Send booking request via WhatsApp”. It then reaches us as part of your message, and we keep the same request in our booking records so we can follow it up with you. Our hosting provider (Cloudflare) processes technical data such as your IP address, browser type and the pages you request, to run and protect the site. The site uses no analytics or advertising cookies today; if we add them, they'll only run after you agree.",
           "Sensitive data: some details you may share, such as allergies or medication instructions, count as sensitive data. We only ask for what safe care needs, and it's your choice to share it.",
         ],
       },
@@ -138,7 +140,7 @@ const t: { title: string; description: string; h1: string; lead: string; updated
         h: 'Who we share it with',
         list: [
           'The caregiver assigned to your visit, only as much as the job needs.',
-          "Service providers working for us: WhatsApp (Meta) for messaging and Cloudflare for hosting this site. WhatsApp messages are also covered by WhatsApp's own privacy policy.",
+          "Service providers working for us: WhatsApp (Meta) for messaging and Cloudflare for hosting this site and our booking records. WhatsApp messages are also covered by WhatsApp's own privacy policy.",
           'Public authorities, when the law requires it.',
           'These providers may process data outside Saudi Arabia; we use them only as far as the law allows.',
         ],
@@ -146,7 +148,7 @@ const t: { title: string; description: string; h1: string; lead: string; updated
       {
         h: 'How long we keep it',
         p: [
-          'We keep your data only as long as its purpose needs: booking conversations and care details for as long as needed to provide the service and as Saudi law requires, and invoices for as long as the law requires. After that we delete it or make it anonymous.',
+          'We keep your data only as long as its purpose needs: booking requests, booking conversations and care details for as long as needed to provide the service and as Saudi law requires, and invoices for as long as the law requires. After that we delete it or make it anonymous.',
         ],
       },
       {
