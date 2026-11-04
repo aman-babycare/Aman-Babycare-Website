@@ -1,13 +1,13 @@
 ---
 // The blog index (/blog/): built only once a post is published, so there is never an empty page.
-import BlogIndex from '../../../components/blog/BlogIndex.astro';
-import { publishedPosts, type Post } from '../../../lib/blog';
+import BlogIndex from '../../components/blog/BlogIndex.astro';
+import { publishedPosts, type Post } from '../../lib/blog';
 
 export const getStaticPaths = async () => {
-  const posts = await publishedPosts('en');
+  const posts = await publishedPosts('ar');
   return posts.length ? [{ params: { index: undefined }, props: { posts } }] : [];
 };
 const { posts } = Astro.props as { posts: Post[] };
 ---
 
-<BlogIndex lang="en" posts={posts} />
+<BlogIndex lang="ar" posts={posts} />

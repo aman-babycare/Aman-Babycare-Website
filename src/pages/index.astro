@@ -1,18 +1,17 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import HomePage from '../components/home/HomePage.astro';
-import { faqSchema } from '../lib/schema';
-import { homeFaqShown } from '../data/home';
-import { seo, tr } from '../data/seo';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HomePage from '../../components/home/HomePage.astro';
+import { faqSchema } from '../../lib/schema';
+import { homeFaqShown } from '../../data/home';
+import { seo, tr } from '../../data/seo';
 ---
 
 <BaseLayout
-  lang="ar"
-  title={tr(seo.home.title, 'ar')}
-  description={tr(seo.home.description, 'ar')}
+  lang="en"
+  title={tr(seo.home.title, 'en')}
+  description={tr(seo.home.description, 'en')}
   path=""
-  schema={[faqSchema('ar', homeFaqShown)]}
+  schema={[faqSchema('en', homeFaqShown)]}
 >
-  <!-- REVIEW-AR -->
-  <HomePage lang="ar" />
+  <HomePage lang="en" />
 </BaseLayout>

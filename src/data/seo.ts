@@ -40,8 +40,8 @@ export interface PageSeo {
 export const seo = {
   home: {
     title: {
-      care: { ar: 'رعاية الأطفال والخدمات المنزلية في الرياض | أمان', en: 'Hourly Maid, Nanny & Home Services in Riyadh | Aman' },
-      worker: { ar: 'عاملات بالساعة ورعاية أطفال في الرياض | أمان', en: 'Hourly Maid, Nanny & Home Services in Riyadh | Aman' },
+      care: { ar: 'رعاية الأطفال والخدمات المنزلية في الرياض | أمان', en: 'Aman Babycare & Home Services | Riyadh Home Care' },
+      worker: { ar: 'عاملات بالساعة ورعاية أطفال في الرياض | أمان', en: 'Aman Babycare & Home Services | Riyadh Home Care' },
     },
     description: {
       care: {

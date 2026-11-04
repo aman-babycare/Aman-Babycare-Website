@@ -1,0 +1,11 @@
+---
+// Published posts only (lib/blog.ts). Write every post in both languages with the same slug, so the
+// hreflang pair always exists.
+import BlogPost from '../../components/blog/BlogPost.astro';
+import { publishedPosts, type Post } from '../../lib/blog';
+
+export const getStaticPaths = async () => (await publishedPosts('ar')).map((post) => ({ params: { slug: post.data.slug }, props: { post } }));
+const { post } = Astro.props as { post: Post };
+---
+
+<BlogPost lang="ar" post={post} />

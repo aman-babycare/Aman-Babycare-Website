@@ -1,11 +1,11 @@
 ---
 // Package pages on the service layout (the 40-day package). Disabled ones return no paths, so they are
 // never built and never reach the sitemap.
-import ServicePage from '../../components/service/ServicePage.astro';
-import { packagePages, type ServiceContent } from '../../data/services';
+import ServicePage from '../../../components/service/ServicePage.astro';
+import { packagePages, type ServiceContent } from '../../../data/services';
 
 export const getStaticPaths = () => packagePages.map((p) => ({ params: { slug: p.slug }, props: { content: p } }));
 const { content } = Astro.props as { content: ServiceContent };
 ---
 
-<ServicePage lang="ar" content={content} section="packages" />
+<ServicePage lang="en" content={content} section="packages" />
