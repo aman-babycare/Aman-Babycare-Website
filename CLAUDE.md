@@ -13,7 +13,7 @@ Deadline: Saturday Oct 31, 2026, 6 PM. MVP first; mark later work with `// PHASE
 
 ## Stack (do not change)
 - Astro (static output) + Tailwind CSS (installed via npm, never the CDN script) + TypeScript.
-- Astro i18n: `ar` default at `/`, `en` at `/en/`. Same English slugs in both languages.
+- Astro i18n: `en` default at `/` (client request, first impression in English), `ar` at `/ar/`. Same English slugs in both languages.
 - Fonts self-hosted with @fontsource: IBM Plex Sans Arabic (Arabic), a serif display + clean sans for English headings/body. Preload the main Arabic weight only.
 - Images through Astro `<Image>` / `<Picture>` (AVIF/WebP), with width/height set.
 - Ship zero JavaScript by default. Use small islands only where interaction is needed (menu, Book Your Service card, cookie banner).
@@ -34,7 +34,7 @@ Newborn & Mother Care (one combined page at /services/newborn-care/, featured fi
 ## SEO Rules (every page)
 - One unique `<title>` (≤60 chars) and meta description (≤155 chars), in the page's language.
 - Exactly one H1; H2/H3 in logical order; no repeated headings.
-- Canonical URL, hreflang `ar` + `en` + `x-default` (→ Arabic), Open Graph + Twitter tags with an image.
+- Canonical URL, hreflang `ar` + `en` + `x-default` (→ English), Open Graph + Twitter tags with an image.
 - JSON-LD: LocalBusiness on all pages; Service on service pages; FAQPage where an FAQ block exists; BreadcrumbList on inner pages.
 - Internal links: every service page links to Packages, Book Your Service (`/packages/?service=<slug>#booking`), and 2–3 related services. No dead-end pages.
 - Each page has unique content. Never duplicate a section across pages or within a page.
