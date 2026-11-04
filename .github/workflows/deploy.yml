@@ -47,4 +47,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # The action's own default is wrangler 3, which cannot deploy this assets-only Worker ("Missing entry-point").
+          wranglerVersion: '4.157.0'
           command: deploy
