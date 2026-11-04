@@ -16,8 +16,8 @@ export default defineConfig({
   // Keeps visual-QA screenshots clean.
   devToolbar: { enabled: false },
   i18n: {
-    defaultLocale: 'ar',
-    locales: ['ar', 'en'],
+    defaultLocale: 'en',
+    locales: ['en', 'ar'],
     routing: { prefixDefaultLocale: false },
   },
   integrations: [
@@ -35,8 +35,8 @@ export default defineConfig({
       // 404 never listed. Disabled pages (40-day package) and draft posts are never built, so never listed.
       filter: (page) => !new URL(page).pathname.startsWith('/404'),
       i18n: {
-        defaultLocale: 'ar',
-        locales: { ar: 'ar-SA', en: 'en' },
+        defaultLocale: 'en',
+        locales: { en: 'en', ar: 'ar-SA' },
       },
     }),
   ],
