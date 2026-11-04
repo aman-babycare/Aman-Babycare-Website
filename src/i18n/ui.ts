@@ -16,9 +16,9 @@ export const ui = {
     packages: { ar: 'الباقات', en: 'Packages' },
     offers: { ar: 'العروض', en: 'Offers' },
     faq: { ar: 'الأسئلة الشائعة', en: 'FAQ' },
-    faqShort: { ar: 'الأسئلة', en: 'FAQ' }, // nav ribbon, where space is tight
     privacy: { ar: 'سياسة الخصوصية', en: 'Privacy policy' },
     about: { ar: 'من نحن', en: 'About us' },
+    aboutShort: { ar: 'من نحن', en: 'About' }, // nav ribbon, where space is tight
     contact: { ar: 'تواصلوا معنا', en: 'Contact' },
   },
   callUs: { ar: 'اتصلوا بنا', en: 'Call us' },

@@ -31,9 +31,9 @@ const links: RibbonItem[] = [
   { label: ui.nav.services[lang], href: href(lang, 'services'), icon: 'hands', section: onHome ? 'services' : undefined },
   { label: ui.nav.offers[lang], href: href(lang, 'offers'), icon: 'gift', accent: true },
   { label: ui.nav.packages[lang], href: href(lang, 'packages'), icon: 'calendar', section: onHome ? 'packages' : undefined },
-  { label: ui.nav.faqShort[lang], href: `${home}#faq`, icon: 'chat', section: onHome ? 'faq' : undefined },
+  { label: ui.nav.aboutShort[lang], href: href(lang, 'about'), icon: 'heart' },
 ];
-const active = path === '' ? 0 : path.startsWith('services') ? 1 : path === 'offers' ? 2 : path === 'packages' ? 3 : -1;
+const active = path === '' ? 0 : path.startsWith('services') ? 1 : path === 'offers' ? 2 : path === 'packages' ? 3 : path === 'about' ? 4 : -1;
 ---
 
 <!-- Phones/tablets: the logo row scrolls away (negative top) and the ribbon row stays stuck. -->

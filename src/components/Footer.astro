@@ -61,9 +61,9 @@ const hasBlog = (await publishedPosts(lang)).length > 0;
         <li><a href={href(lang, 'services')} class="inline-flex min-h-11 items-center hover:text-cream-50 hover:underline">{ui.nav.services[lang]}</a></li>
         <li><a href={href(lang, 'packages')} class="inline-flex min-h-11 items-center hover:text-cream-50 hover:underline">{ui.nav.packages[lang]}</a></li>
         <li><a href={href(lang, 'offers')} class="inline-flex min-h-11 items-center hover:text-cream-50 hover:underline">{ui.nav.offers[lang]}</a></li>
-        <li><a href={`${home}#faq`} class="inline-flex min-h-11 items-center hover:text-cream-50 hover:underline">{ui.nav.faq[lang]}</a></li>
-        {hasBlog && <li><a href={href(lang, 'blog')} class="inline-flex min-h-11 items-center hover:text-cream-50 hover:underline">{lang === 'ar' ? 'المدونة' : 'Blog'}</a></li>}
         <li><a href={href(lang, 'about')} class="inline-flex min-h-11 items-center hover:text-cream-50 hover:underline">{ui.nav.about[lang]}</a></li>
+        {hasBlog && <li><a href={href(lang, 'blog')} class="inline-flex min-h-11 items-center hover:text-cream-50 hover:underline">{lang === 'ar' ? 'المدونة' : 'Blog'}</a></li>}
+        <li><a href={`${home}#faq`} class="inline-flex min-h-11 items-center hover:text-cream-50 hover:underline">{ui.nav.faq[lang]}</a></li>
         <li><a href={href(lang, 'contact')} class="inline-flex min-h-11 items-center hover:text-cream-50 hover:underline">{ui.nav.contact[lang]}</a></li>
       </ul>
     </nav>
