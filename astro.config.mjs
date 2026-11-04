@@ -4,10 +4,27 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { loadEnv } from 'vite';
 import { readFileSync } from 'node:fs';
+import { transform } from 'lightningcss';
 
 const { PUBLIC_SITE_URL } = loadEnv(process.env.NODE_ENV ?? 'production', process.cwd(), '');
 
 // https://astro.build/config
+// Older phone browsers (Chrome < 111, Samsung Internet < 22) drop modern colour syntax such as oklab() and
+// range media queries. This adds plain hex/rgba and min-width fallbacks to the built CSS so they never render black.
+const legacyCss = {
+  name: 'legacy-css-fallbacks',
+  apply: 'build',
+  enforce: 'post',
+  generateBundle(_, bundle) {
+    const targets = { chrome: 80 << 16, android: 80 << 16, safari: 13 << 16, firefox: 78 << 16, samsung: 12 << 16 };
+    for (const file of Object.values(bundle)) {
+      if (file.type !== 'asset' || !file.fileName.endsWith('.css')) continue;
+      const out = transform({ filename: file.fileName, code: Buffer.from(file.source), targets, minify: true });
+      file.source = out.code;
+    }
+  },
+};
+
 export default defineConfig({
   // Real domain; PUBLIC_SITE_URL overrides it.
   site: PUBLIC_SITE_URL || 'https://amancareservices.com',
@@ -41,6 +58,6 @@ export default defineConfig({
     }),
   ],
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss(), legacyCss],
   },
 });

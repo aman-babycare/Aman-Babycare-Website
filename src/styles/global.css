@@ -230,7 +230,7 @@
     }
   }
   /* Items with an icon (main nav): icon over label on phones and tablets, side by side on desktop. */
-  .ribbon-item:has(> svg) {
+  .ribbon-item.has-icon {
     flex-direction: column;
     gap: 0.125rem;
     min-height: 3.25rem;
@@ -248,11 +248,11 @@
   /* Phones and tablets (icon over label): a fully round pill curves in beside the label line, so the ends
      of "Packages" poked out. Softly rounded corners keep the sides straight there. */
   @media (width < 64rem) {
-    .ribbon:has(.ribbon-item > svg) {
+    .ribbon.has-icons {
       border-radius: 1.125rem;
     }
-    .ribbon:has(.ribbon-item > svg) .ribbon-pill > span,
-    .ribbon-item:has(> svg) {
+    .ribbon.has-icons .ribbon-pill > span,
+    .ribbon-item.has-icon {
       border-radius: 0.875rem;
     }
   }

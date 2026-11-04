@@ -30,7 +30,7 @@ const id = `ribbon-${Math.random().toString(36).slice(2, 8)}`;
 <nav
   id={id}
   aria-label={label}
-  class:list={['ribbon', cls]}
+  class:list={['ribbon', items.some((i) => i.icon) && 'has-icons', cls]}
   data-ribbon
   data-default={active}
   data-current-kind={current}
@@ -44,7 +44,7 @@ const id = `ribbon-${Math.random().toString(36).slice(2, 8)}`;
         <li class="flex">
           <a
             href={item.href}
-            class:list={['ribbon-item', item.accent && 'ribbon-accent']}
+            class:list={['ribbon-item', item.icon && 'has-icon', item.accent && 'ribbon-accent']}
             aria-current={i === active ? current : undefined}
             data-current={i === active ? '' : undefined}
             data-section={item.section}
