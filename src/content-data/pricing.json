@@ -9,7 +9,7 @@
         "weekly": 39.29,
         "monthly": 33.82
       },
-      "minHours": null,
+      "minHours": 8,
       "extraPersonPercent": null,
       "timingPercent": {
         "night": 0,
@@ -27,7 +27,7 @@
         "weekly": 39.29,
         "monthly": 33.82
       },
-      "minHours": null,
+      "minHours": 8,
       "extraPersonPercent": null,
       "timingPercent": {
         "night": 0,
@@ -100,7 +100,7 @@
           "hoursPerDay": 8,
           "daysPerWeek": 5,
           "weeks": 4,
-          "price": 5000,
+          "price": 5100,
           "was": 5528,
           "perHour": 34.55,
           "name": {
