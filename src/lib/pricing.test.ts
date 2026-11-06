@@ -30,7 +30,11 @@ describe('reference packages', () => {
       for (const [tier, pkgs] of Object.entries(s.tiers) as [Tier, NonNullable<ServicePricing['tiers'][Tier]>][]) {
         for (const pkg of pkgs) {
           if (pkg.hoursPerDay == null) continue; // TODO(client): no hours, no rate
-          const timing = pkg.timing ?? 'day-shift';
+          expect(pkg.timing, `${pkg.id}: a package with hours per day needs its shift (timing)`).toBeDefined();
+          const timing = pkg.timing!;
+          const shiftHours = TIMINGS[timing].hoursPerDay;
+          if (shiftHours != null) expect(pkg.hoursPerDay, `${pkg.id}: ${timing} is ${shiftHours} hours a day`).toBe(shiftHours);
+          else expect(s.minHours ?? 0, `${pkg.id}: shorter than the service's minimum hours`).toBeLessThanOrEqual(pkg.hoursPerDay);
           const line = priceLine(
             {
               service,
@@ -52,16 +56,17 @@ describe('reference packages', () => {
     }
   });
 
-  it('the stay-in package is an exact match, whatever the hourly override', () => {
-    const line = priceLine({ service: 'babysitting', tier: 'monthly', timing: 'stay-in', people: 1, daysPerWeek: 6, months: 2 });
+  it('a package is an exact match, whatever the hourly override', () => {
+    const month = { ...testService.tiers.monthly![0], timing: 'stay-in' as const, hoursPerDay: 12, daysPerWeek: 6, price: 8500 };
+    const c = cfg({ services: { test: { ...testService, tiers: { monthly: [month] }, hourlyRateOverride: { monthly: 33.82 } } } });
+    const line = priceLine(sel({ tier: 'monthly', timing: 'stay-in', daysPerWeek: 6, months: 2, hours: undefined }), c);
     expect(line.exact).toBe(true);
     expect(line.lineTotal).toBe(sar(17000));
   });
 
   it('without an override, a rate is the package price ÷ its hours', () => {
-    const c = cfg({ services: { babysitting: { ...PRICING.babysitting, hourlyRateOverride: undefined } } });
-    const r = hourlyRate('babysitting', 'monthly', c)!;
-    expect(Number(r.num) / Number(r.den)).toBeCloseTo((8500 * 100) / 288, 6);
+    const r = hourlyRate('test', 'monthly', cfg())!;
+    expect(Number(r.num) / Number(r.den)).toBeCloseTo((3000 * 100) / 160, 6);
   });
 
   it('test service also reproduces its own packages', () => {
@@ -69,6 +74,34 @@ describe('reference packages', () => {
     expect(priceLine(sel({ hours: 4 }), c).lineTotal).toBe(sar(100));
     expect(priceLine(sel({ tier: 'weekly', timing: 'day-shift', daysPerWeek: 5, weeks: 1, hours: undefined }), { ...c, timings: { ...TIMINGS, 'day-shift': { ...TIMINGS['day-shift'], hoursPerDay: 8 } } }).lineTotal).toBe(sar(1000));
   });
+
+  it('an 8-hour full-day plan is charged its package price', () => {
+    const week = { ...testService.tiers.weekly![0], timing: 'full-day' as const };
+    const c = cfg({ services: { test: { ...testService, tiers: { weekly: [week] }, hourlyRateOverride: { weekly: 39.29 } } } });
+    const line = priceLine(sel({ tier: 'weekly', timing: 'full-day', daysPerWeek: 5, weeks: 2, hours: undefined }), c);
+    expect(line.exact).toBe(true);
+    expect(line.lineTotal).toBe(sar(2000));
+    expect(priceLine(sel({ tier: 'weekly', timing: 'full-day', daysPerWeek: 3, weeks: 1, hours: undefined }), c).lineTotal).toBe(sar(943)); // 39.29 × 8 × 3 = 942.96
+  });
+});
+
+// Rates as the client approved them in Oct 2026, fixed here so later price edits in the admin can't break the rules tests.
+const approved = (hourlyRateOverride: ServicePricing['hourlyRateOverride']): ServicePricing => ({
+  unit: 'hour',
+  tiers: {},
+  hourlyRateOverride,
+  minHours: null,
+  extraPersonPercent: null,
+  timingPercent: { night: 0, '24-hours': 0, 'stay-in': 0 },
+});
+const careRates = { oneTime: 45, weekly: 39.29, monthly: 33.82 };
+const approvedCfg = cfg({
+  services: {
+    babysitting: approved(careRates),
+    'newborn-care': approved(careRates),
+    'elderly-companionship': approved({ oneTime: 36, monthly: 36 }),
+    'home-cleaning': { unit: 'hour', tiers: {}, minHours: null, extraPersonPercent: null, timingPercent: null, homeSizePercent: null },
+  },
 });
 
 describe('rates', () => {
@@ -88,26 +121,29 @@ describe('rates', () => {
   });
 
   it('never borrows a rate from another tier', () => {
-    expect(hourlyRate('elderly-companionship', 'weekly')).toBeNull(); // no weekly rate listed
-    expect(hourlyRate('elderly-companionship', 'monthly')).not.toBeNull();
-    expect(priceLine({ service: 'elderly-companionship', tier: 'weekly', timing: 'day-shift', people: 1, daysPerWeek: 3, weeks: 1 }).priced).toBe(false);
-    const c = cfg({ services: { babysitting: { ...PRICING.babysitting, hourlyRateOverride: undefined } } });
-    expect(hourlyRate('babysitting', 'oneTime', c)).toBeNull(); // hours of the 345 SAR package not stated
-    expect(hourlyRate('babysitting', 'weekly', c)).toBeNull();
+    const c = approvedCfg;
+    expect(hourlyRate('elderly-companionship', 'weekly', c)).toBeNull(); // no weekly rate listed
+    expect(hourlyRate('elderly-companionship', 'monthly', c)).not.toBeNull();
+    expect(priceLine({ service: 'elderly-companionship', tier: 'weekly', timing: 'day-shift', people: 1, daysPerWeek: 3, weeks: 1 }, c).priced).toBe(false);
+    const noHours = { ...testService.tiers.oneTime![0], hoursPerDay: null };
+    const c2 = cfg({ services: { test: { ...testService, tiers: { oneTime: [noHours], monthly: testService.tiers.monthly } } } });
+    expect(hourlyRate('test', 'oneTime', c2)).toBeNull(); // a package without hours gives no rate
+    expect(hourlyRate('test', 'weekly', c2)).toBeNull();
   });
 
   it('prices the draft rates the client approved', () => {
-    const bs = (s: Partial<Selection>) => priceLine({ service: 'babysitting', tier: 'oneTime', timing: 'hourly', people: 1, ...s });
+    const c = approvedCfg;
+    const bs = (s: Partial<Selection>) => priceLine({ service: 'babysitting', tier: 'oneTime', timing: 'hourly', people: 1, ...s }, c);
     expect(bs({ hours: 4, days: 1 }).lineTotal).toBe(sar(180)); // 45 × 4
     expect(bs({ tier: 'weekly', timing: 'day-shift', daysPerWeek: 5, weeks: 1 }).lineTotal).toBe(sar(2357)); // 39.29 × 12 × 5 = 2,357.4
     expect(bs({ tier: 'monthly', timing: 'night', daysPerWeek: 5, months: 1 }).lineTotal).toBe(sar(8117)); // 33.82 × 12 × 20 = 8,116.8
     expect(bs({ tier: 'weekly', timing: '24-hours', daysPerWeek: 1, weeks: 1 }).lineTotal).toBe(sar(943)); // 39.29 × 24 = 942.96
     expect(bs({ hours: 4, days: 1, people: 2 }).priced).toBe(false); // extra child: rule not set
-    const el = priceLine({ service: 'elderly-companionship', tier: 'monthly', timing: 'day-shift', people: 1, daysPerWeek: 5, months: 1 });
+    const el = priceLine({ service: 'elderly-companionship', tier: 'monthly', timing: 'day-shift', people: 1, daysPerWeek: 5, months: 1 }, c);
     expect(el.lineTotal).toBe(sar(8640)); // 36 × 12 × 20
-    const nb = priceLine({ service: 'newborn-care', tier: 'oneTime', timing: 'hourly', hours: 3, people: 1, days: 1 });
+    const nb = priceLine({ service: 'newborn-care', tier: 'oneTime', timing: 'hourly', hours: 3, people: 1, days: 1 }, c);
     expect(nb.lineTotal).toBe(sar(135)); // babysitting rate 45 × 3
-    expect(priceLine({ service: 'home-cleaning', tier: 'oneTime', timing: 'hourly', hours: 3, people: 1, days: 1 }).priced).toBe(false);
+    expect(priceLine({ service: 'home-cleaning', tier: 'oneTime', timing: 'hourly', hours: 3, people: 1, days: 1 }, c).priced).toBe(false);
   });
 
   it('hourlyRateOverride wins over reference packages', () => {

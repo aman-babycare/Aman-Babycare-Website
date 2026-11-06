@@ -5,8 +5,9 @@
 // WhatsApp" for that service only. Rules: docs/build/packages-and-pricing.md
 //
 // Reference prices are client-approved DRAFTS copied from https://feelvaleo.com/en-sa/riyadh/babysitting.
-// That page states hours for one plan only (stay-in: 12 hours, 6 days, 4 weeks), so every other plan's
-// hoursPerDay is null. Hourly rates come from the draft rates in pricing.json until the client confirms hours.
+// That page states hours for one plan only (stay-in: 12 hours, 6 days, 4 weeks); the client has since set
+// 8 hours a day on some plans. A package with hours needs the timing (shift) those hours belong to: "full-day"
+// for 8 hours, "day-shift" for 12, "hourly" for an hourly booking. Plans without hours keep hoursPerDay null.
 import type { L } from '../i18n/ui';
 import data from '../content-data/pricing.json';
 import type { Pricing, ServicePricingEntry } from '../lib/content-schema';
@@ -47,7 +48,7 @@ export const ADDON_PERCENT: number | null = null; // TODO(client): used only by 
 export const TIMINGS: Record<TimingId, { label: L; hoursPerDay: number | null; window?: L; adjusted: boolean }> = {
   hourly: { label: { ar: 'بالساعة', en: 'Hourly' }, hoursPerDay: null, adjusted: false },
   'half-day': { label: { ar: 'نصف يوم', en: 'Half day' }, hoursPerDay: null, adjusted: false }, // TODO(client): hours
-  'full-day': { label: { ar: 'يوم كامل', en: 'Full day' }, hoursPerDay: null, adjusted: false }, // TODO(client): hours
+  'full-day': { label: { ar: 'يوم كامل', en: 'Full day' }, hoursPerDay: 8, window: { ar: '8 ساعات', en: '8 hours' }, adjusted: false }, // the 8-hour weekly and monthly plans (client, Nov 2026)
   'day-shift': { label: { ar: 'مناوبة نهارية', en: 'Day shift' }, hoursPerDay: 12, window: { ar: '8ص–8م', en: '8am–8pm' }, adjusted: false },
   night: { label: { ar: 'مناوبة ليلية', en: 'Night shift' }, hoursPerDay: 12, window: { ar: '8م–8ص', en: '8pm–8am' }, adjusted: true },
   '24-hours': { label: { ar: '24 ساعة', en: '24 hours' }, hoursPerDay: 24, adjusted: true },

@@ -16,7 +16,7 @@ Per-service prices, hourly rates and packages (schedule, price, card name and de
 2. Rate per tier (one-time / weekly / monthly): `hourlyRateOverride[tier]`, else the tier's reference package with the most hours (price ÷ hours/day × days/week × weeks). A tier never borrows another tier's rate.
 3. Exact match first: a selection equal to a reference package (tier, timing, hours/day, days/week, weeks, one person) is charged the listed price × periods.
 4. Otherwise rate × hours/day × days, then in order: `timingPercent`, `extraPersonPercent` × (people − 1), `homeSizePercent`. A needed rule that is null makes the line unpriced. `minHours` raises short hourly bookings.
-5. Hours/day: hourly = chosen hours; day shift 12; night 12; 24 hours 24; live-in 12; half/full day from `TIMINGS` (hidden while null). Days: one-time = days; weekly = days/week × weeks; monthly = days/week × `WEEKS_PER_MONTH` × months.
+5. Hours/day: hourly = chosen hours; full day 8; day shift 12; night 12; 24 hours 24; live-in 12; half day from `TIMINGS` (hidden while null). Days: one-time = days; weekly = days/week × weeks; monthly = days/week × `WEEKS_PER_MONTH` × months.
 
 ## Current draft rates (Oct 2026, client-approved)
 | Service | One-time | Weekly | Monthly |
@@ -28,8 +28,10 @@ Per-service prices, hourly rates and packages (schedule, price, card name and de
 
 SAR per hour, from the Packages page's "From X SAR per hour" figures. Night shift, 24 hours and live-in are billed at the same hourly rate. The stay-in package (12 h × 6 days × 4 weeks, one child) is still an exact match at SAR 8,500 per month.
 
+A package with hours per day needs its `timing` (the shift those hours belong to): `full-day` for 8 hours, `day-shift` for 12, `hourly` for an hourly booking (no shorter than the service's `minHours`). `npm test` fails the build otherwise, because the booking card couldn't reproduce the listed price. The admin panel's Packages page picks the shift and checks this on save.
+
 ## TODO(client)
-Hours per day for every reference package except stay-in; `minHours`; `extraPersonPercent` (extra child, baby, elder or pet: unpriced until set); `homeSizePercent`; half-day / full-day hours; live-in billable hours; `WEEKS_PER_MONTH`; `VAT_RATE`; `MULTI_SERVICE_RULE` and `ADDON_PERCENT`; own price lists for newborn care and mother & baby support; price lists for cleaning, pets, pick-up (and whether it's driving or accompanying; never "driver" wording) and errands. The reference "as low as" rates don't reconcile with the package prices (e.g. 6 days × 4 weeks at 33.82/hr × 12 h = 9,740 vs the 8,500 stay-in package), and weekly uses 39.29 although the 6-day plan lists 39.
+Hours per day for the reference packages that still have none; `extraPersonPercent` `extraPersonPercent` (extra child, baby, elder or pet: unpriced until set); `homeSizePercent`; half-day hours; live-in billable hours; `WEEKS_PER_MONTH`; `VAT_RATE`; `MULTI_SERVICE_RULE` and `ADDON_PERCENT`; own price lists for newborn care and mother & baby support; price lists for cleaning, pets, pick-up (and whether it's driving or accompanying; never "driver" wording) and errands. The reference "as low as" rates don't reconcile with the package prices (e.g. 6 days × 4 weeks at 33.82/hr × 12 h = 9,740 vs the 8,500 stay-in package), and weekly uses 39.29 although the 6-day plan lists 39.
 
 ## Page layout
 - A glass-ribbon bar (`GlassRibbon`, `current="location"`) sticks under the nav with links to `#on-demand`, `#monthly`, `#elderly` and `#booking` (Book Your Service). All sections stay on the page; the glass follows the section you scroll through, and tapping an item scrolls to it (client request: not tabs).

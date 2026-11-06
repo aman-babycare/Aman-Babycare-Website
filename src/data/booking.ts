@@ -63,8 +63,8 @@ const childAges: Opt[] = [
   { id: '6-12', label: { ar: '6–12 سنة', en: '6–12' } },
   { id: '12+', label: { ar: '12 سنة فأكثر', en: '12+' } },
 ];
-const careTimings: TimingId[] = ['hourly', 'day-shift', 'night', '24-hours', 'stay-in'];
-const supportTimings: TimingId[] = ['hourly', 'day-shift', 'night', 'stay-in'];
+const careTimings: TimingId[] = ['hourly', 'full-day', 'day-shift', 'night', '24-hours', 'stay-in'];
+const supportTimings: TimingId[] = ['hourly', 'full-day', 'day-shift', 'night', 'stay-in'];
 const n = (a: Answers, key: string) => (typeof a[key] === 'number' ? (a[key] as number) : 1);
 
 // Client-requested order.
