@@ -18,7 +18,7 @@ import Footer from '../components/Footer.astro';
 import StickyWhatsApp from '../components/StickyWhatsApp.astro';
 import CardTilt from '../components/CardTilt.astro';
 import CookieBanner from '../components/CookieBanner.astro';
-import { site, type Locale } from '../config/site';
+import { isPlaceholder, site, type Locale } from '../config/site';
 import { business, telUrl } from '../data/business';
 import { businessId as businessIdFor } from '../lib/schema';
 
@@ -66,12 +66,15 @@ const localBusiness = {
   image: ogImageUrl,
   logo: logoUrl,
   telephone: telUrl().replace('tel:', ''),
+  // Email and street address join the schema once they're set in business.json; placeholders never do.
+  ...(!isPlaceholder(business.email) && { email: business.email }),
   areaServed: { '@type': 'City', name: business.areaServed[lang] },
   // Booking hours, assumed daily (schema needs days). No Review or AggregateRating, ever.
   openingHours: `Mo-Su ${business.hours.opens}-${business.hours.closes}`,
   knowsLanguage: ['en', 'ar'],
   address: {
     '@type': 'PostalAddress',
+    ...(!isPlaceholder(business.address[lang]) && { streetAddress: business.address[lang] }),
     addressLocality: business.areaServed.en,
     addressCountry: business.countryCode,
   },
