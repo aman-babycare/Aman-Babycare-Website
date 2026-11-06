@@ -1,7 +1,6 @@
 // Packages and prices. Rules: docs/build/packages-and-pricing.md
 // Each package (price, schedule, card name and detail, was/perHour) lives with its service in
-// src/content-data/pricing.json. DRAFT numbers from the client-supplied reference
-// https://feelvaleo.com/en-sa/riyadh/babysitting — confirm every price before site.isLive = true.
+// src/content-data/pricing.json. Prices are live (client confirmed, Nov 2026); the admin panel edits them.
 import type { L } from '../i18n/ui';
 import { PRICING_DATA } from './pricing';
 import servicesData from '../content-data/services.json';

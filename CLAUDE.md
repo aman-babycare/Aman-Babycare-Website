@@ -3,7 +3,7 @@
 ## Project
 Bilingual (Arabic-first) marketing website for "Aman Babycare & Home Services" (أمان لرعاية المواليد والخدمات المنزلية), a home-care company in Riyadh, KSA.
 Goal: rank on Google for Riyadh home-care searches and turn visitors into WhatsApp bookings.
-Deadline: Saturday Oct 31, 2026, 6 PM. MVP first; mark later work with `// PHASE 2`.
+Status: **live** at https://amancareservices.com and indexed by search engines (since Nov 2026). Every push to `main` deploys to production (`.github/workflows/deploy.yml`), so `npm run build`, `npm test` and `npm run seo-check` must pass before pushing. Mark later work with `// PHASE 2`.
 
 ## Always Do First
 - Read `src/content-data/business.json` (all business facts, read through `src/data/business.ts`), `src/config/site.ts` (site settings) and this file before any change.
@@ -39,7 +39,8 @@ Newborn & Mother Care (one combined page at /services/newborn-care/, featured fi
 - Internal links: every service page links to Packages, Book Your Service (`/packages/?service=<slug>#booking`), and 2–3 related services. No dead-end pages.
 - Each page has unique content. Never duplicate a section across pages or within a page.
 - Bilingual, descriptive alt text on every meaningful image; empty `alt=""` for decorative ones.
-- `site.ts` has `isLive`. While false: `noindex, nofollow` on all pages and robots.txt disallows all.
+- Indexing: `site.isLive` comes from `PUBLIC_INDEXING`, set to `"true"` as a GitHub repo variable for the production build. Production is indexable (robots.txt allows all, sitemap listed); local, preview and any other build stay `noindex, nofollow` with a robots.txt that disallows all. The 404 page is always `noindex`. Never turn indexing off in production without the client's say.
+- All canonical, hreflang, sitemap, Open Graph and JSON-LD URLs use the apex domain `https://amancareservices.com` (www redirects to it).
 - Keep sitemap, robots.txt, and 404 working after every change.
 
 ## Arabic & RTL
@@ -60,7 +61,7 @@ Newborn & Mother Care (one combined page at /services/newborn-care/, featured fi
 - Above the fold: benefit headline, 3 trust points, one primary CTA.
 - A CTA after every 2–3 sections on long pages.
 - Forms (if any) need a PDPL consent checkbox linking to the privacy page.
-- Analytics scripts (GA4, Meta, Snapchat) load only after cookie consent and only if their IDs are set.
+- Analytics scripts (GA4, Meta, Snapchat) load only after cookie consent and only if their IDs are set. The IDs are GitHub repo variables (`PUBLIC_GA4_ID`, `PUBLIC_META_PIXEL_ID`, `PUBLIC_SNAP_PIXEL_ID`) read by `site.analytics`; never hard-code them.
 
 ## Design Guardrails
 - Colors: only the brand tokens in `tailwind.config` (green primary, muted gold accent, cream base, soft pink tint + neutrals), matching the logo. Premium and minimalist: no gradients, no shiny gold. Never default Tailwind blue/indigo.

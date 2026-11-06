@@ -4,8 +4,8 @@ import { business } from '../data/business';
 export type Locale = 'ar' | 'en';
 
 export const site = {
-  // PUBLIC_INDEXING=true on the production build only. Anything else (staging, previews, local) keeps
-  // noindex,nofollow on every page and a robots.txt that disallows all.
+  // PUBLIC_INDEXING=true is set for production (GitHub repo variable), so the live site is indexable.
+  // Any other build (previews, local) keeps noindex,nofollow on every page and a robots.txt that disallows all.
   isLive: import.meta.env.PUBLIC_INDEXING === 'true',
 
   // Tag IDs from the GitHub repo variables (deploy.yml). Empty = that tag never loads. CookieBanner loads
