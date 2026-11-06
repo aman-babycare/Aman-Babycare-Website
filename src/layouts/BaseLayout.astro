@@ -114,6 +114,14 @@ const webSite = {
       )
     }
 
+    <!-- No cookie choice stored yet → CookieBanner shows in the first paint. Key matches CookieBanner.astro. -->
+    <script is:inline>
+      try {
+        if (!localStorage.getItem('aman-consent')) document.documentElement.classList.add('ask-consent');
+      } catch {
+        document.documentElement.classList.add('ask-consent');
+      }
+    </script>
     <link rel="preload" href={plexArabic400} as="font" type="font/woff2" crossorigin />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

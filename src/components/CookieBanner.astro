@@ -3,6 +3,8 @@
 // load only after Accept, and only for the IDs set in site.analytics. The choice lives in localStorage
 // (wrapped in try/catch: private windows can block it, and then the banner simply asks again).
 // Fixed position, so showing it never shifts the layout. On phones it sits above the sticky WhatsApp button.
+// A one-line check in BaseLayout's <head> adds `ask-consent` to <html> when no choice is stored, so the banner
+// is in the first paint instead of popping in after the scripts (it was the page's late LCP element).
 // REVIEW-AR
 import { site, type Locale } from '../config/site';
 import { href } from '../i18n/ui';
@@ -30,10 +32,9 @@ const t = {
 ---
 
 <section
-  class="fixed inset-x-4 bottom-[5.5rem] z-40 mx-auto max-w-xl rounded-3xl bg-cream-50 p-5 text-ink-700 shadow-float ring-1 ring-gold-500/20 lg:bottom-4"
+  class="fixed inset-x-4 bottom-[5.5rem] z-40 mx-auto hidden max-w-xl rounded-3xl bg-cream-50 p-5 text-ink-700 shadow-float ring-1 ring-gold-500/20 in-[.ask-consent]:block lg:bottom-4"
   role="region"
   aria-label={t.label}
-  hidden
   data-consent
   data-ga4={site.analytics.ga4}
   data-meta={site.analytics.meta}
@@ -124,9 +125,14 @@ const t = {
 
   const banner = document.querySelector<HTMLElement>('[data-consent]');
   if (banner) {
+    // Visibility comes from `ask-consent` on <html> (set in the head); `hidden` closes it after a choice.
+    const show = () => {
+      document.documentElement.classList.add('ask-consent');
+      banner.hidden = false;
+    };
     const choice = read();
     if (choice === 'accepted') loadTags(banner);
-    else if (choice !== 'rejected') banner.hidden = false;
+    else if (choice !== 'rejected') show();
 
     banner.querySelectorAll<HTMLButtonElement>('[data-consent-choice]').forEach((b) =>
       b.addEventListener('click', () => {
@@ -140,7 +146,7 @@ const t = {
     // "Cookie settings" in the footer reopens the banner so a choice can be changed.
     document.querySelectorAll('[data-cookie-settings]').forEach((b) =>
       b.addEventListener('click', () => {
-        banner.hidden = false;
+        show();
         banner.querySelector<HTMLButtonElement>('[data-consent-choice]')?.focus();
       }),
     );
