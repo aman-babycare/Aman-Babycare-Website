@@ -200,7 +200,8 @@
       "showPrice": true,
       "draft": false,
       "hourlyRate": {
-        "oneTime": 36,
+        "oneTime": 45,
+        "weekly": 40,
         "monthly": 36
       },
       "minHours": null,
