@@ -20,7 +20,7 @@ Status: **live** at https://amancareservices.com and indexed by search engines (
 - Host: Cloudflare Pages.
 
 ## Business Facts (never invent)
-- Every fact comes from `src/content-data/business.json` (via `src/data/business.ts`). Unknown values stay as placeholders like `[PHONE]`, `[ADDRESS]`, `[PRICE]` in the data, but are never rendered raw: hide the line or show words such as "Price on WhatsApp".
+- Every fact comes from `src/content-data/business.json` (via `src/data/business.ts`). Unknown values stay empty (`""`, e.g. the address and social links) or as placeholders like `[PHONE]`, `[PRICE]` in the data, but are never rendered raw: hide the line or show words such as "Price on WhatsApp".
 - Do NOT write: licensed, certified, nurse, nursing, medical, hospital-grade, MOH, 24/7, "500+ families", or any number/credential not in `business.ts`.
 - Prices come only from `src/content-data/pricing.json`, pricing rules from `src/data/pricing.ts` (engine: `src/lib/pricing.ts`, `npm test`); offers from `src/content-data/offers.json`. Everything in `src/content-data/` is edited by the admin panel (separate project in `../The admin panel`) and must keep matching `src/lib/content-schema.ts`; change the schema in both projects together. Prices are live (client confirmed, Nov 2026; `draft: false` on every service); a service set back to draft in the admin shows a "Draft prices" note. Missing numbers stay `null` + `TODO(client)` and show "Price on WhatsApp".
 - Allowed trust claim: staff are background-checked.

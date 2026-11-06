@@ -233,7 +233,7 @@ const teaser = signature.length === 3 ? signature : packages.slice(0, 3);
         </p>
         <h3 class="mt-1 text-lg leading-snug text-cream-50 lg:text-xl">{featured.title[lang]}</h3>
       </div>
-      <p class="col-span-2 line-clamp-2 text-sm text-cream-200 lg:col-span-1 lg:col-start-2">{featured.text[lang]}</p>
+      <p class="col-span-2 line-clamp-2 whitespace-pre-line text-sm text-cream-200 lg:col-span-1 lg:col-start-2">{featured.text[lang]}</p>
       <div class="col-span-2 flex flex-wrap items-center gap-2 text-xs text-cream-200 lg:col-span-1 lg:col-start-2 lg:self-start">
         <span>{c.includes}:</span>
         {liveServices(featured.services).map(({ slug: s, name }) => (

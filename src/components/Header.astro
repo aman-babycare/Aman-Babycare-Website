@@ -34,7 +34,8 @@ const links: RibbonItem[] = [
   { label: ui.nav.aboutShort[lang], href: href(lang, 'about'), icon: 'heart' },
 ];
 // The registered Arabic company name (business.json headerName, admin-editable). It takes the slot the header
-// WhatsApp button used to have; every other WhatsApp CTA stays. Hidden or blank renders nothing.
+// WhatsApp button used to have; every other WhatsApp CTA stays. Hidden or blank renders nothing. Regular weight
+// on purpose: the Arabic 400 font is already loaded on every page, so the name costs no extra download.
 const companyName = business.headerName.show ? business.headerName.text.trim() : '';
 const active = path === '' ? 0 : path.startsWith('services') ? 1 : path === 'offers' ? 2 : path === 'packages' ? 3 : path === 'about' ? 4 : -1;
 ---
@@ -43,7 +44,7 @@ const active = path === '' ? 0 : path.startsWith('services') ? 1 : path === 'off
 <header class:list={['sticky z-40 border-b border-green-700/5 bg-cream-100/90 backdrop-blur-md lg:top-0', companyName ? '-top-[6.25rem]' : '-top-[4.5rem]']}>
   {
     companyName && (
-      <p lang="ar" dir="rtl" class="flex h-7 items-center justify-center border-b border-green-700/5 font-arabic text-xs font-bold leading-none text-green-800 lg:hidden">
+      <p lang="ar" dir="rtl" class="flex h-7 items-center justify-center border-b border-green-700/5 font-arabic text-xs leading-none text-green-800 lg:hidden">
         <span class="truncate px-4">{companyName}</span>
       </p>
     )
@@ -106,7 +107,7 @@ const active = path === '' ? 0 : path.startsWith('services') ? 1 : path === 'off
       </a>
       {
         companyName && (
-          <span lang="ar" dir="rtl" class="hidden whitespace-nowrap font-arabic text-[0.6875rem] font-bold leading-none text-green-800 lg:inline xl:ps-2 xl:text-sm" data-company-name>
+          <span lang="ar" dir="rtl" class="hidden whitespace-nowrap font-arabic text-xs leading-none text-green-800 lg:inline xl:ps-2 xl:text-sm" data-company-name>
             {companyName}
           </span>
         )
