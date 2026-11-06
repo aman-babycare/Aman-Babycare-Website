@@ -15,13 +15,7 @@ export const site = {
     meta: (import.meta.env.PUBLIC_META_PIXEL_ID ?? '').trim(),
     snapchat: (import.meta.env.PUBLIC_SNAP_PIXEL_ID ?? '').trim(),
   },
-
-  social: {
-    instagram: '',
-    tiktok: '',
-    snapchat: '',
-    x: '',
-  },
+  // Social links live in business.json (`social`), edited from the admin panel.
 } as const;
 
 // Lives on the Packages page.
@@ -30,8 +24,10 @@ export const personalizedCarePlans = {
   price: '[PRICE]',
 };
 
-export function isPlaceholder(value: string): boolean {
-  return /^\[.+\]$/.test(value);
+/** Not set yet: blank, or a "[PLACEHOLDER]". Such values never render. */
+export function isPlaceholder(value: string | null | undefined): boolean {
+  const v = (value ?? '').trim();
+  return v === '' || /^\[.+\]$/.test(v);
 }
 
 // wa.me link with a prefilled message. Without a real number it opens WhatsApp's contact picker.

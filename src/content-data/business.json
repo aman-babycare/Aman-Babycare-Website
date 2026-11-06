@@ -16,17 +16,17 @@
     "ar": "راحتكم أولويتنا"
   },
   "legalName": {
-    "ar": "شركة عادل احمد منصور عكاش للتجارة والمقاولات",
-    "en": "Adel Ahmed Mansour Akkash Trading & Contracting Company"
+    "ar": "شركة هوسول ألمستقبل",
+    "en": "Husool Almustaquil Company"
   },
-  "crNumber": "7049385276",
+  "crNumber": "7053786815",
   "whatsapp": "+966 59 500 2539",
   "phone": "+966 59 500 2539",
   "email": "[EMAIL]",
   "privacyEmail": "[PRIVACY_EMAIL]",
   "address": {
-    "en": "[ADDRESS]",
-    "ar": "[ADDRESS]"
+    "en": "",
+    "ar": ""
   },
   "hours": {
     "opens": "08:00",
@@ -88,5 +88,22 @@
   },
   "domesticWorkerKeywords": false,
   "caregiverNationalityChoice": null,
-  "businessSaBadge": null
+  "businessSaBadge": null,
+  "social": {
+    "instagram": "",
+    "facebook": "",
+    "x": "",
+    "snapchat": "",
+    "tiktok": "",
+    "youtube": "",
+    "linkedin": ""
+  },
+  "headerName": {
+    "text": "شركة هوسول ألمستقبل",
+    "show": true
+  },
+  "aboutCompany": {
+    "ar": "",
+    "en": ""
+  }
 }

@@ -5,6 +5,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../Breadcrumbs.astro';
 import CompanyDetails from '../CompanyDetails.astro';
 import Icon from '../Icon.astro';
+import SocialLinks from '../SocialLinks.astro';
 import { isPlaceholder, whatsappUrl, type Locale } from '../../config/site';
 import { business, telUrl } from '../../data/business';
 import { href, ui } from '../../i18n/ui';
@@ -31,6 +32,7 @@ const t = {
     bookText: 'اختاروا الخدمة والتوقيت، ونجهّز لكم رسالة واتساب كاملة بالتفاصيل.',
     bookCta: 'احجزوا خدمتكم',
     otherTitle: 'طرق أخرى',
+    followTitle: 'تابعونا',
     message: 'السلام عليكم، أرغب بالتواصل مع أمان.',
   },
   en: {
@@ -44,6 +46,7 @@ const t = {
     bookText: 'Pick the service and timing, and we’ll prepare a complete WhatsApp message with the details.',
     bookCta: 'Book Your Service',
     otherTitle: 'Other ways to reach us',
+    followTitle: 'Follow us',
     message: "Hello, I'd like to get in touch with Aman.",
   },
 }[lang];
@@ -95,6 +98,11 @@ const others = [
         </div>
       </section>
     </div>
+
+    <section class="mt-12 max-w-3xl">
+      <h2 class="text-2xl text-green-800">{t.followTitle}</h2>
+      <SocialLinks lang={lang} class="mt-4" />
+    </section>
 
     {
       others.length > 0 && (

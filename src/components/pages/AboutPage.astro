@@ -1,7 +1,9 @@
 ---
 // About Aman: who we are, what we do, how we work, and the registered company details.
 // Only facts from business.ts and services.ts; no new claims. REVIEW-AR: Arabic is a first draft.
+import { Picture } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import stamp from '../../assets/company-stamp.png';
 import Breadcrumbs from '../Breadcrumbs.astro';
 import CompanyDetails from '../CompanyDetails.astro';
 import CtaBand from '../CtaBand.astro';
@@ -67,7 +69,19 @@ const t = {
   <Breadcrumbs lang={lang} items={crumbs} />
   <article class="container-x pb-16 pt-8 md:pb-24">
     <div class="max-w-3xl">
-      <h1 class="text-4xl text-green-800 sm:text-5xl">{t.h1}</h1>
+      <div class="flex items-center justify-between gap-6">
+        <h1 class="text-4xl text-green-800 sm:text-5xl">{t.h1}</h1>
+        <!-- The company stamp, slightly tilted like a real stamp; fixed size, so nothing shifts. -->
+        <Picture
+          src={stamp}
+          formats={['avif', 'webp']}
+          widths={[96, 128, 192, 256]}
+          sizes="(min-width: 640px) 128px, 96px"
+          alt={lang === 'ar' ? 'ختم الشركة' : 'Company stamp'}
+          loading="eager"
+          class="size-24 shrink-0 -rotate-6 select-none sm:size-32"
+        />
+      </div>
       <p class="mt-6 text-lg text-ink-600">{t.lead}</p>
 
       <section class="mt-12 border-t border-gold-500/20 pt-8">
@@ -109,7 +123,7 @@ const t = {
       </section>
 
       <div class="mt-12">
-        <CompanyDetails lang={lang} />
+        <CompanyDetails lang={lang} intro />
       </div>
     </div>
   </article>

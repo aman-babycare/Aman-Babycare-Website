@@ -1,20 +1,20 @@
 ---
-// Header: logo lockup, glass-ribbon navigation, language + WhatsApp. Rules: docs/build/header-and-navigation.md
+// Header: logo lockup, glass-ribbon navigation, language, phone and the registered company name.
+// Rules: docs/build/header-and-navigation.md
 import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
 import GlassRibbon, { type RibbonItem } from './GlassRibbon.astro';
 import logoMark from '../assets/logo-mark.png';
-import { whatsappUrl, type Locale } from '../config/site';
+import type { Locale } from '../config/site';
 import { business, telUrl } from '../data/business';
 import { href, other, ui } from '../i18n/ui';
 
 interface Props {
   lang: Locale;
   path: string;
-  waMessage: string;
 }
 
-const { lang, path, waMessage } = Astro.props;
+const { lang, path } = Astro.props;
 const alt = other(lang);
 const home = href(lang, '');
 // "Babycare & Home Services" / "لرعاية المواليد والخدمات المنزلية": the full name minus the short name.
@@ -33,11 +33,21 @@ const links: RibbonItem[] = [
   { label: ui.nav.packages[lang], href: href(lang, 'packages'), icon: 'calendar', section: onHome ? 'packages' : undefined },
   { label: ui.nav.aboutShort[lang], href: href(lang, 'about'), icon: 'heart' },
 ];
+// The registered Arabic company name (business.json headerName, admin-editable). It takes the slot the header
+// WhatsApp button used to have; every other WhatsApp CTA stays. Hidden or blank renders nothing.
+const companyName = business.headerName.show ? business.headerName.text.trim() : '';
 const active = path === '' ? 0 : path.startsWith('services') ? 1 : path === 'offers' ? 2 : path === 'packages' ? 3 : path === 'about' ? 4 : -1;
 ---
 
-<!-- Phones/tablets: the logo row scrolls away (negative top) and the ribbon row stays stuck. -->
-<header class="sticky -top-[4.5rem] z-40 border-b border-green-700/5 bg-cream-100/90 backdrop-blur-md lg:top-0">
+<!-- Phones/tablets: the company-name strip and logo row scroll away (negative top); the ribbon row stays stuck. -->
+<header class:list={['sticky z-40 border-b border-green-700/5 bg-cream-100/90 backdrop-blur-md lg:top-0', companyName ? '-top-[6.25rem]' : '-top-[4.5rem]']}>
+  {
+    companyName && (
+      <p lang="ar" dir="rtl" class="flex h-7 items-center justify-center border-b border-green-700/5 font-arabic text-xs font-bold leading-none text-green-800 lg:hidden">
+        <span class="truncate px-4">{companyName}</span>
+      </p>
+    )
+  }
   <div class="container-x flex flex-wrap items-center gap-x-4 lg:flex-nowrap">
     <div class="flex h-[4.5rem] shrink-0 items-center">
       <!-- Lockup mirrors brand_assets/Logo.png: name, English line, Arabic line. -->
@@ -84,16 +94,23 @@ const active = path === '' ? 0 : path.startsWith('services') ? 1 : path === 'off
       </a>
       <a
         href={telUrl()}
-        class="hidden min-h-11 items-center gap-2 whitespace-nowrap rounded-full px-3 text-sm font-semibold text-green-700 hover:bg-green-50 active:scale-[0.98] lg:inline-flex"
+        class:list={[
+          'hidden min-h-11 items-center gap-2 whitespace-nowrap rounded-full px-3 text-sm font-semibold text-green-700 hover:bg-green-50 active:scale-[0.98]',
+          // With the company name shown, 1024–1279px has no room for the phone icon (footer and Contact keep it).
+          companyName ? 'xl:inline-flex' : 'lg:inline-flex',
+        ]}
         aria-label={`${ui.callUs[lang]}: ${business.phone}`}
       >
         <Icon name="phone" class="size-5" />
         <span class="hidden 2xl:inline">{ui.callUs[lang]}</span>
       </a>
-      <a href={whatsappUrl(waMessage)} class="btn btn-primary hidden min-h-11 whitespace-nowrap px-4 text-sm lg:inline-flex xl:px-6" rel="noopener" aria-label={ui.bookWhatsApp[lang]}>
-        <Icon name="whatsapp" class="size-5" />
-        <span class="hidden xl:inline">{ui.bookWhatsApp[lang]}</span>
-      </a>
+      {
+        companyName && (
+          <span lang="ar" dir="rtl" class="hidden whitespace-nowrap font-arabic text-[0.6875rem] font-bold leading-none text-green-800 lg:inline xl:ps-2 xl:text-sm" data-company-name>
+            {companyName}
+          </span>
+        )
+      }
     </div>
   </div>
 </header>

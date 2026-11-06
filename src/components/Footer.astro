@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
 import Skyline from './Skyline.astro';
+import SocialLinks from './SocialLinks.astro';
 import logoFull from '../assets/logo-full.png';
 import { whatsappUrl, isPlaceholder, type Locale } from '../config/site';
 import { business, telUrl } from '../data/business';
@@ -84,6 +85,9 @@ const hasBlog = (await publishedPosts(lang)).length > 0;
       }
       {contacts.map((c) => <a href={c.url} class="mt-1 block text-sm hover:text-cream-50">{c.label}</a>)}
       <p class="mt-1 text-sm">{business.areaServed[lang]}{lang === 'ar' ? '، ' : ', '}{business.country[lang]}</p>
+      {!isPlaceholder(business.address[lang]) && <p class="mt-1 whitespace-pre-line text-sm" dir={lang === 'ar' ? 'rtl' : 'ltr'}>{business.address[lang]}</p>}
+      <h2 class="mt-8 text-sm font-semibold text-gold-300">{lang === 'ar' ? 'تابعونا' : 'Follow us'}</h2>
+      <SocialLinks lang={lang} tone="dark" class="mt-4" />
     </div>
   </div>
   <div class="border-t border-cream-50/10">

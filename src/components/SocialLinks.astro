@@ -1,0 +1,56 @@
+---
+// Social profile icons (footer and Contact page). Links come from business.json `social`, edited in the admin.
+// A platform without a link shows a muted, inactive icon: no href, not focusable, aria-disabled. REVIEW-AR
+import Icon from './Icon.astro';
+import type { Locale } from '../config/site';
+import { business } from '../data/business';
+import type { SocialPlatform } from '../lib/content-schema';
+
+interface Props {
+  lang: Locale;
+  /** dark: on the green footer; light: on a cream card. */
+  tone?: 'dark' | 'light';
+  class?: string;
+}
+const { lang, tone = 'light', class: cls } = Astro.props;
+
+const names: Record<SocialPlatform, { ar: string; en: string }> = {
+  instagram: { ar: 'إنستغرام', en: 'Instagram' },
+  facebook: { ar: 'فيسبوك', en: 'Facebook' },
+  x: { ar: 'إكس', en: 'X' },
+  snapchat: { ar: 'سناب شات', en: 'Snapchat' },
+  tiktok: { ar: 'تيك توك', en: 'TikTok' },
+  youtube: { ar: 'يوتيوب', en: 'YouTube' },
+  linkedin: { ar: 'لينكدإن', en: 'LinkedIn' },
+};
+const t = {
+  ar: { list: 'حساباتنا على وسائل التواصل', newTab: 'يفتح في نافذة جديدة', notSet: 'لم يُضَف بعد' },
+  en: { list: 'Our social media', newTab: 'opens in a new tab', notSet: 'not added yet' },
+}[lang];
+
+const items = (Object.keys(names) as SocialPlatform[]).map((id) => ({ id, name: names[id][lang], url: business.social[id] || null }));
+const base = 'inline-flex size-11 items-center justify-center rounded-full';
+const active =
+  tone === 'dark'
+    ? 'bg-cream-50/10 text-cream-100 hover:bg-cream-50/20 hover:text-cream-50 active:scale-[0.96]'
+    : 'bg-green-50 text-green-700 hover:bg-green-100 hover:text-green-800 active:scale-[0.96]';
+const inactive = tone === 'dark' ? 'bg-cream-50/5 text-cream-200/35' : 'bg-cream-100 text-ink-400/60';
+---
+
+<ul class:list={['flex flex-wrap gap-2', cls]} aria-label={t.list}>
+  {
+    items.map((s) => (
+      <li>
+        {s.url ? (
+          <a href={s.url} target="_blank" rel="noopener" class:list={[base, active]} aria-label={`${s.name} (${t.newTab})`} title={s.name}>
+            <Icon name={s.id} class="size-5" />
+          </a>
+        ) : (
+          <span role="img" aria-disabled="true" class:list={[base, inactive, 'cursor-default']} aria-label={`${s.name}: ${t.notSet}`}>
+            <Icon name={s.id} class="size-5" />
+          </span>
+        )}
+      </li>
+    ))
+  }
+</ul>

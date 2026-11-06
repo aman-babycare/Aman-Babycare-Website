@@ -13,7 +13,34 @@ const sar = z.number().nonnegative();
 const percent = z.number().min(-100).max(500);
 
 // ── Business settings ────────────────────────────────────────────────────────────────────────────────────
-// Unknown values stay "[PLACEHOLDER]" (e.g. "[EMAIL]") and are hidden on the site until set.
+// Social profiles. "" = not set: the icon shows inactive and the link stays out of the schema's sameAs.
+export const SOCIAL_PLATFORMS = {
+  instagram: ['instagram.com'],
+  facebook: ['facebook.com', 'fb.com'],
+  x: ['x.com', 'twitter.com'],
+  snapchat: ['snapchat.com'],
+  tiktok: ['tiktok.com'],
+  youtube: ['youtube.com', 'youtu.be'],
+  linkedin: ['linkedin.com'],
+} as const;
+export type SocialPlatform = keyof typeof SOCIAL_PLATFORMS;
+
+/** An https link to a page on the platform's own domain (www., m. and other subdomains allowed). */
+export function isSocialUrl(platform: SocialPlatform, value: string): boolean {
+  let u: URL;
+  try {
+    u = new URL(value);
+  } catch {
+    return false;
+  }
+  const host = u.hostname.toLowerCase();
+  const onPlatform = SOCIAL_PLATFORMS[platform].some((d) => host === d || host.endsWith(`.${d}`));
+  return u.protocol === 'https:' && onPlatform && u.pathname.length > 1 && !u.username && !u.password;
+}
+const socialUrl = (p: SocialPlatform) =>
+  text.max(300).refine((v) => v === '' || isSocialUrl(p, v), `Use an https link to a page on ${SOCIAL_PLATFORMS[p][0]}`);
+
+// Unknown values stay "[PLACEHOLDER]" (e.g. "[EMAIL]") or "" and are hidden on the site until set.
 export const businessSchema = z.object({
   brand: L,
   shortName: L,
@@ -42,6 +69,19 @@ export const businessSchema = z.object({
   caregiverNationalityChoice: L.nullable(), // null keeps the nationality FAQ hidden
   // business.sa (Saudi Business Center) verification badge, shown in the footer once set.
   businessSaBadge: z.object({ url: z.string().url(), image: text }).nullable(),
+  social: z.object({
+    instagram: socialUrl('instagram'),
+    facebook: socialUrl('facebook'),
+    x: socialUrl('x'),
+    snapchat: socialUrl('snapchat'),
+    tiktok: socialUrl('tiktok'),
+    youtube: socialUrl('youtube'),
+    linkedin: socialUrl('linkedin'),
+  }),
+  // The registered Arabic company name in the header; `show: false` (or "") renders nothing.
+  headerName: z.object({ text: text.max(60), show: z.boolean() }),
+  // Short company text at the top of the About page's company block; "" renders nothing.
+  aboutCompany: z.object({ ar: text.max(400), en: text.max(400) }),
 });
 
 // ── Services ─────────────────────────────────────────────────────────────────────────────────────────────

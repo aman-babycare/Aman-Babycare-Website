@@ -1,7 +1,7 @@
 // Business facts: the values live in src/content-data/business.json (edited from the admin panel), checked
-// against src/lib/content-schema.ts. Never invent values: unknowns stay as [PLACEHOLDER] and are hidden from
-// the UI until set. Legal name and CR number match the client's CR certificate
-// (brand_assets/Certifications and business docs/CR Certificate.pdf, issued 11/03/2025).
+// against src/lib/content-schema.ts. Never invent values: unknowns stay "" or [PLACEHOLDER] and are hidden from
+// the UI until set. Legal name and CR number match the client's CR certificate issued 28/02/2026 (unified number
+// 7053786815): Arabic name exactly as on the certificate, English name as on the company stamp.
 //
 // Notes on values that are not obvious from the JSON:
 // - brand: always "Babycare", one word. tagline: from the logo.
