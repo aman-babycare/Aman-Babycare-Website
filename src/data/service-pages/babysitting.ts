@@ -100,7 +100,7 @@ const page: ServicePage = {
   },
   packages: {
     title: { ar: 'باقات جليسة الأطفال', en: 'Babysitting packages' },
-    text: { ar: 'بالساعة، أو بخطط أسبوعية وشهرية بسعر أقل للساعة. الأسعار المعروضة مبدئية.', en: 'By the hour, or on weekly and monthly plans with a lower hourly rate. Prices shown are provisional.' },
+    text: { ar: 'بالساعة، أو بخطط أسبوعية وشهرية بسعر أقل للساعة.', en: 'By the hour, or on weekly and monthly plans with a lower hourly rate.' },
   },
   riyadh: {
     title: { ar: 'جليسة أطفال في كل أحياء الرياض', en: 'Babysitters all over Riyadh' },
@@ -115,8 +115,8 @@ const page: ServicePage = {
       q: { ar: 'كم سعر جليسة الأطفال في الرياض؟', en: 'How much does a babysitter cost in Riyadh?' },
       a: from
         ? {
-            ar: `تبدأ أسعار الساعة من ${rate(from)} ر.س في الخطط الشهرية، والحجز بالساعة أعلى قليلاً للساعة. الأسعار المعروضة مبدئية، ونؤكد السعر النهائي على واتساب.`,
-            en: `Hourly rates start from SAR ${rate(from)} on monthly plans; one-off hourly bookings cost a little more per hour. Prices shown are provisional, and we confirm the final price on WhatsApp.`,
+            ar: `تبدأ أسعار الساعة من ${rate(from)} ر.س في الخطط الشهرية، والحجز بالساعة أعلى قليلاً للساعة. ونؤكد معكم الإجمالي على واتساب قبل البدء.`,
+            en: `Hourly rates start from SAR ${rate(from)} on monthly plans; one-off hourly bookings cost a little more per hour. We confirm the total with you on WhatsApp before you start.`,
           }
         : { ar: 'نؤكد السعر معكم على واتساب حسب عدد الأطفال والساعات.', en: 'We confirm the price with you on WhatsApp, based on the number of children and hours.' },
     },

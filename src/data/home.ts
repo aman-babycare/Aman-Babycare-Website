@@ -50,8 +50,9 @@ export const homeFaq: { q: L; a: L }[] = [
   {
     q: { ar: 'هل أسعار الباقات نهائية؟', en: 'Are the package prices final?' },
     a: {
-      ar: 'الأسعار المعروضة مبدئية. نؤكد السعر النهائي معكم على واتساب قبل أي حجز.',
-      en: 'The prices shown are provisional. We confirm the final price with you on WhatsApp before any booking.',
+      // REVIEW-AR
+      ar: 'نعم، الأسعار المعروضة هي أسعارنا الحالية. نؤكد معكم تفاصيل الحجز والإجمالي على واتساب قبل البدء.',
+      en: 'Yes, the prices shown are our current prices. We confirm the booking details and total with you on WhatsApp before you start.',
     },
   },
 ];

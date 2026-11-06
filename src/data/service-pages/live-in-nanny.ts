@@ -80,7 +80,7 @@ const page: ServicePage = {
   },
   packages: {
     title: { ar: 'باقة المربية المقيمة', en: 'The live-in nanny package' },
-    text: { ar: '12 ساعة يومياً، 6 أيام في الأسبوع، لمدة 4 أسابيع. السعر المعروض مبدئي.', en: '12 hours a day, 6 days a week, for 4 weeks. The price shown is provisional.' },
+    text: { ar: '12 ساعة يومياً، 6 أيام في الأسبوع، لمدة 4 أسابيع.', en: '12 hours a day, 6 days a week, for 4 weeks.' },
     ids: ['stay-in'],
   },
   riyadh: {
@@ -121,7 +121,7 @@ const page: ServicePage = {
   faq: [
     {
       q: { ar: 'كم سعر المربية المقيمة في الرياض؟', en: 'How much does a live-in nanny cost in Riyadh?' },
-      a: { ar: 'سعر باقة الإقامة معروض أعلاه، وهو سعر مبدئي نؤكده معكم على واتساب قبل البدء.', en: 'The stay-in package price is shown above. It is provisional, and we confirm it with you on WhatsApp before you start.' },
+      a: { ar: 'سعر باقة الإقامة معروض أعلاه، ونؤكد معكم التفاصيل على واتساب قبل البدء.', en: 'The stay-in package price is shown above, and we confirm the details with you on WhatsApp before you start.' },
     },
     {
       q: { ar: 'كم ساعة تعمل المربية المقيمة؟', en: 'How many hours does a live-in nanny work?' },

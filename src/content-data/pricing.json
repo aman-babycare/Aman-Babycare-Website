@@ -178,7 +178,7 @@
     "mother-baby-support": {
       "unit": "hour",
       "showPrice": true,
-      "draft": true,
+      "draft": false,
       "hourlyRate": {
         "oneTime": 45,
         "weekly": 39.29,
@@ -196,7 +196,7 @@
     "elderly-companionship": {
       "unit": "hour",
       "showPrice": true,
-      "draft": true,
+      "draft": false,
       "hourlyRate": {
         "oneTime": 36,
         "monthly": 36
@@ -289,7 +289,7 @@
     "home-cleaning": {
       "unit": "hour",
       "showPrice": true,
-      "draft": true,
+      "draft": false,
       "minHours": null,
       "extraPersonPercent": null,
       "timingPercent": null,
@@ -299,7 +299,7 @@
     "pet-sitting": {
       "unit": "hour",
       "showPrice": true,
-      "draft": true,
+      "draft": false,
       "minHours": null,
       "extraPersonPercent": null,
       "timingPercent": null,
@@ -308,7 +308,7 @@
     "pick-up-drop-off": {
       "unit": "trip",
       "showPrice": true,
-      "draft": true,
+      "draft": false,
       "minHours": null,
       "extraPersonPercent": null,
       "timingPercent": null,
@@ -317,7 +317,7 @@
     "errands": {
       "unit": "hour",
       "showPrice": true,
-      "draft": true,
+      "draft": false,
       "minHours": null,
       "extraPersonPercent": null,
       "timingPercent": null,

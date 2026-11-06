@@ -101,7 +101,7 @@ const page: ServicePage = {
   },
   packages: {
     title: { ar: 'باقات مرافقة كبار السن', en: 'Elderly companionship packages' },
-    text: { ar: 'يوم واحد عند الحاجة، أو خطط شهرية لخمسة أو ستة أو سبعة أيام في الأسبوع. الأسعار المعروضة مبدئية.', en: 'A single day when you need it, or monthly plans for five, six or seven days a week. Prices shown are provisional.' },
+    text: { ar: 'يوم واحد عند الحاجة، أو خطط شهرية لخمسة أو ستة أو سبعة أيام في الأسبوع.', en: 'A single day when you need it, or monthly plans for five, six or seven days a week.' },
   },
   riyadh: {
     title: { ar: 'مرافقة كبار السن في الرياض كلها', en: 'Companionship for parents across Riyadh' },
@@ -116,8 +116,8 @@ const page: ServicePage = {
       q: { ar: 'كم سعر مرافقة كبار السن؟', en: 'How much does elderly companionship cost?' },
       a: from
         ? {
-            ar: `تبدأ الخطط الشهرية من ${rate(from)} ر.س للساعة، ويوجد يوم واحد عند الحاجة. الأسعار مبدئية، ونؤكدها معكم على واتساب.`,
-            en: `Monthly plans start from SAR ${rate(from)} an hour, and a single day is available too. Prices are provisional and confirmed with you on WhatsApp.`,
+            ar: `تبدأ الخطط الشهرية من ${rate(from)} ر.س للساعة، ويوجد يوم واحد عند الحاجة. ونؤكد معكم الإجمالي على واتساب قبل البدء.`,
+            en: `Monthly plans start from SAR ${rate(from)} an hour, and a single day is available too. We confirm the total with you on WhatsApp before you start.`,
           }
         : { ar: 'نؤكد السعر معكم على واتساب حسب الأيام والساعات.', en: 'We confirm the price with you on WhatsApp, based on the days and hours.' },
     },

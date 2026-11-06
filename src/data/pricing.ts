@@ -4,7 +4,7 @@
 // rule. Anything the client hasn't confirmed is null + TODO(client); the booking card then shows "Price on
 // WhatsApp" for that service only. Rules: docs/build/packages-and-pricing.md
 //
-// Reference prices are client-approved DRAFTS copied from https://feelvaleo.com/en-sa/riyadh/babysitting.
+// Prices started from https://feelvaleo.com/en-sa/riyadh/babysitting and are live since Nov 2026 (client confirmed).
 // That page states hours for one plan only (stay-in: 12 hours, 6 days, 4 weeks); the client has since set
 // 8 hours a day on some plans. A package with hours needs the timing (shift) those hours belong to: "full-day"
 // for 8 hours, "day-shift" for 12, "hourly" for an hourly booking. Plans without hours keep hoursPerDay null.

@@ -36,7 +36,7 @@ const t = {
       worker: `عاملة منزلية بالساعة حين تحتاجون يداً إضافية لساعات قليلة، أو بالشهر مع العاملة نفسها كل أسبوع. الفترة الصباحية ${business.shifts.day.time.ar}، والليلية ${business.shifts.night.time.ar}، بإقامة في بيتكم أو بدوام يومي.`,
     }),
     lead: 'ساعات قليلة أو خطة شهرية ثابتة. كلما طالت الخطة، قلّ سعر الساعة.',
-    draftNote: 'الأسعار المعروضة مبدئية، ونؤكد السعر النهائي معكم على واتساب قبل الحجز.',
+    confirmNote: 'نؤكد معكم تفاصيل الحجز والإجمالي على واتساب قبل البدء.',
     otherTitle: 'خدمات بسعر حسب الطلب',
     otherText: 'التنظيف، رعاية الحيوانات، التوصيل، والمشتريات تُسعّر حسب حجم العمل.',
     planTitle: personalizedCarePlans.name.ar,
@@ -49,7 +49,7 @@ const t = {
     tagline: "Packages that fit your home's rhythm",
     modesText: `Book an hourly maid or nanny when you need an extra pair of hands for a few hours, or choose a monthly plan with the same caregiver every week. Day shift ${business.shifts.day.time.en}, night shift ${business.shifts.night.time.en}, live-in or live-out.`,
     lead: 'A few hours or a steady monthly plan. The longer the plan, the lower the hourly rate.',
-    draftNote: 'Prices shown are provisional; we confirm the final price with you on WhatsApp before booking.',
+    confirmNote: 'We confirm the booking details and total with you on WhatsApp before you start.',
     otherTitle: 'Priced on request',
     otherText: 'Cleaning, pet sitting, rides and errands are priced by the size of the job.',
     planTitle: personalizedCarePlans.name.en,
@@ -77,7 +77,7 @@ const planMsg = lang === 'ar' ? 'السلام عليكم، أرغب بخطة ر�
       <p class="mt-4 max-w-xl text-lg text-ink-600">{t.lead}</p>
       <p class="mt-4 flex items-center gap-2 text-sm text-ink-500">
         <Icon name="clock" class="size-4 text-gold-600" />
-        {t.draftNote}
+        {t.confirmNote}
       </p>
     </div>
     {hasPhoto('packages-hero') && <Visual lang={lang} photo="packages-hero" alt="" shape="rounded" eager sizes="(min-width: 1024px) 560px, 90vw" class="shadow-card" />}
