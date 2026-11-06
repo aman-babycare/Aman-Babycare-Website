@@ -2,11 +2,11 @@
 
 All business facts live in `src/content-data/business.json` (read through `src/data/business.ts`, edited from the admin panel) (site settings stay in `src/config/site.ts`).
 
-| Email, privacy email, address | Where they appear once set (hidden while they are placeholders) |
+| Email, privacy email, address | Where they appear once set (hidden while blank or a placeholder) |
 | --- | --- |
 | `email` | Footer and Contact page (`mailto:` link); LocalBusiness JSON-LD `email` on every page. |
 | `privacyEmail` | Privacy page: the "use your rights" line and the contact list (both languages). Requests go via WhatsApp until it is set. |
-| `address.en` / `address.ar` | "Address" row of Company details on the About and Contact pages; LocalBusiness JSON-LD `address.streetAddress` on every page (city and country are always there). |
+| `address.en` / `address.ar` | Footer contact column; "Address" row of Company details on the About and Contact pages; LocalBusiness JSON-LD `address.streetAddress` on every page (city and country are always there). |
 
 | Fact | Status |
 | --- | --- |
