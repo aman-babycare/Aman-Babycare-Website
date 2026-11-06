@@ -216,10 +216,12 @@
           "id": "daily-elderly",
           "tier": "oneTime",
           "group": "on-demand",
-          "hoursPerDay": null,
+          "timing": "full-day",
+          "hoursPerDay": 8,
           "daysPerWeek": 1,
           "weeks": 1,
-          "price": 300,
+          "price": 400,
+          "perHour": 50,
           "name": {
             "ar": "مرافقة كبار السن ليوم",
             "en": "Daily elderly companionship"
