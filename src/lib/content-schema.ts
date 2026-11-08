@@ -165,12 +165,36 @@ export const offersSchema = z
   .array(offerSchema)
   .refine((list) => new Set(list.map((o) => o.id)).size === list.length, 'Duplicate offer id');
 
+// ── Jobs (Careers page) ──────────────────────────────────────────────────────────────────────────────────
+// Roles caregivers can apply for. Array order is the order on the Careers page. Only `open` roles are listed and
+// offered in the apply form; the form always has a "general application" choice too. Duties and requirements are
+// one point per line.
+export const employmentSchema = z.enum(['full-time', 'part-time', 'flexible']);
+const lines = z.object({ ar: text.max(1200), en: text.max(1200) });
+
+export const jobSchema = z.object({
+  id: z.string().regex(/^[a-z0-9-]+$/),
+  open: z.boolean(),
+  title: z.object({ ar: text.min(1).max(80), en: text.min(1).max(80) }),
+  summary: z.object({ ar: text.min(1).max(300), en: text.min(1).max(300) }),
+  duties: lines,
+  requirements: lines,
+  employment: employmentSchema,
+  postedAt: isoDate, // when the role opened (JobPosting datePosted)
+});
+
+export const jobsSchema = z
+  .array(jobSchema)
+  .refine((list) => new Set(list.map((j) => j.id)).size === list.length, 'Duplicate job id');
+
 export type Business = z.infer<typeof businessSchema>;
 export type ServiceEntry = z.infer<typeof servicesSchema>[number];
 export type PackageEntry = z.infer<typeof packageSchema>;
 export type ServicePricingEntry = z.infer<typeof servicePricingSchema>;
 export type Pricing = z.infer<typeof pricingSchema>;
 export type OfferEntry = z.infer<typeof offerSchema>;
+export type JobEntry = z.infer<typeof jobSchema>;
+export type Employment = z.infer<typeof employmentSchema>;
 
 /** Parse or throw with a readable list of problems (build log / admin error banner). */
 export function parseContent<T>(schema: z.ZodType<T>, data: unknown, file: string): T {
@@ -186,6 +210,7 @@ export const contentFiles = {
   'services.json': servicesSchema,
   'pricing.json': pricingSchema,
   'offers.json': offersSchema,
+  'jobs.json': jobsSchema,
 } as const;
 
 /** Validate all content files; `read` returns a file's parsed JSON. Used by the build and the tests. */

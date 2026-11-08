@@ -13,6 +13,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import ogSource from '../assets/og-image.png';
 import logoSource from '../assets/logo-full.png';
 import AnnouncementBar from '../components/AnnouncementBar.astro';
+import JobStrip from '../components/JobStrip.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import StickyWhatsApp from '../components/StickyWhatsApp.astro';
@@ -124,6 +125,10 @@ const webSite = {
       } catch {
         document.documentElement.classList.add('ask-consent');
       }
+      // Careers strip closed on this device before (JobStrip.astro): keep it hidden from the first paint.
+      try {
+        if (localStorage.getItem('aman-job-strip') === 'hidden') document.documentElement.classList.add('hide-job-strip');
+      } catch {}
     </script>
     <link rel="preload" href={plexArabic400} as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
@@ -157,6 +162,7 @@ const webSite = {
     >
       {lang === 'ar' ? 'انتقل إلى المحتوى' : 'Skip to content'}
     </a>
+    <JobStrip lang={lang} path={path} />
     <AnnouncementBar lang={lang} />
     <Header lang={lang} path={path} />
     <main id="main" class="flex-1">

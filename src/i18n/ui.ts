@@ -20,7 +20,12 @@ export const ui = {
     about: { ar: 'من نحن', en: 'About us' },
     aboutShort: { ar: 'من نحن', en: 'About' }, // nav ribbon, where space is tight
     contact: { ar: 'تواصلوا معنا', en: 'Contact' },
+    careers: { ar: 'وظائف', en: 'Careers' },
   },
+  // Careers strip (top of every page while a role is open). REVIEW-AR
+  jobStrip: { ar: 'تبحثون عن عمل في رعاية الأطفال أو البيوت؟', en: 'Looking for work as a caregiver?' },
+  jobStripCta: { ar: 'قدّموا هنا', en: 'Apply here' },
+  jobStripClose: { ar: 'إخفاء إعلان الوظائف', en: 'Hide the jobs notice' },
   callUs: { ar: 'اتصلوا بنا', en: 'Call us' },
   langName: { ar: 'العربية', en: 'English' },
   switchTo: { ar: 'Switch to English', en: 'التبديل إلى العربية' },

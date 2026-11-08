@@ -1,0 +1,78 @@
+[
+  {
+    "id": "babysitter",
+    "open": true,
+    "title": { "ar": "جليسة أطفال", "en": "Babysitter" },
+    "summary": {
+      "ar": "رعاية الأطفال في بيوت العائلات بالرياض: اللعب والوجبات والنوم والمتابعة اليومية، بزيارات بالساعة أو مناوبات.",
+      "en": "Looking after children in family homes across Riyadh: play, meals, naps and daily routines, by the hour or in shifts."
+    },
+    "duties": {
+      "ar": "متابعة روتين الطفل اليومي كما تطلبه العائلة\nتحضير وجبات خفيفة بسيطة ومساعدة الطفل في الأكل\nاللعب والقراءة والأنشطة المناسبة لعمر الطفل\nإبقاء غرفة الطفل وألعابه مرتبة",
+      "en": "Follow each child's daily routine as the family asks\nPrepare simple snacks and help children eat\nPlay, read and do activities that suit the child's age\nKeep the child's room and toys tidy"
+    },
+    "requirements": {
+      "ar": "خبرة سابقة في رعاية الأطفال\nالتحدث بالعربية أو الإنجليزية\nالموافقة على التحقق من الخلفية قبل بدء العمل\nالالتزام بالمواعيد واحترام خصوصية العائلة",
+      "en": "Previous experience caring for children\nSpeaks Arabic or English\nAgrees to a background check before starting\nPunctual and respectful of each family's privacy"
+    },
+    "employment": "flexible",
+    "postedAt": "2026-11-08"
+  },
+  {
+    "id": "newborn-carer",
+    "open": true,
+    "title": { "ar": "مساعدة رعاية المواليد والأم", "en": "Newborn & mother care helper" },
+    "summary": {
+      "ar": "مساندة الأم في أسابيع المولود الأولى: الاستحمام والتغيير والتهدئة والنوم، ومساعدة الأم لترتاح.",
+      "en": "Supporting new mothers in the first weeks: bathing, changing, settling and sleep, so the mother can rest."
+    },
+    "duties": {
+      "ar": "مساعدة الأم في الرضاعة والتجشؤ والتغيير\nاستحمام المولود والعناية بنظافته\nتهدئة المولود ومساعدته على النوم\nترتيب أغراض المولود وغسل ملابسه",
+      "en": "Help the mother with feeds, burping and changing\nBathe the baby and keep them clean\nSettle the baby and help them sleep\nKeep the baby's things organised and wash their clothes"
+    },
+    "requirements": {
+      "ar": "خبرة في رعاية المواليد\nهدوء وصبر ولطف في التعامل\nالموافقة على التحقق من الخلفية قبل بدء العمل\nالاستعداد لمناوبات نهارية أو ليلية",
+      "en": "Experience caring for newborns\nCalm, patient and gentle\nAgrees to a background check before starting\nAvailable for day or night shifts"
+    },
+    "employment": "full-time",
+    "postedAt": "2026-11-08"
+  },
+  {
+    "id": "housekeeper",
+    "open": true,
+    "title": { "ar": "عاملة تنظيف منزلي", "en": "Housekeeper" },
+    "summary": {
+      "ar": "تنظيف البيوت وترتيبها بزيارات منتظمة أو حسب الطلب، وفق طريقة كل عائلة.",
+      "en": "Cleaning and tidying homes on regular or one-off visits, the way each family likes it."
+    },
+    "duties": {
+      "ar": "تنظيف الغرف والمطبخ ودورات المياه\nترتيب البيت والخزائن\nالغسيل والكي عند الطلب\nاتباع تعليمات العائلة في التعامل مع الأغراض",
+      "en": "Clean rooms, kitchens and bathrooms\nTidy the home and cupboards\nLaundry and ironing when asked\nFollow the family's instructions for their belongings"
+    },
+    "requirements": {
+      "ar": "خبرة في التنظيف المنزلي\nدقة في العمل وأمانة\nالموافقة على التحقق من الخلفية قبل بدء العمل",
+      "en": "Experience in home cleaning\nCareful and trustworthy\nAgrees to a background check before starting"
+    },
+    "employment": "part-time",
+    "postedAt": "2026-11-08"
+  },
+  {
+    "id": "elderly-companion",
+    "open": false,
+    "title": { "ar": "مرافق/ة كبار السن", "en": "Elderly companion" },
+    "summary": {
+      "ar": "مرافقة كبار السن في بيوتهم: الحديث والمشي والتذكير بالمواعيد والمساعدة في المهام اليومية. ليست رعاية تمريضية.",
+      "en": "Keeping older people company at home: conversation, walks, reminders and help with daily tasks. Not nursing care."
+    },
+    "duties": {
+      "ar": "المرافقة والحديث والأنشطة الهادئة\nالمساعدة في المشي والتنقل داخل البيت\nالتذكير بالمواعيد والوجبات\nتحضير وجبات بسيطة",
+      "en": "Company, conversation and quiet activities\nHelp with walking and moving around the home\nReminders for appointments and meals\nPrepare simple meals"
+    },
+    "requirements": {
+      "ar": "خبرة في مرافقة كبار السن\nالتحدث بالعربية\nالموافقة على التحقق من الخلفية قبل بدء العمل",
+      "en": "Experience as a companion to older people\nSpeaks Arabic\nAgrees to a background check before starting"
+    },
+    "employment": "flexible",
+    "postedAt": "2026-11-08"
+  }
+]

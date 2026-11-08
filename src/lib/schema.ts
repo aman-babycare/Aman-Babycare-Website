@@ -52,3 +52,30 @@ export const serviceSchema = (
     }),
   };
 };
+
+/** JobPosting for one open role on the Careers page. No salary or benefits: none are stated in the data. */
+export const jobPostingSchema = (
+  lang: Locale,
+  job: import('./content-schema').JobEntry,
+  opts: { url: string; site: URL | undefined; logo: string; employmentType: string[] },
+) => {
+  const esc = (s: string) => s.replace(/[&<>"]/g, (c) => `&#${c.charCodeAt(0)};`);
+  const list = (text: string) => `<ul>${text.split('\n').map((l) => l.trim()).filter(Boolean).map((l) => `<li>${esc(l)}</li>`).join('')}</ul>`;
+  const [duties, needs] = lang === 'ar' ? ['المهام', 'المتطلبات'] : ['Duties', 'Requirements'];
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'JobPosting',
+    title: job.title[lang],
+    description: `<p>${esc(job.summary[lang])}</p><p>${duties}</p>${list(job.duties[lang])}<p>${needs}</p>${list(job.requirements[lang])}`,
+    datePosted: job.postedAt,
+    employmentType: opts.employmentType,
+    directApply: true,
+    url: opts.url,
+    identifier: { '@type': 'PropertyValue', name: business.brand.en, value: job.id },
+    hiringOrganization: { '@type': 'Organization', '@id': businessId(opts.site), name: business.brand[lang], sameAs: new URL('/', opts.site).href, logo: opts.logo },
+    jobLocation: {
+      '@type': 'Place',
+      address: { '@type': 'PostalAddress', addressLocality: business.areaServed.en, addressRegion: business.areaServed.en, addressCountry: business.countryCode },
+    },
+  };
+};

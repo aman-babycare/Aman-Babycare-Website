@@ -1,0 +1,495 @@
+---
+// Job application form (Careers page). Sends the application to the admin panel
+// (PUBLIC_ADMIN_API_URL/api/applications), where the team works through it on the Applicants page. Same guards as
+// the booking card: a honeypot field, Cloudflare Turnstile (loaded on first focus, only with a site key) and a
+// PDPL consent box. No file uploads: CVs and documents are asked for on WhatsApp after the first contact.
+// If the panel can't be reached, the visitor gets a WhatsApp message with the same details instead.
+// REVIEW-AR: Arabic is a first draft, in the respectful plural address.
+import Icon from './Icon.astro';
+import { whatsappUrl, type Locale } from '../config/site';
+import { availabilities, experiences, GENERAL_JOB, generalLabel, genders, languageChoices, openJobs, residences } from '../data/jobs';
+import { href } from '../i18n/ui';
+
+interface Props {
+  lang: Locale;
+}
+const { lang } = Astro.props;
+
+const t = {
+  ar: {
+    title: 'قدّموا طلبكم',
+    intro: 'دقيقتان فقط. نراجع كل طلب، ونتواصل عبر واتساب مع من تناسب خبرتهم إحدى الوظائف.',
+    job: 'الوظيفة',
+    name: 'الاسم الكامل',
+    phone: 'رقم الجوال (واتساب)',
+    phoneHint: '05xxxxxxxx',
+    gender: 'الجنس',
+    nationality: 'الجنسية',
+    residence: 'مكان الإقامة الحالي',
+    district: 'الحي أو المدينة',
+    districtHint: 'مثال: حي النرجس، الرياض',
+    languages: 'اللغات التي تتحدثونها',
+    otherLanguage: 'لغة أخرى',
+    experience: 'سنوات الخبرة',
+    availability: 'الدوام المناسب لكم',
+    about: 'نبذة عن خبرتكم',
+    aboutHint: 'مثال: عملت 3 سنوات جليسة أطفال لدى عائلة في الرياض.',
+    optional: 'اختياري',
+    docs: 'لا ترسلوا صور الهوية أو الإقامة هنا. نطلب السيرة الذاتية والمستندات عبر واتساب بعد التواصل الأول.',
+    consentA: 'أوافق على أن تحفظ أمان هذه البيانات وتستخدمها لدراسة طلبي والتواصل معي، وفق',
+    consentLink: 'سياسة الخصوصية',
+    submit: 'أرسلوا الطلب',
+    sending: 'جارٍ الإرسال…',
+    errorsTitle: 'يرجى تصحيح ما يلي:',
+    sentTitle: 'وصلنا طلبكم، شكراً لكم',
+    sentText: 'نراجع الطلبات بأنفسنا، ونتواصل عبر واتساب إذا ناسبت خبرتكم إحدى الوظائف.',
+    sentCv: 'أرسلوا سيرتكم الذاتية عبر واتساب',
+    failTitle: 'تعذّر إرسال الطلب',
+    failText: 'لم يصلنا الطلب بسبب مشكلة في الاتصال. أرسلوه لنا عبر واتساب بضغطة واحدة، والتفاصيل مكتوبة جاهزة.',
+    failWa: 'أرسلوا الطلب عبر واتساب',
+    rateText: 'وصلتنا عدة محاولات خلال وقت قصير. انتظروا دقيقة ثم أعيدوا المحاولة.',
+    noscript: 'يحتاج النموذج إلى تفعيل JavaScript. يمكنكم التقديم عبر واتساب بدلاً من ذلك.',
+    errors: {
+      job: 'اختاروا الوظيفة.',
+      name: 'اكتبوا الاسم الكامل.',
+      phone: 'اكتبوا رقم جوال صحيحاً، مثل 05xxxxxxxx.',
+      gender: 'اختاروا الجنس.',
+      nationality: 'اكتبوا الجنسية.',
+      residence: 'اختاروا مكان الإقامة.',
+      district: 'اكتبوا الحي أو المدينة.',
+      languages: 'اختاروا لغة واحدة على الأقل.',
+      experience: 'اختاروا سنوات الخبرة.',
+      availability: 'اختاروا الدوام المناسب.',
+      consent: 'يلزم الموافقة لإرسال الطلب.',
+    },
+    msg: { hello: 'السلام عليكم، أرغب بالتقديم على وظيفة لدى أمان.', cv: 'السلام عليكم، قدّمت طلب وظيفة عبر الموقع وأرسل لكم سيرتي الذاتية.' },
+  },
+  en: {
+    title: 'Apply now',
+    intro: 'It takes two minutes. We read every application and contact people on WhatsApp when their experience suits a role.',
+    job: 'Role',
+    name: 'Full name',
+    phone: 'Mobile number (WhatsApp)',
+    phoneHint: '05xxxxxxxx',
+    gender: 'Gender',
+    nationality: 'Nationality',
+    residence: 'Where you live now',
+    district: 'District or city',
+    districtHint: 'e.g. Al Narjis, Riyadh',
+    languages: 'Languages you speak',
+    otherLanguage: 'Another language',
+    experience: 'Years of experience',
+    availability: 'Hours that suit you',
+    about: 'About your experience',
+    aboutHint: 'e.g. 3 years as a babysitter for a family in Riyadh.',
+    optional: 'optional',
+    docs: "Please don't send ID or iqama photos here. We ask for your CV and documents on WhatsApp after the first contact.",
+    consentA: 'I agree that Aman may keep and use these details to consider my application and contact me, per the',
+    consentLink: 'Privacy Policy',
+    submit: 'Send application',
+    sending: 'Sending…',
+    errorsTitle: 'Please fix the following:',
+    sentTitle: 'Thank you, your application is in',
+    sentText: 'We read every application ourselves and contact you on WhatsApp if your experience suits a role.',
+    sentCv: 'Send your CV on WhatsApp',
+    failTitle: 'Your application could not be sent',
+    failText: "It didn't reach us because of a connection problem. Send it on WhatsApp in one tap; the details are already written.",
+    failWa: 'Send it on WhatsApp',
+    rateText: 'We received several tries in a short time. Please wait a minute and try again.',
+    noscript: 'This form needs JavaScript. You can apply on WhatsApp instead.',
+    errors: {
+      job: 'Choose a role.',
+      name: 'Enter your full name.',
+      phone: 'Enter a valid mobile number, e.g. 05xxxxxxxx.',
+      gender: 'Choose your gender.',
+      nationality: 'Enter your nationality.',
+      residence: 'Choose where you live.',
+      district: 'Enter your district or city.',
+      languages: 'Choose at least one language.',
+      experience: 'Choose your years of experience.',
+      availability: 'Choose the hours that suit you.',
+      consent: 'Your agreement is needed to send the application.',
+    },
+    msg: { hello: "Hello, I'd like to apply for a job with Aman.", cv: "Hello, I applied for a job on your website and I'm sending my CV." },
+  },
+}[lang];
+
+const config = {
+  lang,
+  api: import.meta.env.PUBLIC_ADMIN_API_URL ? `${import.meta.env.PUBLIC_ADMIN_API_URL.replace(/\/+$/, '')}/api/applications` : '',
+  turnstileKey: import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '',
+  base: whatsappUrl('').replace(/\?text=$/, ''),
+  t: { sending: t.sending, submit: t.submit, errors: t.errors, msg: t.msg, rateText: t.rateText, failText: t.failText },
+};
+
+const chip =
+  'flex min-h-11 cursor-pointer items-center justify-center rounded-2xl bg-cream-100 px-3 py-2 text-center text-sm font-medium ring-1 ring-green-700/10 transition-transform duration-200 hover:bg-green-50 active:scale-[0.98] has-[:checked]:bg-green-700 has-[:checked]:text-cream-50 has-[:checked]:ring-green-700 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-gold-500';
+const field = 'mt-1 block min-h-11 w-full rounded-xl bg-cream-50 px-3 text-ink-900 ring-1 ring-green-700/20 focus:outline-2 focus:outline-gold-500 aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-pink-700';
+const label = 'text-sm font-medium text-green-800';
+const err = 'mt-1 text-sm font-medium text-pink-800';
+---
+
+<section id="apply" class="scroll-mt-40 rounded-[2rem] bg-cream-50 p-5 shadow-card ring-1 ring-gold-500/15 sm:p-8 md:p-10" aria-labelledby="apply-title" data-apply>
+  <script type="application/json" data-apply-config set:html={JSON.stringify(config)} />
+  <div class="max-w-2xl">
+    <h2 id="apply-title" class="text-3xl text-green-800 md:text-4xl">{t.title}</h2>
+    <p class="mt-3 text-ink-600">{t.intro}</p>
+  </div>
+
+  <noscript>
+    <p class="mt-6 rounded-2xl bg-cream-100 p-4 text-ink-700">
+      {t.noscript}
+      <a href={whatsappUrl(t.msg.hello)} rel="noopener" class="font-semibold text-green-700 underline">WhatsApp</a>
+    </p>
+  </noscript>
+
+  <form class="mt-8 grid max-w-3xl gap-6" novalidate data-apply-form>
+    <div class="rounded-2xl bg-pink-100 p-4 ring-1 ring-pink-700/20" role="alert" tabindex="-1" hidden data-errors>
+      <p class="font-semibold text-pink-900">{t.errorsTitle}</p>
+      <ul class="mt-2 list-disc ps-5 text-sm text-pink-900"></ul>
+    </div>
+
+    <div>
+      <label for="ap-job" class={label}>{t.job}</label>
+      <select id="ap-job" name="job" class={field} aria-describedby="ap-job-err">
+        {openJobs.map((j) => <option value={j.id}>{j.title[lang]}</option>)}
+        <option value={GENERAL_JOB} selected={openJobs.length === 0}>{generalLabel[lang]}</option>
+      </select>
+      <p id="ap-job-err" class={err} hidden></p>
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2">
+      <div>
+        <label for="ap-name" class={label}>{t.name}</label>
+        <input id="ap-name" name="name" type="text" autocomplete="name" maxlength="60" class={field} aria-describedby="ap-name-err" />
+        <p id="ap-name-err" class={err} hidden></p>
+      </div>
+      <div>
+        <label for="ap-phone" class={label}>{t.phone}</label>
+        <input id="ap-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" dir="ltr" placeholder={t.phoneHint} class:list={[field, 'placeholder:text-ink-500', lang === 'ar' ? 'text-end' : 'text-start']} aria-describedby="ap-phone-err" />
+        <p id="ap-phone-err" class={err} hidden></p>
+      </div>
+    </div>
+    {/* Honeypot: hidden from people, filled in by bots; the admin panel drops those. */}
+    <div class="hidden" aria-hidden="true">
+      <label for="ap-website">Website</label>
+      <input id="ap-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <fieldset id="ap-gender" aria-describedby="ap-gender-err">
+      <legend class={label}>{t.gender}</legend>
+      <div class="mt-2 grid grid-cols-2 gap-2 sm:max-w-sm">
+        {genders.map((g) => (
+          <label class={chip}>
+            <input type="radio" name="gender" value={g.id} data-label={g.label[lang]} class="sr-only" />
+            {g.label[lang]}
+          </label>
+        ))}
+      </div>
+      <p id="ap-gender-err" class={err} hidden></p>
+    </fieldset>
+
+    <div class="grid gap-6 sm:grid-cols-2">
+      <div>
+        <label for="ap-nationality" class={label}>{t.nationality}</label>
+        <input id="ap-nationality" name="nationality" type="text" maxlength="40" class={field} aria-describedby="ap-nationality-err" />
+        <p id="ap-nationality-err" class={err} hidden></p>
+      </div>
+      <div>
+        <label for="ap-district" class={label}>{t.district}</label>
+        <input id="ap-district" name="district" type="text" maxlength="40" placeholder={t.districtHint} class:list={[field, 'placeholder:text-ink-500']} aria-describedby="ap-district-err" />
+        <p id="ap-district-err" class={err} hidden></p>
+      </div>
+    </div>
+
+    <fieldset id="ap-residence" aria-describedby="ap-residence-err">
+      <legend class={label}>{t.residence}</legend>
+      <div class="mt-2 grid gap-2 sm:grid-cols-3">
+        {residences.map((r) => (
+          <label class={chip}>
+            <input type="radio" name="residence" value={r.id} data-label={r.label[lang]} class="sr-only" />
+            {r.label[lang]}
+          </label>
+        ))}
+      </div>
+      <p id="ap-residence-err" class={err} hidden></p>
+    </fieldset>
+
+    <fieldset id="ap-languages" aria-describedby="ap-languages-err">
+      <legend class={label}>{t.languages}</legend>
+      <div class="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-3">
+        {languageChoices.map((l) => (
+          <label class={chip}>
+            <input type="checkbox" name="languages" value={l.id} data-label={l.label[lang]} class="sr-only" />
+            {l.label[lang]}
+          </label>
+        ))}
+      </div>
+      <label for="ap-other-language" class="sr-only">{t.otherLanguage}</label>
+      <input id="ap-other-language" name="otherLanguage" type="text" maxlength="40" placeholder={`${t.otherLanguage} (${t.optional})`} class:list={[field, 'mt-2 placeholder:text-ink-500 sm:max-w-sm']} />
+      <p id="ap-languages-err" class={err} hidden></p>
+    </fieldset>
+
+    <fieldset id="ap-experience" aria-describedby="ap-experience-err">
+      <legend class={label}>{t.experience}</legend>
+      <div class="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
+        {experiences.map((x) => (
+          <label class={chip}>
+            <input type="radio" name="experience" value={x.id} data-label={x.label[lang]} class="sr-only" />
+            <span class="num">{x.label[lang]}</span>
+          </label>
+        ))}
+      </div>
+      <p id="ap-experience-err" class={err} hidden></p>
+    </fieldset>
+
+    <fieldset id="ap-availability" aria-describedby="ap-availability-err">
+      <legend class={label}>{t.availability}</legend>
+      <div class="mt-2 grid gap-2 sm:grid-cols-3">
+        {availabilities.map((a) => (
+          <label class={chip}>
+            <input type="radio" name="availability" value={a.id} data-label={a.label[lang]} class="sr-only" />
+            {a.label[lang]}
+          </label>
+        ))}
+      </div>
+      <p id="ap-availability-err" class={err} hidden></p>
+    </fieldset>
+
+    <div>
+      <label for="ap-about" class={label}>
+        {t.about} <span class="font-normal text-ink-500">({t.optional})</span>
+      </label>
+      <textarea id="ap-about" name="about" maxlength="500" rows="4" placeholder={t.aboutHint} class:list={[field, 'py-2 placeholder:text-ink-500']} aria-describedby="ap-about-count"></textarea>
+      <p id="ap-about-count" class="mt-1 text-end text-xs tabular-nums text-ink-500" dir="ltr" data-about-count>0 / 500</p>
+    </div>
+
+    <p class="flex gap-3 rounded-2xl bg-cream-100 p-4 text-sm text-ink-700">
+      <Icon name="shield" class="mt-0.5 size-5 shrink-0 text-gold-600" />
+      <span>{t.docs}</span>
+    </p>
+
+    <div>
+      <label class="flex cursor-pointer items-start gap-3 text-sm text-ink-700">
+        <input id="ap-consent" name="consent" type="checkbox" class="mt-0.5 size-5 shrink-0 accent-green-700" aria-describedby="ap-consent-err" />
+        <span>
+          {t.consentA} <a href={href(lang, 'privacy')} target="_blank" class="font-semibold text-green-700 underline hover:text-green-800">{t.consentLink}</a>
+        </span>
+      </label>
+      <p id="ap-consent-err" class={err} hidden></p>
+    </div>
+    <div data-turnstile></div>
+
+    <p class="rounded-2xl bg-gold-50 p-4 text-sm text-ink-700 ring-1 ring-gold-500/30" role="status" hidden data-rate></p>
+
+    <div>
+      <button type="submit" class="btn btn-primary w-full sm:w-auto" data-submit>{t.submit}</button>
+    </div>
+  </form>
+
+  <div class="mt-8 grid max-w-2xl justify-items-start gap-4" hidden data-sent>
+    <span class="flex size-14 items-center justify-center rounded-full bg-green-50 text-green-700">
+      <Icon name="check" class="size-7" stroke={2} />
+    </span>
+    <h3 class="text-2xl text-green-800" tabindex="-1" data-sent-title>{t.sentTitle}</h3>
+    <p class="text-ink-600">{t.sentText}</p>
+    <a href={whatsappUrl(t.msg.cv)} target="_blank" rel="noopener" class="btn btn-ghost">
+      <Icon name="whatsapp" class="size-5" />
+      {t.sentCv}
+    </a>
+  </div>
+
+  <div class="mt-8 grid max-w-2xl justify-items-start gap-4" hidden data-failed>
+    <h3 class="text-2xl text-green-800" tabindex="-1" data-failed-title>{t.failTitle}</h3>
+    <p class="text-ink-600">{t.failText}</p>
+    <a href="#" target="_blank" rel="noopener" class="btn btn-primary" data-failed-wa>
+      <Icon name="whatsapp" class="size-5" />
+      {t.failWa}
+    </a>
+  </div>
+</section>
+
+<script>
+  import { track } from '../lib/analytics';
+
+  type Cfg = {
+    lang: 'ar' | 'en';
+    api: string;
+    turnstileKey: string;
+    base: string;
+    t: { sending: string; submit: string; rateText: string; failText: string; errors: Record<string, string>; msg: { hello: string; cv: string } };
+  };
+
+  let turnstileToken = '';
+  let turnstileLoaded = false;
+  function loadTurnstile(key: string, box: HTMLElement) {
+    if (!key || turnstileLoaded) return;
+    turnstileLoaded = true;
+    const w = window as unknown as { onAmanApplyTurnstile?: () => void; turnstile?: { render: (el: HTMLElement, o: object) => void } };
+    w.onAmanApplyTurnstile = () =>
+      w.turnstile?.render(box, { sitekey: key, appearance: 'interaction-only', callback: (token: string) => (turnstileToken = token) });
+    const script = document.createElement('script');
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onAmanApplyTurnstile';
+    script.async = true;
+    document.head.append(script);
+  }
+
+  const validPhone = (v: string) => {
+    const d = v.replace(/[٠-٩]/g, (c) => String(c.charCodeAt(0) - 0x660)).replace(/[^\d+]/g, '');
+    return /^(?:0?5\d{8}|(?:\+|00)?9665\d{8})$/.test(d) || /^(?:\+|00)(?!966)\d{8,15}$/.test(d);
+  };
+
+  document.querySelectorAll<HTMLElement>('[data-apply]').forEach((root) => {
+    const cfg = JSON.parse(root.querySelector('[data-apply-config]')!.textContent!) as Cfg;
+    const $ = <T extends HTMLElement = HTMLElement>(sel: string) => root.querySelector<T>(sel)!;
+    const form = $<HTMLFormElement>('[data-apply-form]');
+    const errorsBox = $('[data-errors]');
+    const job = $<HTMLSelectElement>('#ap-job');
+    const about = $<HTMLTextAreaElement>('#ap-about');
+    const submit = $<HTMLButtonElement>('[data-submit]');
+    const rate = $('[data-rate]');
+
+    // "Apply for this role" links carry ?job=<id>#apply.
+    const wanted = new URLSearchParams(location.search).get('job');
+    if (wanted && [...job.options].some((o) => o.value === wanted)) job.value = wanted;
+    root.ownerDocument.querySelectorAll<HTMLAnchorElement>('[data-apply-job]').forEach((a) =>
+      a.addEventListener('click', () => {
+        job.value = a.dataset.applyJob!;
+      }),
+    );
+
+    form.addEventListener('focusin', () => loadTurnstile(cfg.turnstileKey, $('[data-turnstile]')), { once: true });
+    about.addEventListener('input', () => ($('[data-about-count]').textContent = `${about.value.length} / 500`));
+
+    const value = (name: string) => (form.elements.namedItem(name) as HTMLInputElement | null)?.value.trim() ?? '';
+    const picked = (name: string) => form.querySelector<HTMLInputElement>(`input[name=${name}]:checked`);
+    const label = (name: string) => picked(name)?.dataset.label ?? '';
+    const languages = () => {
+      const chosen = [...form.querySelectorAll<HTMLInputElement>('input[name=languages]:checked')].map((i) => i.dataset.label!);
+      const other = value('otherLanguage');
+      return [...chosen, ...(other ? [other] : [])];
+    };
+
+    const fieldError = (id: string, msg: string) => {
+      const p = $(`#${id}-err`);
+      p.textContent = msg;
+      p.hidden = !msg;
+      const el = $(`#${id}`);
+      if (el.matches('input, select, textarea')) el.setAttribute('aria-invalid', String(!!msg));
+    };
+
+    const validate = () => {
+      const e = cfg.t.errors;
+      const errors: { id: string; msg: string }[] = [];
+      const add = (id: string, msg: string) => errors.push({ id, msg });
+      root.querySelectorAll<HTMLElement>('[id$="-err"]').forEach((p) => fieldError(p.id.replace(/-err$/, ''), ''));
+      if (!job.value) add('ap-job', e.job);
+      if (!value('name')) add('ap-name', e.name);
+      if (!validPhone(value('phone'))) add('ap-phone', e.phone);
+      if (!picked('gender')) add('ap-gender', e.gender);
+      if (!value('nationality')) add('ap-nationality', e.nationality);
+      if (!value('district')) add('ap-district', e.district);
+      if (!picked('residence')) add('ap-residence', e.residence);
+      if (!languages().length) add('ap-languages', e.languages);
+      if (!picked('experience')) add('ap-experience', e.experience);
+      if (!picked('availability')) add('ap-availability', e.availability);
+      if (!$<HTMLInputElement>('#ap-consent').checked) add('ap-consent', e.consent);
+
+      errors.forEach((x) => fieldError(x.id, x.msg));
+      errorsBox.querySelector('ul')!.replaceChildren(
+        ...errors.map((x) => {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = `#${x.id}`;
+          a.className = 'underline';
+          a.textContent = x.msg;
+          a.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            const target = $(`#${x.id}`);
+            target.scrollIntoView({ block: 'center' });
+            (target.matches('fieldset') ? target.querySelector<HTMLElement>('input')! : target).focus();
+          });
+          li.append(a);
+          return li;
+        }),
+      );
+      errorsBox.hidden = errors.length === 0;
+      if (errors.length) errorsBox.focus();
+      return errors.length === 0;
+    };
+
+    const payload = () => ({
+      lang: cfg.lang,
+      page: location.pathname,
+      job: job.value,
+      jobTitle: job.selectedOptions[0]?.textContent?.trim() ?? '',
+      name: value('name'),
+      phone: value('phone'),
+      gender: picked('gender')!.value,
+      nationality: value('nationality'),
+      residence: picked('residence')!.value,
+      district: value('district'),
+      languages: languages().join(cfg.lang === 'ar' ? '، ' : ', '),
+      experience: picked('experience')!.value,
+      availability: picked('availability')!.value,
+      about: about.value.trim(),
+      consent: true as const,
+      token: turnstileToken,
+      website: value('website'),
+    });
+
+    /** The same details as a WhatsApp message, for when the panel can't be reached. */
+    const message = (p: ReturnType<typeof payload>) => {
+      const ar = cfg.lang === 'ar';
+      return [
+        cfg.t.msg.hello,
+        '',
+        `${ar ? 'الوظيفة' : 'Role'}: ${p.jobTitle}`,
+        `${ar ? 'الاسم' : 'Name'}: ${p.name}`,
+        `${ar ? 'الجنس' : 'Gender'}: ${label('gender')}`,
+        `${ar ? 'الجنسية' : 'Nationality'}: ${p.nationality}`,
+        `${ar ? 'الإقامة' : 'Residence'}: ${label('residence')}`,
+        `${ar ? 'الحي' : 'District'}: ${p.district}`,
+        `${ar ? 'اللغات' : 'Languages'}: ${p.languages}`,
+        `${ar ? 'الخبرة' : 'Experience'}: ${label('experience')}`,
+        `${ar ? 'الدوام' : 'Hours'}: ${label('availability')}`,
+        ...(p.about ? ['', p.about] : []),
+      ].join('\n');
+    };
+
+    const show = (which: 'sent' | 'failed') => {
+      form.hidden = true;
+      $(`[data-${which}]`).hidden = false;
+      $(`[data-${which}-title]`).focus();
+    };
+
+    form.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      rate.hidden = true;
+      if (!validate()) return;
+      const p = payload();
+      $<HTMLAnchorElement>('[data-failed-wa]').href = `${cfg.base}?text=${encodeURIComponent(message(p))}`;
+      if (!cfg.api) return show('failed');
+      submit.disabled = true;
+      submit.textContent = cfg.t.sending;
+      let status = 0;
+      try {
+        status = (await fetch(cfg.api, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(p) })).status;
+      } catch {
+        // Offline or blocked: offer WhatsApp below.
+      }
+      submit.disabled = false;
+      submit.textContent = cfg.t.submit;
+      if (status === 201) {
+        track('job_application_submit', { job: p.job });
+        return show('sent');
+      }
+      if (status === 429) {
+        rate.textContent = cfg.t.rateText;
+        rate.hidden = false;
+        return;
+      }
+      show('failed');
+    });
+  });
+</script>

@@ -81,6 +81,9 @@ const c = {
       worker: `أمان لرعاية المواليد والخدمات المنزلية توفر للعائلات في الرياض كلها عاملات بالساعة وبالشهر، وجليسات أطفال، ورعاية المولود والأم، ومرافقة كبار السن، والمقاضي، ورعاية القطط والكلاب. نعمل في ${business.shifts.day.label.ar} ${business.shifts.day.time.ar} و${business.shifts.night.label.ar} ${business.shifts.night.time.ar}، بإقامة في بيتكم أو بدوام يومي. كل فرد في فريقنا خضع للتحقق من الخلفية، ويتحدث ${business.languages.ar}، وتختارون عاملاً أو عاملة حسب ما يريحكم. ويمكن لشخص واحد من فريقنا أن يجمع أكثر من خدمة في زيارة واحدة. وتجدون في هذا الموقع صفحة لكل خدمة، وباقات واضحة بالساعة والأسبوع والشهر، وعروضاً في رمضان والأعياد والمناسبات الوطنية. الحجز مباشرة عبر واتساب، ونرد على رسائلكم من ${business.hours.time.ar}، ونؤكد السعر والتفاصيل قبل أي التزام.`,
     }),
     aboutLink: 'تعرّفوا على أمان',
+    joinTitle: 'تبحثون عن عمل؟ انضمّوا إلى فريقنا',
+    joinText: 'نبحث عن جليسات أطفال ومساعدات لرعاية المواليد وعاملات تنظيف في الرياض. قدّموا طلبكم خلال دقيقتين.',
+    joinCta: 'الوظائف المتاحة',
   },
   en: {
     lead: 'Newborn and mother care, babysitting, home cleaning, company for your parents, and cat and dog sitting in Riyadh. One caregiver can combine several services in a single visit.',
@@ -130,6 +133,9 @@ const c = {
     aboutTitle: 'About Aman in Riyadh',
     aboutText: `Aman Babycare & Home Services helps families all over Riyadh, with newborn and mother care, babysitters and nannies, elderly companionship, an hourly maid for home cleaning, errands, school pick-ups, and cat and dog sitting. We work a day shift (${business.shifts.day.time.en}) and a night shift (${business.shifts.night.time.en}), by the hour or by the month, live-in or live-out. Everyone on our team is background-checked and speaks ${business.languages.en}, and you choose a male or female caregiver. One caregiver can combine several services in a single visit. On this site you will find a page for every service, clear hourly, weekly and monthly packages, and offers for Ramadan, Eid and national occasions. You book directly on WhatsApp; we reply ${business.hours.time.en} and confirm the price and every detail before you commit.`,
     aboutLink: 'Get to know Aman',
+    joinTitle: 'Looking for work? Join our team',
+    joinText: 'We hire babysitters, newborn care helpers and housekeepers in Riyadh. Apply in two minutes.',
+    joinCta: 'See open roles',
   },
 }[lang];
 
@@ -490,12 +496,23 @@ const teaser = signature.length === 3 ? signature : packages.slice(0, 3);
 <!-- About Aman in Riyadh, just above the footer. The extra bottom padding keeps the sticky WhatsApp
      button clear of it on phones. -->
 <section class="bg-cream-200/60 pb-32 pt-16 md:pb-40 md:pt-24">
-  <div class="container-x max-w-3xl">
-    <h2 class="text-2xl text-green-800 md:text-3xl">{c.aboutTitle}</h2>
-    <p class="mt-4 text-ink-600">{c.aboutText}</p>
-    <a href={href(lang, 'about')} class="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-gold-800 hover:underline">
-      {c.aboutLink}
-      <Icon name="arrow" class="size-4" flip />
-    </a>
+  <div class="container-x grid gap-10 lg:grid-cols-[3fr_2fr] lg:items-start lg:gap-16">
+    <div class="max-w-3xl">
+      <h2 class="text-2xl text-green-800 md:text-3xl">{c.aboutTitle}</h2>
+      <p class="mt-4 text-ink-600">{c.aboutText}</p>
+      <a href={href(lang, 'about')} class="mt-4 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-gold-800 hover:underline">
+        {c.aboutLink}
+        <Icon name="arrow" class="size-4" flip />
+      </a>
+    </div>
+    <!-- Join our team: the quiet way in for caregivers looking for work (Careers page). -->
+    <div class="rounded-3xl bg-cream-50 p-6 shadow-card ring-1 ring-gold-500/15">
+      <h2 class="text-xl text-green-800">{c.joinTitle}</h2>
+      <p class="mt-2 text-ink-600">{c.joinText}</p>
+      <a href={href(lang, 'careers')} class="btn btn-ghost mt-5">
+        {c.joinCta}
+        <Icon name="arrow" class="size-4" flip />
+      </a>
+    </div>
   </div>
 </section>
