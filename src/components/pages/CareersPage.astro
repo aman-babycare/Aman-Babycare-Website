@@ -75,7 +75,7 @@ const schema = [
 const waMessage = lang === 'ar' ? 'السلام عليكم، أرغب بالاستفسار عن الوظائف لدى أمان.' : "Hello, I'd like to ask about jobs at Aman.";
 ---
 
-<BaseLayout lang={lang} title={t.title} description={t.description} path="careers" schema={schema} waMessage={waMessage}>
+<BaseLayout lang={lang} title={t.title} description={t.description} path="careers" schema={schema} waMessage={waMessage} waLabel={lang === 'ar' ? 'اسألوا عن الوظائف' : 'Ask about jobs'}>
   <Breadcrumbs lang={lang} items={crumbs} />
   <article class="pb-24 md:pb-32">
     <header class="container-x grid gap-8 pb-12 pt-8 lg:grid-cols-[3fr_2fr] lg:items-end">

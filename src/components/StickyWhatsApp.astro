@@ -9,8 +9,10 @@ import { ui } from '../i18n/ui';
 interface Props {
   lang: Locale;
   message: string;
+  /** Button text; "Book on WhatsApp" by default (the Careers page asks about jobs instead). */
+  label?: string;
 }
-const { lang, message } = Astro.props;
+const { lang, message, label = ui.bookWhatsApp[lang] } = Astro.props;
 ---
 
 <a
@@ -20,7 +22,7 @@ const { lang, message } = Astro.props;
   data-sticky-wa
 >
   <Icon name="whatsapp" class="size-6 text-gold-200" />
-  {ui.bookWhatsApp[lang]}
+  {label}
 </a>
 
 <script>

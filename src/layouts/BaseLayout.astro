@@ -37,6 +37,8 @@ interface Props {
   schema?: object[];
   /** Prefilled WhatsApp message for this page's buttons. */
   waMessage?: string;
+  /** Text of the floating WhatsApp button on phones (default "Book on WhatsApp"). */
+  waLabel?: string;
 }
 
 const { lang, title, description, path, alternates = true, notFound = false, schema = [] } = Astro.props;
@@ -169,7 +171,7 @@ const webSite = {
       <slot />
     </main>
     <Footer lang={lang} waMessage={waMessage} />
-    <StickyWhatsApp lang={lang} message={waMessage} />
+    <StickyWhatsApp lang={lang} message={waMessage} label={Astro.props.waLabel} />
     <CookieBanner lang={lang} />
     <CardTilt />
   </body>
