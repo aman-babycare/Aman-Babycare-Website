@@ -486,7 +486,8 @@ const err = 'mt-1 text-sm font-medium text-pink-800';
   };
   export type BookingPayload = {
     lang: string;
-    lines: { service: string; spec: string; price: number | null }[];
+    // schedule: what was chosen, for the admin's calendar and double-booking check (admin src/lib/schedule.ts)
+    lines: { service: string; spec: string; price: number | null; schedule?: { tier: string; timing: string | null; hours?: number; days?: number; daysPerWeek?: number; weeks?: number; months?: number } }[];
     total: number | null;
     name: string;
     phone: string;
@@ -559,6 +560,12 @@ const err = 'mt-1 text-sm font-medium text-pink-800';
     const picks = () => $$<HTMLInputElement>('[data-pick]');
     const picked = () => picks().filter((p) => p.checked).map((p) => p.value);
     const nextPending = () => picked().find((id) => !added.includes(id));
+
+    // ---------- Schedule (sent with the request) ----------
+    const scheduleOf = (id: string) => {
+      const sel = toSelection(svcById(id), answers[id]);
+      return { tier: sel.tier, timing: sel.timing, hours: sel.hours, days: sel.days, daysPerWeek: sel.daysPerWeek, weeks: sel.weeks, months: sel.months };
+    };
 
     // ---------- Pricing ----------
     const lineFor = (id: string): Line => priceLine(toSelection(svcById(id), answers[id]));
@@ -966,7 +973,7 @@ const err = 'mt-1 text-sm font-medium text-pink-800';
       const tot = total(lines);
       return {
         lang,
-        lines: added.map((id, i) => ({ service: id, spec: specText(svcById(id), answers[id], lang), price: lines[i].priced ? lines[i].lineTotal : null })),
+        lines: added.map((id, i) => ({ service: id, spec: specText(svcById(id), answers[id], lang), price: lines[i].priced ? lines[i].lineTotal : null, schedule: scheduleOf(id) })),
         total: tot.pricedCount ? tot.total : null,
         name: $<HTMLInputElement>('#bk-name').value.trim(),
         phone: $<HTMLInputElement>('#bk-phone').value.trim(),
