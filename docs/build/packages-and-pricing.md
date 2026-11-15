@@ -8,7 +8,7 @@ Per-service prices, hourly rates and packages (schedule, price, card name and de
 - Elderly plans are named **companionship**, never "care" or "nursing".
 - Groups: On-demand (hourly, weekly, pet sitting, cleaning), Newborn care (weekly, monthly, live-out), Monthly babysitting (5/6/7 days, stay-in), Monthly elderly companionship (5/6/7 days, live-in, live-out), Welcome offer.
 - Currency: «ر.س» in Arabic, "SAR" in English. Prices use Western digits in both languages with thousands separators ("SAR 5,143" / "5,143 ر.س").
-- No discount wording anywhere: no "save", "OFF", «خصم», strike-through. A package's `was` price (strike-through and "Save SAR" badge) renders only while a running offer in `offers.json` covers that service and has a `discountLicence` (Ministry of Commerce discount licence number); the schema rejects a real `discount` without one. Tiered rates are shown as plain prices.
+- No discount wording anywhere: no "save", "OFF", «خصم», strike-through. A strike-through (the package's regular price) and a "Save SAR" badge render only while a running offer in `offers.json` lists an offer price for that package (`prices`, below the regular price) and has a `discountLicence` (Ministry of Commerce discount licence number); the card then shows the offer price. The lowest such price wins. The schema rejects a real `discount` without a licence. The booking card keeps the regular prices. Tiered rates are shown as plain prices.
 - Never label a package "most popular" (that's a claim). "Lowest hourly rate" is allowed only when the maths shows it.
 - Never invent a price or rule. Anything missing is `null` + `TODO(client)`; the booking card then shows "Price on WhatsApp" / «السعر عبر واتساب» for that service only. Raw placeholders never reach the page.
 

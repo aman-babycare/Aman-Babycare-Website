@@ -101,7 +101,6 @@
           "daysPerWeek": 1,
           "weeks": 1,
           "price": 320,
-          "was": 360,
           "perHour": 45,
           "name": {
             "ar": "رعاية أطفال بالساعة",
@@ -121,7 +120,6 @@
           "daysPerWeek": 5,
           "weeks": 1,
           "price": 1400,
-          "was": 1571,
           "perHour": 39.29,
           "name": {
             "ar": "خطة أسبوعية: 5 أيام",
@@ -141,7 +139,6 @@
           "daysPerWeek": 6,
           "weeks": 1,
           "price": 1600,
-          "was": 1872,
           "perHour": 39,
           "name": {
             "ar": "خطة أسبوعية: 6 أيام",
@@ -161,7 +158,6 @@
           "daysPerWeek": 5,
           "weeks": 4,
           "price": 5000,
-          "was": 5528,
           "perHour": 34.55,
           "name": {
             "ar": "5 أيام × 4 أسابيع",
@@ -181,7 +177,6 @@
           "daysPerWeek": 6,
           "weeks": 4,
           "price": 6000,
-          "was": 6528,
           "perHour": 34,
           "name": {
             "ar": "6 أيام × 4 أسابيع",
@@ -201,7 +196,6 @@
           "daysPerWeek": 7,
           "weeks": 4,
           "price": 7075,
-          "was": 7575,
           "perHour": 33.82,
           "name": {
             "ar": "7 أيام × 4 أسابيع",
@@ -221,7 +215,6 @@
           "daysPerWeek": 6,
           "weeks": 4,
           "price": 9500,
-          "was": 10282,
           "perHour": 35.7,
           "name": {
             "ar": "إقامة: 12 ساعة × 6 أيام × 4 أسابيع",
@@ -296,7 +289,6 @@
           "daysPerWeek": 5,
           "weeks": 4,
           "price": 5715,
-          "was": 6550,
           "perHour": 36,
           "name": {
             "ar": "5 أيام × 4 أسابيع",
@@ -315,7 +307,6 @@
           "daysPerWeek": 6,
           "weeks": 4,
           "price": 6858,
-          "was": 7800,
           "perHour": 36,
           "name": {
             "ar": "6 أيام × 4 أسابيع",
@@ -335,7 +326,6 @@
           "daysPerWeek": 7,
           "weeks": 4,
           "price": 7500,
-          "was": 8064,
           "perHour": 36,
           "name": {
             "ar": "7 أيام × 4 أسابيع",

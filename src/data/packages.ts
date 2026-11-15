@@ -1,5 +1,5 @@
 // Packages and prices. Rules: docs/build/packages-and-pricing.md
-// Each package (price, schedule, card name and detail, was/perHour) lives with its service in
+// Each package (price, schedule, card name and detail, perHour, features) lives with its service in
 // src/content-data/pricing.json. Prices are live (client confirmed, Nov 2026); the admin panel edits them.
 import type { L } from '../i18n/ui';
 import { PRICING_DATA } from './pricing';
@@ -14,7 +14,6 @@ export interface Package {
   name: L;
   detail: L;
   price: number | null; // SAR; null = ask on WhatsApp
-  was?: number;
   perHour?: number;
   features: L[]; // ticks on the card
   showPrice: boolean; // the service's "show price" switch
@@ -77,7 +76,6 @@ export const packages: Package[] = groups.flatMap((g) =>
         name: p.name,
         detail: p.detail,
         price: p.price,
-        ...(p.was != null && { was: p.was }),
         ...(p.perHour != null && { perHour: p.perHour }),
         features: p.features ?? [],
         showPrice: s.showPrice,

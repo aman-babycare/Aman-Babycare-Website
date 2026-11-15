@@ -21,5 +21,6 @@ Data: `src/content-data/offers.json` (read through `src/data/offers.ts`, edited 
 - `endsAt` (ISO date) drives the countdown. Once it has passed, the countdown hides itself.
 - `startDate` (ISO date) is when an offer goes live and takes the `featured` flag. Set it before the event: Ramadan 2027 starts on 1 Feb, a week ahead, because hourly-help searches peak just before Ramadan and the Eids.
 - Discounts stay `[DISCOUNT]` until the client sends real numbers.
+- Offer prices: `prices` lists packages (pricing.json ids) with their offer price, set from the admin's Offers page. They show on the package cards (offer price, regular price struck through) only while the offer runs and has a `discountLicence`.
 - Motifs (SVG, brand colours): crescent for Ramadan & the Eids, palm for Founding/National Day, tag for White Friday, pencil for back to school.
 - No other religious occasions.

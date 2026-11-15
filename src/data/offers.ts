@@ -29,7 +29,18 @@ export const offers = all.filter((o) => isListed(o));
 export const featuredOffer = offers.find((o) => o.featured && isLive(o)) ?? offers.find((o) => isLive(o)) ?? offers[0];
 export const upcomingOffers = offers.filter((o) => o !== featuredOffer);
 
-/** Strike-through ("was") prices for a service show only while a running offer with a discount licence
- *  covers it. With no service, whether any such offer is running (keeps card rows aligned). */
-export const discountLicensed = (service?: string, now = Date.now()) =>
-  all.some((o) => isLive(o, now) && !!o.discountLicence && (!service || o.services.includes(service)));
+// Offer prices count only while the offer runs and has a discount licence (Ministry of Commerce).
+const licensedNow = (list: OfferEntry[], now: number) => list.filter((o) => isLive(o as Offer, now) && !!o.discountLicence);
+
+/** The offer price for a package: the lowest licensed, running offer price below its regular price, or null. */
+export function offerPriceIn(list: OfferEntry[], packageId: string, regular: number, now = Date.now()): number | null {
+  const prices = licensedNow(list, now)
+    .flatMap((o) => o.prices ?? [])
+    .filter((p) => p.package === packageId && p.price < regular)
+    .map((p) => p.price);
+  return prices.length ? Math.min(...prices) : null;
+}
+export const offerPrice = (packageId: string, regular: number, now = Date.now()) => offerPriceIn(all, packageId, regular, now);
+
+/** Whether any licensed offer with prices is running (cards keep a badge row so prices line up). */
+export const offerPricesLive = (now = Date.now()) => licensedNow(all, now).some((o) => (o.prices ?? []).length > 0);

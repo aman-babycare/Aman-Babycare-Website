@@ -1,7 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import { whatsappUrl, type Locale } from '../config/site';
-import { discountLicensed } from '../data/offers';
+import { offerPrice, offerPricesLive } from '../data/offers';
 import type { Package } from '../data/packages';
 import { href, money, rate, ui } from '../i18n/ui';
 import { anchorFor } from '../data/seo';
@@ -17,11 +17,13 @@ const { lang, pkg: p, headingLevel: H = 'h3', current } = Astro.props;
 const message =
   lang === 'ar' ? `السلام عليكم، أرغب بالاستفسار عن باقة: ${p.name.ar}` : `Hello, I'd like to ask about the package: ${p.name.en}`;
 // The service's "show price" switch off: no figures at all, only "Price confirmed on WhatsApp".
-const price = p.showPrice ? p.price : null;
+const regular = p.showPrice ? p.price : null;
+// Under a running offer with a discount licence and a price for this package: the offer price, regular struck through.
+const deal = regular ? offerPrice(p.id, regular) : null;
+const price = deal ?? regular;
 const perHour = p.showPrice ? p.perHour : undefined;
-// Strike-through only under a running offer with a discount licence (src/data/offers.ts).
-const was = discountLicensed(p.service) ? p.was : undefined;
-const discountRow = discountLicensed();
+const was = deal ? regular : undefined;
+const discountRow = offerPricesLive();
 const saving = was && price ? was - price : 0;
 ---
 

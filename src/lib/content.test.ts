@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { offersSchema, parseContent, pricingSchema, validateContent } from './content-schema';
-import { isListed, isLive } from '../data/offers';
+import { isListed, isLive, offerPriceIn } from '../data/offers';
 import pricing from '../content-data/pricing.json';
 
 const read = (file: string) => JSON.parse(readFileSync(new URL(`../content-data/${file}`, import.meta.url), 'utf8'));
@@ -59,5 +59,22 @@ describe('offers', () => {
     expect(isLive(o, Date.parse('2026-11-30T21:00:00Z'))).toBe(false);
     expect(isListed(o, Date.parse('2026-10-01T00:00:00Z'))).toBe(true);
     expect(isListed(o, Date.parse('2026-12-01T00:00:00Z'))).toBe(false);
+  });
+
+  it('an offer price shows only while the offer runs, has a licence and is below the regular price', () => {
+    const now = Date.parse('2026-11-15T12:00:00+03:00');
+    const o = { ...base, startDate: '2026-11-01', endsAt: '2026-11-30T23:59:00+03:00', discountLicence: '123', prices: [{ package: 'monthly-6', price: 5400 }] };
+    expect(offerPriceIn([o], 'monthly-6', 6000, now)).toBe(5400);
+    expect(offerPriceIn([o], 'monthly-5', 5000, now)).toBeNull(); // not in the offer
+    expect(offerPriceIn([{ ...o, discountLicence: null }], 'monthly-6', 6000, now)).toBeNull(); // no licence
+    expect(offerPriceIn([o], 'monthly-6', 6000, Date.parse('2026-12-01T00:00:00+03:00'))).toBeNull(); // ended
+    expect(offerPriceIn([o], 'monthly-6', 5400, now)).toBeNull(); // not below the regular price
+    const cheaper = { ...o, id: 'other', prices: [{ package: 'monthly-6', price: 5100 }] };
+    expect(offerPriceIn([o, cheaper], 'monthly-6', 6000, now)).toBe(5100); // the lowest wins
+  });
+
+  it('a package gets one price per offer', () => {
+    const bad = [{ ...base, prices: [{ package: 'monthly-6', price: 5400 }, { package: 'monthly-6', price: 5300 }] }];
+    expect(() => parseContent(offersSchema, bad, 'offers.json')).toThrow(/two offer prices/);
   });
 });

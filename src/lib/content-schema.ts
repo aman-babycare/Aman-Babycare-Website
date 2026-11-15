@@ -104,7 +104,6 @@ export const packageSchema = z.object({
   daysPerWeek: z.number().int().min(1).max(7),
   weeks: z.number().int().min(1),
   price: sar, // SAR, whole
-  was: sar.optional(), // strike-through price; shown only under an offer with a discount licence
   perHour: sar.optional(), // "From X SAR per hour" on the card
   name: L,
   detail: L,
@@ -155,6 +154,9 @@ export const offerSchema = z
     discount: text, // "[DISCOUNT]" until the client sends a real figure
     // Ministry of Commerce discount licence number. Without it no strike-through price can go live.
     discountLicence: text.nullable(),
+    // Offer prices for packages (pricing.json ids). While the offer runs and has a discount licence, each package
+    // card shows this price with its regular price struck through; otherwise the regular price.
+    prices: z.array(z.object({ package: z.string().regex(/^[a-z0-9-]+$/), price: sar })).optional(),
   })
   .refine((o) => isPlaceholderValue(o.discount) || !!o.discountLicence, {
     message: 'A discount needs a discount licence number',
@@ -163,6 +165,10 @@ export const offerSchema = z
   .refine((o) => !o.startDate || !o.endsAt || Date.parse(o.startDate) < Date.parse(o.endsAt), {
     message: 'The end date must be after the start date',
     path: ['endsAt'],
+  })
+  .refine((o) => new Set((o.prices ?? []).map((p) => p.package)).size === (o.prices ?? []).length, {
+    message: 'A package has two offer prices',
+    path: ['prices'],
   });
 
 export const offersSchema = z
