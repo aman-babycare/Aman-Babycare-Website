@@ -45,12 +45,12 @@ export const seo = {
     },
     description: {
       care: {
-        ar: 'رعاية أطفال ومواليد، وتنظيف المنزل، ومرافقة كبار السن في الرياض، بالساعة أو بالشهر، مع فريق خضع للتحقق من الخلفية. احجزوا عبر واتساب.',
-        en: 'Hourly and monthly maids, nannies, newborn care and elderly companionship across Riyadh. Background-checked team. Book on WhatsApp.',
+        ar: 'رعاية أطفال ومواليد، ورعاية الأم، وتنظيف المنزل، ومرافقة كبار السن في الرياض، بالساعة أو بالأسبوع أو بالشهر، مع فريق خضع للتحقق من الخلفية. احجزوا بواتساب.',
+        en: 'Hourly, weekly and monthly maids, nannies, newborn care, mother care and elderly companionship in Riyadh. Background-checked. Book on WhatsApp.',
       },
       worker: {
-        ar: 'عاملات منزليات بالساعة وبالشهر، وجليسات أطفال، ومرافقة كبار السن في الرياض. فريق خضع للتحقق من الخلفية. احجزوا عبر واتساب.',
-        en: 'Hourly and monthly maids, nannies, newborn care and elderly companionship across Riyadh. Background-checked team. Book on WhatsApp.',
+        ar: 'عاملات منزليات بالساعة وبالأسبوع وبالشهر، وجليسات أطفال، ومرافقة كبار السن في الرياض. فريق خضع للتحقق من الخلفية. احجزوا عبر واتساب.',
+        en: 'Hourly, weekly and monthly maids, nannies, newborn care, mother care and elderly companionship in Riyadh. Background-checked. Book on WhatsApp.',
       },
     },
     // The home H1 keeps the emotional promise; the keyword line sits under it (HomePage.astro).
@@ -63,12 +63,12 @@ export const seo = {
     },
     description: {
       care: {
-        ar: 'خدمات منزلية في الرياض: جليسة أطفال، رعاية المولود والأم، تنظيف المنزل بالساعة، مرافقة كبار السن، ورعاية القطط والكلاب. احجزوا عبر واتساب.',
-        en: 'Home services in Riyadh: babysitters and nannies, newborn care, hourly home cleaning, elderly companionship and pet sitting. Book on WhatsApp.',
+        ar: 'خدمات منزلية في الرياض: جليسة أطفال، رعاية المواليد، رعاية الأم، تنظيف المنزل بالساعة، مرافقة كبار السن، ورعاية القطط والكلاب. احجزوا عبر واتساب.',
+        en: 'Home services in Riyadh: nannies, newborn care, mother care, hourly cleaning, elderly companionship and pet sitting. Book on WhatsApp.',
       },
       worker: {
         ar: 'عاملات بالساعة وخدمات منزلية في الرياض: جليسة أطفال، رعاية المولود، تنظيف المنزل، ومرافقة كبار السن. احجزوا عبر واتساب.',
-        en: 'Home services in Riyadh: babysitters and nannies, newborn care, hourly home cleaning, elderly companionship and pet sitting. Book on WhatsApp.',
+        en: 'Home services in Riyadh: nannies, newborn care, mother care, hourly cleaning, elderly companionship and pet sitting. Book on WhatsApp.',
       },
     },
     h1: {
@@ -78,40 +78,49 @@ export const seo = {
   },
   packages: {
     title: {
-      care: { ar: 'باقات وأسعار رعاية الأطفال والخدمات المنزلية | أمان', en: 'Hourly & Monthly Maid and Nanny Packages | Aman' },
-      worker: { ar: 'أسعار عاملات بالساعة وبالشهر في الرياض | أمان', en: 'Hourly & Monthly Maid and Nanny Packages | Aman' },
+      care: { ar: 'باقات وأسعار رعاية الأطفال والخدمات المنزلية | أمان', en: 'Hourly, Weekly & Monthly Maid and Nanny Packages | Aman' },
+      worker: { ar: 'أسعار عاملات بالساعة وبالأسبوع وبالشهر | أمان', en: 'Hourly, Weekly & Monthly Maid and Nanny Packages | Aman' },
     },
     description: {
       care: {
-        ar: 'باقات رعاية بالساعة أو بالشهر في الرياض: جليسة أطفال، مربية مقيمة، ومرافقة كبار السن، مع أسعار واضحة وحجز عبر واتساب.',
+        ar: 'باقات رعاية بالساعة أو بالأسبوع أو بالشهر في الرياض: جليسة أطفال، مربية مقيمة، ومرافقة كبار السن، مع أسعار واضحة وحجز عبر واتساب.',
         en: 'Hourly, weekly and monthly nanny, live-in and elderly companionship packages in Riyadh, with clear prices and booking on WhatsApp.',
       },
       worker: {
-        ar: 'عاملة منزلية بالساعة أو بالشهر في الرياض: باقات رعاية الأطفال والإقامة ومرافقة كبار السن، بأسعار واضحة وحجز عبر واتساب.',
+        ar: 'عاملة منزلية بالساعة أو بالأسبوع أو بالشهر في الرياض: باقات رعاية الأطفال والإقامة ومرافقة كبار السن، بأسعار واضحة وحجز عبر واتساب.',
         en: 'Hourly, weekly and monthly nanny, live-in and elderly companionship packages in Riyadh, with clear prices and booking on WhatsApp.',
       },
     },
     h1: {
       care: { ar: 'باقات رعاية الأطفال والخدمات المنزلية في الرياض', en: 'Nanny & Home Help Packages in Riyadh' },
-      worker: { ar: 'باقات عاملات منزليات بالساعة وبالشهر في الرياض', en: 'Nanny & Home Help Packages in Riyadh' },
+      worker: { ar: 'باقات عاملات منزليات بالساعة وبالأسبوع وبالشهر في الرياض', en: 'Nanny & Home Help Packages in Riyadh' },
     },
   },
 
   // Service pages. Slugs stay as they are (same English slug in both languages).
   'newborn-care': {
-    title: { ar: 'رعاية المولود والأم في المنزل بالرياض | أمان', en: 'Newborn & Mother Care at Home in Riyadh | Aman' },
+    title: { ar: 'رعاية المواليد في المنزل بالرياض | أمان', en: 'Newborn Care at Home in Riyadh | Aman' },
     description: {
-      ar: 'رعاية المولود والأم في المنزل بالرياض بعد الولادة وفي فترة النفاس: استحمام المولود، تجهيز الرضّاعات، النوم، وراحة الأم. احجزوا عبر واتساب.',
-      en: 'Newborn and mother care at home in Riyadh: bathing, bottles, sleep and rest for mum in the weeks after birth. Day, night or live-in. Book on WhatsApp.',
+      ar: 'رعاية المواليد في المنزل بالرياض بعد الولادة: استحمام المولود، وتجهيز الرضّاعات، والنوم، نهاراً أو ليلاً أو بإقامة. احجزوا عبر واتساب.',
+      en: 'Newborn care at home in Riyadh: bathing, bottles, settling and sleep in the weeks after birth. Day, night or live-in. Book on WhatsApp.',
     },
-    h1: { ar: 'رعاية المولود والأم في المنزل بالرياض', en: 'Newborn & Mother Care at Home in Riyadh' },
-    anchor: { ar: 'رعاية المولود والأم في المنزل', en: 'Newborn and mother care at home' },
+    h1: { ar: 'رعاية المواليد في المنزل بالرياض', en: 'Newborn Care at Home in Riyadh' },
+    anchor: { ar: 'رعاية المواليد في المنزل', en: 'Newborn care at home' },
+  },
+  'mother-care': {
+    title: { ar: 'رعاية الأم بعد الولادة في المنزل بالرياض | أمان', en: 'Mother Care After Birth at Home in Riyadh | Aman' },
+    description: {
+      ar: 'رعاية الأم في المنزل بالرياض بعد الولادة وفي النفاس: وقت للراحة، ووجبات خفيفة، وترتيب البيت، واستقبال المهنئين. خدمة غير طبية. احجزوا عبر واتساب.',
+      en: 'Mother care at home in Riyadh after birth: time to rest, light meals, a tidy home and guests welcomed for her. Non-medical. Book on WhatsApp.',
+    },
+    h1: { ar: 'رعاية الأم بعد الولادة في المنزل بالرياض', en: 'Mother Care After Birth at Home in Riyadh' },
+    anchor: { ar: 'رعاية الأم بعد الولادة', en: 'Mother care after birth' },
   },
   babysitting: {
     title: { ar: 'جليسة أطفال ومربية أطفال في المنزل بالرياض | أمان', en: 'Babysitter & Nanny at Home in Riyadh | Aman' },
     description: {
-      ar: 'جليسة أطفال في المنزل بالرياض، بالساعة أو بخطة شهرية، أو مربية أطفال مقيمة. فريق خضع للتحقق من الخلفية. احجزوا عبر واتساب.',
-      en: 'A babysitter or nanny at home in Riyadh, by the hour or on a monthly plan, live-in or live-out. Background-checked team. Book on WhatsApp.',
+      ar: 'جليسة أطفال في المنزل بالرياض، بالساعة أو بخطة أسبوعية أو شهرية، أو مربية أطفال مقيمة. فريق خضع للتحقق من الخلفية. احجزوا عبر واتساب.',
+      en: 'A babysitter or nanny at home in Riyadh, by the hour or on a weekly or monthly plan, live-in or live-out. Background-checked. Book on WhatsApp.',
     },
     h1: { ar: 'جليسة أطفال في المنزل بالرياض', en: 'Babysitter & Nanny at Home in Riyadh' },
     anchor: { ar: 'جليسة أطفال بالساعة', en: 'Babysitter by the hour' },
@@ -119,7 +128,7 @@ export const seo = {
   'elderly-companionship': {
     title: { ar: 'مرافقة كبار السن في المنزل بالرياض | أمان', en: 'Elderly Companionship at Home in Riyadh | Aman' },
     description: {
-      ar: 'مرافقة كبار السن في المنزل بالرياض: صحبة يومية، ووجبات خفيفة، ومرافقة الوالدين إلى مواعيدهم. خدمة غير طبية، بالساعة أو بالشهر. احجزوا عبر واتساب.',
+      ar: 'مرافقة كبار السن في المنزل بالرياض: صحبة يومية، ووجبات خفيفة، ومرافقتهم إلى مواعيدهم. خدمة غير طبية، بالساعة أو بالأسبوع أو بالشهر. احجزوا عبر واتساب.',
       en: 'Elderly companionship at home in Riyadh: daily company, light meals and someone by their side at appointments. Non-medical. Book on WhatsApp.',
     },
     h1: { ar: 'مرافقة كبار السن في المنزل بالرياض', en: 'Elderly Companionship at Home in Riyadh' },
@@ -216,12 +225,12 @@ export const anchorFor = (slug: string, lang: Locale, fallback: string) => {
 
 // Under the home H1.
 export const homeKeywordLine: Moded<L> = {
-  care: { ar: 'رعاية أطفال وخدمات منزلية مرنة بالساعة أو بالشهر في الرياض', en: 'Hourly & monthly maids, nannies and home help in Riyadh' },
-  worker: { ar: 'عاملات بالساعة وبالشهر، وجليسات أطفال، وخدمات منزلية في الرياض', en: 'Hourly & monthly maids, nannies and home help in Riyadh' },
+  care: { ar: 'رعاية أطفال وخدمات منزلية مرنة بالساعة أو بالأسبوع أو بالشهر في الرياض', en: 'Hourly, weekly & monthly maids, nannies and home help in Riyadh' },
+  worker: { ar: 'عاملات بالساعة وبالأسبوع وبالشهر، وجليسات أطفال، وخدمات منزلية في الرياض', en: 'Hourly, weekly & monthly maids, nannies and home help in Riyadh' },
 };
 
 // Packages page H2.
 export const packagesKeywordH2: Moded<L> = {
-  care: { ar: 'رعاية بالساعة أو بالشهر', en: 'Hourly or Monthly Maid & Nanny Plans' },
-  worker: { ar: 'عاملة منزلية بالساعة أو بالشهر', en: 'Hourly or Monthly Maid & Nanny Plans' },
+  care: { ar: 'رعاية بالساعة أو بالأسبوع أو بالشهر', en: 'Hourly, Weekly or Monthly Maid & Nanny Plans' },
+  worker: { ar: 'عاملة منزلية بالساعة أو بالأسبوع أو بالشهر', en: 'Hourly, Weekly or Monthly Maid & Nanny Plans' },
 };

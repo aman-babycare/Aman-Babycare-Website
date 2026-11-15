@@ -69,7 +69,7 @@ const page: ServicePage = {
       ar: `تتم المشاوير والمهام في ${day.label.ar} (${day.time.ar}). احجزوا ساعات لمهمة واحدة، أو خطة أسبوعية لمقاضي البيت المعتادة.`,
       en: `Errands run during the day shift (${day.time.en}). Book a few hours for one job, or a weekly plan for your usual groceries.`,
     },
-    options: ['hourly', 'day', 'monthly'],
+    options: ['hourly', 'day', 'weekly', 'monthly'],
   },
   steps: {
     title: { ar: 'كيف تعمل المساعدة الشخصية', en: 'How errands work' },

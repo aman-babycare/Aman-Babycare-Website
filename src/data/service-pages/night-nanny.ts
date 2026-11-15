@@ -61,7 +61,7 @@ const page: ServicePage = {
       ar: `تبدأ الليلة ${night.time.ar}. احجزوا ليلة واحدة حين تحتاجون راحة، أو ليالي محددة في الأسبوع، أو خطة شهرية للأسابيع الأولى.`,
       en: `The night runs ${night.time.en}. Book a single night when you need rest, set nights each week, or a monthly plan for the first weeks.`,
     },
-    options: ['night', 'hourly', 'monthly', 'live-out'],
+    options: ['night', 'hourly', 'weekly', 'monthly', 'live-out'],
   },
   steps: {
     title: { ar: 'كيف تحجزون مربية ليلية', en: 'How to book a night nanny' },

@@ -67,12 +67,12 @@ const page: ServicePage = {
     { ar: 'اصطحاب الأطفال خارج البيت دون إذن مسبق منكم', en: 'Taking the children out without your prior permission' },
   ],
   shifts: {
-    title: { ar: 'جليسة أطفال بالساعة أو بالشهر، نهاراً أو ليلاً', en: 'By the hour or by the month, day or night' },
+    title: { ar: 'جليسة أطفال بالساعة أو بالأسبوع أو بالشهر، نهاراً أو ليلاً', en: 'By the hour, the week or the month, day or night' },
     text: {
       ar: 'الحجز بالساعة يناسب المشاوير والمناسبات. والخطط الأسبوعية والشهرية تناسب أيام الدوام والدراسة. ولمن يحتاج رعاية أطول، توجد مربية مقيمة تعيش مع العائلة.',
       en: 'Hourly booking suits errands and occasions. Weekly and monthly plans suit work and school days. For longer care, a live-in nanny stays with your family.',
     },
-    options: ['hourly', 'monthly', 'day', 'night', 'live-out', 'live-in'],
+    options: ['hourly', 'weekly', 'monthly', 'day', 'night', 'live-out', 'live-in'],
   },
   steps: {
     title: { ar: 'كيف تحجزون جليسة أطفال', en: 'How to book a babysitter' },
@@ -176,7 +176,7 @@ const page: ServicePage = {
   booking: 'babysitting',
   hub: {
     bestFor: { ar: 'أيام الدوام، والمناسبات، وساعات الراحة', en: 'Work days, occasions and a few free hours' },
-    shifts: { ar: 'بالساعة، بالشهر، نهاري، ليلي، إقامة', en: 'Hourly, monthly, day, night, live-in' },
+    shifts: { ar: 'بالساعة، بالأسبوع، بالشهر، نهاري، ليلي، إقامة', en: 'Hourly, weekly, monthly, day, night, live-in' },
     combine: ['pick-up-drop-off', 'home-cleaning'],
   },
 };

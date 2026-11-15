@@ -4,7 +4,8 @@ The site's services are the **"Other services"** block of `brand_assets/referenc
 
 | Tier | Slug | English | Arabic |
 | --- | --- | --- | --- |
-| featured | `newborn-care` | Newborn & Mother Care | رعاية المواليد والأمهات |
+| featured | `newborn-care` | Newborn Care | رعاية المواليد |
+| featured | `mother-care` | Mother Care | رعاية الأم |
 | core | `babysitting` | Babysitting | رعاية الأطفال |
 | core | `elderly-companionship` | Elderly Companionship | مرافقة كبار السن |
 | core | `home-cleaning` | Home Cleaning | تنظيف المنازل |
@@ -16,4 +17,4 @@ The site's services are the **"Other services"** block of `brand_assets/referenc
 - **Order and tiers are client-approved** (Oct 2026): the three core services lead as large cards; the other three sit in a smaller "More help at home" row (`tier` in `src/data/services.ts`). The mock-up's "Other services" row repeats "More services", so it is not built twice.
 - Each service has its own page at `/services/<slug>/` (English) and `/ar/services/<slug>/`.
 - One caregiver can combine several services; this is sold through bundles and the Book Your Service card.
-- **Newborn & Mother Care** (client request, Oct 2026) is the mock-up's top "Newborn Care at Home" block: one combined page with its sub-services (newborn care at home, feeding support, baby bathing & hygiene, sleep & comfort, mother & baby support, baby shower & welcoming guests) listed in `subservices`. It shows as a wide featured card above the core row. Help and companionship only: never call it nursing, medical or clinical care.
+- **Newborn Care and Mother Care** are two separate services (client request, Nov 2026; until then one combined "Newborn & Mother Care" page). Each has its own page, wide featured card, booking-card service, price entry (`pricing.json`: `newborn-care`, `mother-care`) and job on the Careers page. Newborn Care covers the baby (care at home, feeding support, bathing & hygiene, sleep & comfort); Mother Care covers the mother (rest & recovery, help at feeding times, light meals, light housework, welcoming guests). Help and companionship only: never call either nursing, medical or clinical care.

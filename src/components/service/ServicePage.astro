@@ -54,6 +54,7 @@ const t = {
       'live-in': 'مقيم/ة في بيتكم',
       'live-out': 'دوام يومي دون إقامة',
       hourly: 'بالساعة',
+      weekly: 'بالأسبوع',
       monthly: 'بالشهر',
     },
     shiftText: {
@@ -62,6 +63,7 @@ const t = {
       'live-in': 'يقيم مقدّم/ة الرعاية معكم ويعمل 12 ساعة يومياً',
       'live-out': 'يأتي للفترة المتفق عليها ثم يعود إلى بيته',
       hourly: 'لساعات محددة حين تحتاجونها',
+      weekly: 'أسبوع أو أكثر، بسعر أقل للساعة',
       monthly: 'خطة ثابتة مع الشخص نفسه كل أسبوع',
     },
     whyPoints: [
@@ -91,6 +93,7 @@ const t = {
       'live-in': 'Live-in',
       'live-out': 'Live-out',
       hourly: 'Hourly',
+      weekly: 'Weekly',
       monthly: 'Monthly',
     },
     shiftText: {
@@ -99,6 +102,7 @@ const t = {
       'live-in': 'Stays in your home and works 12 hours a day',
       'live-out': 'Comes for the agreed shift, then goes home',
       hourly: 'For the hours you need',
+      weekly: 'A week or more, at a lower hourly rate',
       monthly: 'A steady plan with the same caregiver every week',
     },
     whyPoints: [
@@ -174,7 +178,7 @@ const schema = [
     </div>
   </section>
 
-  <!-- Services within this page (Newborn & Mother Care) -->
+  <!-- What this service covers (Newborn Care, Mother Care) -->
   {
     s.subservices && (
       <section class="container-x pb-16 md:pb-24">

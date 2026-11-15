@@ -1,4 +1,5 @@
-// Newborn & Mother Care. Help and support only: never nursing, medical or clinical care. REVIEW-AR
+// Newborn Care: care for the baby at home. Mother Care has its own page since Nov 2026 (client request:
+// two separate jobs), see mother-care.ts. Help and support only: never nursing, medical or clinical care. REVIEW-AR
 import type { ServicePage } from '../services';
 import { business } from '../business';
 
@@ -13,32 +14,30 @@ const page: ServicePage = {
     { icon: 'bottle', name: { ar: 'دعم الرضاعة والتغذية', en: 'Feeding support' }, text: { ar: 'تجهيز الرضّاعات وتعقيمها، والتجشئة والتهدئة بعد الرضعة.', en: 'Bottles prepared and sterilised; burping and settling after feeds.' } },
     { icon: 'bath', name: { ar: 'استحمام المولود ونظافته', en: 'Baby bathing & hygiene' }, text: { ar: 'حمام آمن ولطيف، وعناية يومية بالنظافة.', en: 'A safe, gentle bath and daily hygiene care.' } },
     { icon: 'sleep', name: { ar: 'النوم والراحة', en: 'Sleep & comfort' }, text: { ar: 'نساعد مولودكم على نوم أهدأ وروتين أوضح.', en: 'Helping your baby sleep more calmly, with a clearer routine.' } },
-    { icon: 'mother', name: { ar: 'دعم الأم والطفل', en: 'Mother & baby support' }, text: { ar: 'وقت للأم لترتاح، ووجبات خفيفة، ومساعدة في البيت.', en: 'Time for mum to rest, light meals and help around the house.' } },
-    { icon: 'gift', name: { ar: 'استقبال المولود', en: 'Baby shower & welcoming guests' }, text: { ar: 'تجهيز البيت والضيافة لاستقبال المهنئين، ورعاية الإخوة الكبار.', en: 'Home and hospitality ready for visitors, and older siblings looked after.' } },
   ],
   intro: {
-    title: { ar: 'ما هي رعاية المولود والأم في المنزل؟', en: 'What newborn and mother care at home means' },
+    title: { ar: 'ما هي رعاية المواليد في المنزل؟', en: 'What newborn care at home means' },
     text: [
       {
-        ar: 'رعاية المولود والأم في المنزل خدمة من أمان لعائلات الرياض بعد الولادة: يأتي إليكم شخص هادئ من فريق الرعاية يعتني بالمولود في روتينه اليومي، ويخفف عن الأم أعمال البيت لترتاح في فترة النفاس. نهاراً أو ليلاً أو بإقامة كاملة، لأيام قليلة أو للأسابيع الأولى كلها.',
-        en: "Newborn and mother care at home is Aman's help for Riyadh families after a birth: a calm caregiver looks after your baby's daily routine and takes the housework off the new mother's hands, so she can rest and recover. By day, by night or live-in, for a few days or the whole of the first weeks.",
+        ar: 'رعاية المواليد في المنزل خدمة من أمان لعائلات الرياض بعد الولادة: يأتي إليكم شخص هادئ من فريق الرعاية يعتني بالمولود في روتينه اليومي، من الاستحمام إلى الرضعات والنوم. نهاراً أو ليلاً أو بإقامة كاملة، لأيام قليلة أو للأسابيع الأولى كلها.',
+        en: "Newborn care at home is Aman's help for Riyadh families after a birth: a calm caregiver looks after your baby's daily routine, from bath time to feeds and sleep. By day, by night or live-in, for a few days or the whole of the first weeks.",
       },
       {
         ar: 'في الأيام الأولى تتبدّل مواعيد النوم والرضعات من ليلة إلى أخرى، ويمتلئ البيت بالمهنئين. لذلك نبدأ بالإصغاء: كيف تحب الأم أن تسير الأمور، وما تعليماتها في الرضاعة والنوم، ثم نتبعها كما هي. نحن يد مساعدة، والقرار يبقى للأم والأب.',
         en: 'In the first days, sleep and feeding times change from one night to the next, and the house fills with visitors. So we start by listening: how mum likes things done, and her instructions on feeds and sleep. Then we follow them. We are a helping hand; the decisions stay with the parents.',
       },
       {
-        ar: 'ومن يبحث عن مربية مواليد لساعات النهار أو لليالي الطويلة يجدها هنا ضمن خطة واحدة. هذه الخدمة مساعدة ودعم في البيت، وأي سؤال عن صحة الأم أو المولود مكانه الطبيب، ونحن نساعدكم في كل ما حوله.',
-        en: "If you are looking for a newborn nanny for the daytime or for long nights, it all fits in one plan. This is help and support at home: any question about the health of mother or baby belongs with your doctor, and we help with everything around it.",
+        ar: 'ومن يبحث عن مربية مواليد لساعات النهار أو لليالي الطويلة يجدها هنا ضمن خطة واحدة. وإن احتاجت الأم نفسها إلى من يهتم براحتها وبيتها، فاجمعوا رعاية المواليد مع رعاية الأم. هذه الخدمة مساعدة ودعم في البيت، وأي سؤال عن صحة المولود مكانه الطبيب.',
+        en: "If you are looking for a newborn nanny for the daytime or for long nights, it all fits in one plan. If mum herself needs someone looking after her rest and her home, combine newborn care with mother care. This is help and support at home: any question about your baby's health belongs with your doctor.",
       },
     ],
   },
   who: {
-    title: { ar: 'لمن تناسب رعاية المولود والأم؟', en: 'Who newborn and mother care is for' },
+    title: { ar: 'لمن تناسب رعاية المواليد؟', en: 'Who newborn care is for' },
     items: [
       {
-        title: { ar: 'أم في أسابيعها الأولى بعد الولادة', en: 'A mother in the first weeks after birth' },
-        text: { ar: 'تحتاج نوماً متصلاً وراحة لجسدها، وتريد أن تطمئن أن مولودها بين يدين لطيفتين وهي في الغرفة المجاورة.', en: 'She needs unbroken sleep and time to recover, knowing her baby is in gentle hands in the next room.' },
+        title: { ar: 'مولود في أسابيعه الأولى', en: 'A baby in the first weeks' },
+        text: { ar: 'روتين الرضعات والنوم يتبدّل كل ليلة، والوالدان يريدان أن يطمئنا أن المولود بين يدين لطيفتين حين يرتاحان.', en: 'Feeds and sleep change every night, and you want to know your baby is in gentle hands while you rest.' },
       },
       {
         title: { ar: 'أب يعود إلى دوامه', en: 'A father going back to work' },
@@ -55,18 +54,18 @@ const page: ServicePage = {
     ],
   },
   included: {
-    title: { ar: 'ما تشمله رعاية المولود والأم', en: 'What newborn and mother care includes' },
+    title: { ar: 'ما تشمله رعاية المواليد', en: 'What newborn care includes' },
     items: [
       { ar: 'استحمام المولود وتغيير الحفاض والملابس', en: "Baby's bath, nappy changes and dressing" },
       { ar: 'تجهيز الرضّاعات وتعقيمها، والتجشئة بعد الرضعة', en: 'Preparing and sterilising bottles, and burping after feeds' },
       { ar: 'تهدئة المولود ومساعدته على النوم في سريره', en: 'Soothing baby and settling them in their cot' },
-      { ar: 'وجبات خفيفة للأم وترتيب غرفتها', en: "Light meals for mum and a tidy bedroom" },
       { ar: 'غسل ملابس المولود وترتيب أغراضه', en: "Washing and putting away baby's clothes" },
-      { ar: 'تجهيز البيت والضيافة لاستقبال المهنئين', en: 'Getting the home and hospitality ready for visitors' },
+      { ar: 'ترتيب غرفة المولود ومستلزماته', en: "Keeping the nursery and baby's things tidy" },
+      { ar: 'ملخص قصير عن الرضعات والنوم في نهاية كل فترة', en: 'A short note on feeds and sleep at the end of each shift' },
     ],
   },
   notIncluded: [
-    { ar: 'أي رعاية صحية أو علاجية للأم أو المولود، كالحقن أو العناية بالجروح أو متابعة حالة مرضية', en: 'Any health or clinical care for mother or baby, such as injections, wound care or watching over an illness' },
+    { ar: 'أي رعاية صحية أو علاجية للمولود، كالحقن أو العناية بالجروح أو متابعة حالة مرضية', en: 'Any health or clinical care for the baby, such as injections, wound care or watching over an illness' },
     { ar: 'استشارات الرضاعة الطبيعية أو التغذية', en: 'Breastfeeding or nutrition advice' },
     { ar: 'إعطاء المولود أي دواء', en: 'Giving the baby any medicine' },
     { ar: 'القرارات الخاصة بصحة المولود: تبقى للوالدين والطبيب', en: "Decisions about the baby's health: those stay with you and your doctor" },
@@ -74,10 +73,10 @@ const page: ServicePage = {
   shifts: {
     title: { ar: 'أوقات رعاية المولود: نهاراً أو ليلاً أو بإقامة', en: 'When we come: day, night or live-in' },
     text: {
-      ar: 'تحتاج بعض العائلات يداً في النهار حين يكون الأب في دوامه، وتحتاج أخرى من يسهر مع المولود لتنام الأم. اختاروا الفترة التي تناسبكم، بالساعة أو بخطة شهرية، وغيّروها حين يتغير احتياج المولود.',
-      en: "Some families need a hand during the day while dad is at work; others need someone up with the baby at night so mum can sleep. Choose the shift that suits you, by the hour or on a monthly plan, and change it as your baby's needs change.",
+      ar: 'تحتاج بعض العائلات يداً في النهار حين يكون الأب في دوامه، وتحتاج أخرى من يسهر مع المولود لتنام الأم. اختاروا الفترة التي تناسبكم، بالساعة أو بخطة أسبوعية أو شهرية، وغيّروها حين يتغير احتياج المولود.',
+      en: "Some families need a hand during the day while dad is at work; others need someone up with the baby at night so mum can sleep. Choose the shift that suits you, by the hour or on a weekly or monthly plan, and change it as your baby's needs change.",
     },
-    options: ['day', 'night', 'live-in', 'live-out', 'hourly', 'monthly'],
+    options: ['day', 'night', 'live-in', 'live-out', 'hourly', 'weekly', 'monthly'],
   },
   steps: {
     title: { ar: 'كيف تبدأ رعاية المولود في بيتكم', en: 'How newborn care at home starts' },
@@ -104,7 +103,7 @@ const page: ServicePage = {
     },
   },
   packages: {
-    title: { ar: 'أسعار رعاية المولود والأم', en: 'Newborn and mother care prices' },
+    title: { ar: 'أسعار رعاية المواليد', en: 'Newborn care prices' },
     text: { ar: 'تُسعّر رعاية المولود حسب الفترة وعدد الأيام، ونؤكد السعر معكم على واتساب قبل أي حجز.', en: 'Newborn care is priced by shift and number of days. We confirm the price with you on WhatsApp before any booking.' },
   },
   riyadh: {
@@ -114,20 +113,20 @@ const page: ServicePage = {
       en: 'We serve families all over Riyadh. Send us your neighbourhood and due date, and we will plan ahead so everything is ready when mum brings the baby home.',
     },
   },
-  faqTitle: { ar: 'أسئلة عن رعاية المولود والأم', en: 'Questions about newborn and mother care' },
+  faqTitle: { ar: 'أسئلة عن رعاية المواليد', en: 'Questions about newborn care' },
   faq: [
     {
-      q: { ar: 'كم سعر رعاية المولود والأم في المنزل؟', en: 'How much does newborn and mother care at home cost?' },
+      q: { ar: 'كم سعر رعاية المواليد في المنزل؟', en: 'How much does newborn care at home cost?' },
       a: {
         ar: 'يعتمد السعر على الفترة (نهارية أو ليلية أو إقامة) وعدد الأيام. أرسلوا لنا احتياجكم على واتساب، ونؤكد لكم السعر قبل الحجز دون أي التزام.',
         en: 'It depends on the shift (day, night or live-in) and how many days you need. Send us your needs on WhatsApp and we confirm the price before you book, with no commitment.',
       },
     },
     {
-      q: { ar: 'هل الأفضل الحجز بالساعة أم بخطة شهرية؟', en: 'Is it better to book by the hour or monthly?' },
+      q: { ar: 'هل الأفضل الحجز بالساعة أم بخطة أسبوعية أو شهرية؟', en: 'Is it better to book hourly, weekly or monthly?' },
       a: {
-        ar: 'الحجز بالساعة يناسب الأم التي تحتاج راحة لساعات أو يداً في يوم بعينه. والخطة الشهرية تناسب الأسابيع الأولى كاملة، لأن الشخص نفسه يبقى مع المولود ويعتاد على روتينه.',
-        en: 'Hourly suits a mum who needs a few hours of rest or help on a particular day. A monthly plan suits the whole of the first weeks, because the same caregiver stays with your baby and learns their routine.',
+        ar: 'الحجز بالساعة يناسب حاجة لساعات أو ليوم بعينه. والخطة الأسبوعية تناسب أسبوعاً أو أسابيع قليلة، والشهرية تناسب الأسابيع الأولى كاملة، لأن الشخص نفسه يبقى مع المولود ويعتاد على روتينه.',
+        en: 'Hourly suits a few hours or a particular day. A weekly plan suits a week or a few weeks, and a monthly plan the whole of the first weeks, because the same caregiver stays with your baby and learns their routine.',
       },
     },
     {
@@ -168,19 +167,19 @@ const page: ServicePage = {
     {
       q: { ar: 'هل تقدمون رعاية صحية للمولود؟', en: 'Do you provide health care for the baby?' },
       a: {
-        ar: 'لا. نساعد في العناية اليومية بالمولود وندعم الأم في البيت. ما يخص صحة الأم أو المولود يحتاج طبيباً أو مختصاً.',
-        en: 'No. We help with daily baby care and support mum at home. Anything about the health of mother or baby needs a doctor or specialist.',
+        ar: 'لا. نساعد في العناية اليومية بالمولود. ما يخص صحة المولود يحتاج طبيباً أو مختصاً.',
+        en: 'No. We help with daily baby care. Anything about your baby\'s health needs a doctor or specialist.',
       },
     },
   ],
   relatedTitle: { ar: 'خدمات تكمّل رعاية المولود', en: 'Services that go well with newborn care' },
-  related: ['night-nanny', 'babysitting', 'home-cleaning'],
-  whatsapp: { ar: 'السلام عليكم، أرغب بحجز رعاية المولود والأم في المنزل.', en: 'Hello, I would like to book newborn and mother care at home.' },
+  related: ['mother-care', 'night-nanny', 'babysitting'],
+  whatsapp: { ar: 'السلام عليكم، أرغب بحجز رعاية المواليد في المنزل.', en: 'Hello, I would like to book newborn care at home.' },
   booking: 'newborn-care',
   hub: {
     bestFor: { ar: 'الأسابيع الأولى بعد الولادة', en: 'The first weeks after birth' },
     shifts: { ar: 'نهاري، ليلي، إقامة', en: 'Day, night, live-in' },
-    combine: ['home-cleaning', 'errands'],
+    combine: ['mother-care', 'home-cleaning'],
   },
 };
 

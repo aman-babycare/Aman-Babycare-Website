@@ -15,8 +15,8 @@ interface Props {
 const { lang, posts } = Astro.props;
 // REVIEW-AR
 const t = {
-  ar: { name: 'المدونة', title: 'مدونة أمان: نصائح للبيت والعائلة في الرياض | أمان', description: 'مقالات عملية عن رعاية المولود، واختيار المربية، والمساعدة المنزلية بالساعة أو بالشهر في الرياض.', h1: 'نصائح للبيت والعائلة في الرياض' },
-  en: { name: 'Blog', title: 'Aman Blog: Home and Family Tips in Riyadh | Aman', description: 'Practical articles on newborn care, choosing a nanny, and hourly or monthly home help in Riyadh.', h1: 'Home and family tips in Riyadh' },
+  ar: { name: 'المدونة', title: 'مدونة أمان: نصائح للبيت والعائلة في الرياض | أمان', description: 'مقالات عملية عن رعاية المولود، واختيار المربية، والمساعدة المنزلية بالساعة أو بالأسبوع أو بالشهر في الرياض.', h1: 'نصائح للبيت والعائلة في الرياض' },
+  en: { name: 'Blog', title: 'Aman Blog: Home and Family Tips in Riyadh | Aman', description: 'Practical articles on newborn care, choosing a nanny, and hourly, weekly or monthly home help in Riyadh.', h1: 'Home and family tips in Riyadh' },
 }[lang];
 const crumbs = [
   { name: ui.nav.home[lang], url: href(lang, '') },

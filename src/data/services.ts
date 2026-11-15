@@ -11,6 +11,7 @@ import { business } from './business';
 import servicesData from '../content-data/services.json';
 import type { ServiceEntry } from '../lib/content-schema';
 import newbornCare from './service-pages/newborn-care';
+import motherCare from './service-pages/mother-care';
 import babysitting from './service-pages/babysitting';
 import elderlyCompanionship from './service-pages/elderly-companionship';
 import homeCleaning from './service-pages/home-cleaning';
@@ -21,12 +22,12 @@ import nightNanny from './service-pages/night-nanny';
 import liveInNanny from './service-pages/live-in-nanny';
 import fortyDays from './service-pages/40-days';
 
-export type ShiftId = 'day' | 'night' | 'live-in' | 'live-out' | 'hourly' | 'monthly';
+export type ShiftId = 'day' | 'night' | 'live-in' | 'live-out' | 'hourly' | 'weekly' | 'monthly';
 type Block = { title: L; text: L };
 
 export interface ServiceContent {
   slug: string;
-  // featured: Newborn & Mother Care, a wide card above the rest; core: the headline services, shown
+  // featured: Newborn Care and Mother Care, wide cards above the rest; core: the headline services, shown
   // large; more: the smaller "more help at home" row.
   tier: 'featured' | 'core' | 'more';
   icon: IconName;
@@ -37,7 +38,7 @@ export interface ServiceContent {
   name: L;
   card: L; // one line for cards
   tagline: L; // the emotional promise, shown as the lead under the keyword H1
-  /** Services offered within this page (Newborn & Mother Care), shown as their own section. */
+  /** What the service covers (Newborn Care, Mother Care), shown as their own section and on the wide card. */
   subservices?: { icon: IconName; name: L; text: L }[];
   /** a) Answer-first intro: the first paragraph sits under the H1, the rest under this H2. */
   intro: { title: L; text: Moded<L>[] };
@@ -78,9 +79,9 @@ export interface ServiceContent {
 /** A service page module: everything except the fields edited in services.json. */
 export type ServicePage = Omit<ServiceContent, 'name' | 'card' | 'tagline'>;
 
-const pages: ServicePage[] = [newbornCare, babysitting, elderlyCompanionship, homeCleaning, nightNanny, liveInNanny, errands, pickUpDropOff, petSitting];
+const pages: ServicePage[] = [newbornCare, motherCare, babysitting, elderlyCompanionship, homeCleaning, nightNanny, liveInNanny, errands, pickUpDropOff, petSitting];
 
-// Order and copy from services.json (client-approved order: Newborn & Mother Care first, then the core
+// Order and copy from services.json (client-approved order: Newborn Care and Mother Care first, then the core
 // services, then "more help at home"). Only enabled services are built, listed or linked.
 export const services: ServiceContent[] = (servicesData as ServiceEntry[])
   .filter((e) => e.enabled)

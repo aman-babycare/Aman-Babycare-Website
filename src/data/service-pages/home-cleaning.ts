@@ -77,7 +77,7 @@ const page: ServicePage = {
       ar: `أغلب زيارات التنظيف في ${day.label.ar} (${day.time.ar}). احجزوا ساعات لمرة واحدة، أو أياماً ثابتة كل أسبوع، أو مساعدة منزلية مقيمة لمن يحتاج يداً كل يوم.`,
       en: `Most cleaning visits happen during the day shift (${day.time.en}). Book hours for a one-off, set days every week, or live-in home help if you need a hand every day.`,
     },
-    options: ['hourly', 'day', 'monthly', 'live-out', 'live-in'],
+    options: ['hourly', 'day', 'weekly', 'monthly', 'live-out', 'live-in'],
   },
   steps: {
     title: { ar: 'كيف تحجزون تنظيف المنزل', en: 'How to book home cleaning' },

@@ -2,7 +2,10 @@
   {
     "id": "babysitter",
     "open": true,
-    "title": { "ar": "جليسة أطفال", "en": "Babysitter" },
+    "title": {
+      "ar": "جليسة أطفال",
+      "en": "Babysitter"
+    },
     "summary": {
       "ar": "رعاية الأطفال في بيوت العائلات بالرياض: اللعب والوجبات والنوم والمتابعة اليومية، بزيارات بالساعة أو مناوبات.",
       "en": "Looking after children in family homes across Riyadh: play, meals, naps and daily routines, by the hour or in shifts."
@@ -21,14 +24,17 @@
   {
     "id": "newborn-carer",
     "open": true,
-    "title": { "ar": "مساعدة رعاية المواليد والأم", "en": "Newborn & mother care helper" },
+    "title": {
+      "ar": "مساعدة رعاية المواليد",
+      "en": "Newborn care helper"
+    },
     "summary": {
-      "ar": "مساندة الأم في أسابيع المولود الأولى: الاستحمام والتغيير والتهدئة والنوم، ومساعدة الأم لترتاح.",
-      "en": "Supporting new mothers in the first weeks: bathing, changing, settling and sleep, so the mother can rest."
+      "ar": "العناية بالمولود في أسابيعه الأولى: الاستحمام والتغيير والتهدئة والنوم.",
+      "en": "Caring for babies in their first weeks: bathing, changing, settling and sleep."
     },
     "duties": {
-      "ar": "مساعدة الأم في الرضاعة والتجشؤ والتغيير\nاستحمام المولود والعناية بنظافته\nتهدئة المولود ومساعدته على النوم\nترتيب أغراض المولود وغسل ملابسه",
-      "en": "Help the mother with feeds, burping and changing\nBathe the baby and keep them clean\nSettle the baby and help them sleep\nKeep the baby's things organised and wash their clothes"
+      "ar": "المساعدة في الرضعات والتجشؤ والتغيير وفق تعليمات الأم\nاستحمام المولود والعناية بنظافته\nتهدئة المولود ومساعدته على النوم\nترتيب أغراض المولود وغسل ملابسه",
+      "en": "Help with feeds, burping and changing, following the mother's instructions\nBathe the baby and keep them clean\nSettle the baby and help them sleep\nKeep the baby's things organised and wash their clothes"
     },
     "requirements": {
       "ar": "خبرة في رعاية المواليد\nهدوء وصبر ولطف في التعامل\nالموافقة على التحقق من الخلفية قبل بدء العمل\nالاستعداد لمناوبات نهارية أو ليلية",
@@ -38,9 +44,34 @@
     "postedAt": "2026-11-08"
   },
   {
+    "id": "mother-carer",
+    "open": true,
+    "title": {
+      "ar": "مساعدة رعاية الأم",
+      "en": "Mother care helper"
+    },
+    "summary": {
+      "ar": "مساندة الأم بعد الولادة لترتاح: الوجبات الخفيفة، وترتيب البيت، واستقبال المهنئين.",
+      "en": "Supporting new mothers after birth so they can rest: light meals, a tidy home and welcoming guests."
+    },
+    "duties": {
+      "ar": "تهيئة وقت للأم لتنام وترتاح\nتحضير وجبات ومشروبات خفيفة\nترتيب غرفة الأم وغسل ملابسها\nالمساعدة في استقبال المهنئين ورعاية الإخوة الكبار",
+      "en": "Make time for the mother to sleep and rest\nPrepare light meals and drinks\nKeep the mother's room tidy and do her laundry\nHelp welcome visitors and look after older siblings"
+    },
+    "requirements": {
+      "ar": "خبرة في مساعدة الأمهات بعد الولادة أو في الأعمال المنزلية\nهدوء وصبر ولطف في التعامل\nالموافقة على التحقق من الخلفية قبل بدء العمل\nالاستعداد لمناوبات نهارية أو ليلية",
+      "en": "Experience helping new mothers or with housework\nCalm, patient and gentle\nAgrees to a background check before starting\nAvailable for day or night shifts"
+    },
+    "employment": "full-time",
+    "postedAt": "2026-11-15"
+  },
+  {
     "id": "housekeeper",
     "open": true,
-    "title": { "ar": "عاملة تنظيف منزلي", "en": "Housekeeper" },
+    "title": {
+      "ar": "عاملة تنظيف منزلي",
+      "en": "Housekeeper"
+    },
     "summary": {
       "ar": "تنظيف البيوت وترتيبها بزيارات منتظمة أو حسب الطلب، وفق طريقة كل عائلة.",
       "en": "Cleaning and tidying homes on regular or one-off visits, the way each family likes it."
@@ -59,7 +90,10 @@
   {
     "id": "elderly-companion",
     "open": false,
-    "title": { "ar": "مرافق/ة كبار السن", "en": "Elderly companion" },
+    "title": {
+      "ar": "مرافق/ة كبار السن",
+      "en": "Elderly companion"
+    },
     "summary": {
       "ar": "مرافقة كبار السن في بيوتهم: الحديث والمشي والتذكير بالمواعيد والمساعدة في المهام اليومية. ليست رعاية تمريضية.",
       "en": "Keeping older people company at home: conversation, walks, reminders and help with daily tasks. Not nursing care."

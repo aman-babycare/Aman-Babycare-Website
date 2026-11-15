@@ -71,7 +71,7 @@ const page: ServicePage = {
       ar: `تتم المشاوير في ${day.label.ar} (${day.time.ar}). احجزوا مشواراً واحداً، أو جدولاً أسبوعياً أو شهرياً للمدرسة والأنشطة.`,
       en: `Trips run during the day shift (${day.time.en}). Book a single trip, or a weekly or monthly timetable for school and activities.`,
     },
-    options: ['hourly', 'day', 'monthly'],
+    options: ['hourly', 'day', 'weekly', 'monthly'],
   },
   steps: {
     title: { ar: 'كيف نرتب مشاوير أطفالكم', en: 'How we set up your school runs' },

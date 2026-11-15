@@ -3,16 +3,32 @@
     "slug": "newborn-care",
     "enabled": true,
     "name": {
-      "ar": "رعاية المواليد والأمهات",
-      "en": "Newborn & Mother Care"
+      "ar": "رعاية المواليد",
+      "en": "Newborn Care"
     },
     "card": {
-      "ar": "يد حانية لمولودكم، وراحة للأم في أسابيعها الأولى",
-      "en": "Gentle hands for your newborn, and rest for mum in the early weeks"
+      "ar": "يد حانية لمولودكم: الاستحمام والرضعات والنوم",
+      "en": "Gentle hands for your newborn: baths, feeds and sleep"
     },
     "tagline": {
       "ar": "أسابيعكم الأولى مع المولود، بهدوء وطمأنينة",
       "en": "Your first weeks with baby, calmer and well rested"
+    }
+  },
+  {
+    "slug": "mother-care",
+    "enabled": true,
+    "name": {
+      "ar": "رعاية الأم",
+      "en": "Mother Care"
+    },
+    "card": {
+      "ar": "راحة للأم بعد الولادة: نوم ووجبات وبيت مرتب",
+      "en": "Rest for mum after birth: sleep, meals and a tidy home"
+    },
+    "tagline": {
+      "ar": "وقت للأم لترتاح، ونحن نهتم بالباقي",
+      "en": "Time for mum to rest, while we take care of the rest"
     }
   },
   {

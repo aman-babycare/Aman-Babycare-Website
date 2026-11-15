@@ -73,7 +73,7 @@ const page: ServicePage = {
       ar: 'بعض العائلات تحتاج ساعات قليلة في الأسبوع، وبعضها يريد صحبة ثابتة كل يوم. نرتب الفترة الصباحية أو الليلية، أو إقامة كاملة مع والديكم، وتتغير الخطة متى احتجتم.',
       en: 'Some families need a few hours a week; others want steady company every day. We arrange day or night shifts, or a caregiver who lives in with your parents, and the plan can change whenever you need.',
     },
-    options: ['day', 'night', 'live-in', 'live-out', 'hourly', 'monthly'],
+    options: ['day', 'night', 'live-in', 'live-out', 'hourly', 'weekly', 'monthly'],
   },
   steps: {
     title: { ar: 'كيف نبدأ مرافقة والديكم', en: 'How we start with your parents' },
@@ -122,10 +122,10 @@ const page: ServicePage = {
         : { ar: 'نؤكد السعر معكم على واتساب حسب الأيام والساعات.', en: 'We confirm the price with you on WhatsApp, based on the days and hours.' },
     },
     {
-      q: { ar: 'هل نحجز بالساعة أم بالشهر؟', en: 'Should we book by the hour or monthly?' },
+      q: { ar: 'هل نحجز بالساعة أم بالأسبوع أم بالشهر؟', en: 'Should we book hourly, weekly or monthly?' },
       a: {
-        ar: 'الحجز بالساعة يناسب موعداً أو يوماً تغيبون فيه. والخطة الشهرية تناسب من يريد صحبة ثابتة، لأن الشخص نفسه يعتاد على والديكم ويعتادون عليه.',
-        en: 'Hourly suits an appointment or a day you are away. A monthly plan suits steady company, because the same person gets to know your parents and they get to know them.',
+        ar: 'الحجز بالساعة يناسب موعداً أو يوماً تغيبون فيه. والخطة الأسبوعية تناسب أسبوع سفر أو انشغال، والشهرية تناسب من يريد صحبة ثابتة، لأن الشخص نفسه يعتاد على والديكم ويعتادون عليه.',
+        en: 'Hourly suits an appointment or a day you are away. A weekly plan suits a week of travel or a busy spell, and a monthly plan suits steady company, because the same person gets to know your parents and they get to know them.',
       },
     },
     {

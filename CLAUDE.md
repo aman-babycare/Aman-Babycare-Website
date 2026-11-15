@@ -29,7 +29,7 @@ Status: **live** at https://amancareservices.com and indexed by search engines (
 
 ## Services (one caregiver can combine several; sold as bundles)
 Main: Babysitting, Home Cleaning, Elderly Companionship, Dog & Cat Sitting, Pick-up & Drop-off, Errands & Personal Assistance.
-Newborn & Mother Care (one combined page at /services/newborn-care/, featured first): Newborn Care at Home, Feeding Support, Baby Bathing & Hygiene, Sleep & Comfort, Mother & Baby Support, Baby Shower & Welcoming Guests. Help and support only, never nursing or medical care. Personalized Care Plans live on the Packages page.
+Newborn Care (/services/newborn-care/) and Mother Care (/services/mother-care/) are two separate services and jobs (client request, Nov 2026), both featured first. Newborn Care: care at home, feeding support, baby bathing & hygiene, sleep & comfort. Mother Care: rest & recovery, help at feeding times, light meals, light housework, welcoming guests. Never describe them as one combined service. Help and support only, never nursing or medical care. Personalized Care Plans live on the Packages page. Durations are always "hourly, weekly or monthly" (never hourly and monthly alone).
 
 ## SEO Rules (every page)
 - One unique `<title>` (≤60 chars) and meta description (≤155 chars), in the page's language.

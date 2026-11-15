@@ -25,7 +25,7 @@ Per-service prices, hourly rates and packages (schedule, price, card name and de
 | --- | --- | --- | --- |
 | Babysitting (approved Oct 2026) | 45 | 39.29 | 33.82 |
 | Newborn care (client price list, Nov 2026) | 39 | 39 | 35 |
-| Mother & baby support (babysitting rate) | 45 | 39.29 | 33.82 |
+| Mother care (babysitting rate) | 45 | 39.29 | 33.82 |
 | Elderly companionship | 39 (Nov 2026) | 40 (set in the admin; above one-time, to confirm) | 36 |
 | Cleaning, Pets, Pick-up, Errands | Price on WhatsApp | Price on WhatsApp | Price on WhatsApp |
 

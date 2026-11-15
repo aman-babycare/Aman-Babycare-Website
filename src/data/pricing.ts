@@ -63,12 +63,12 @@ export const TIMINGS: Record<TimingId, { label: L; hoursPerDay: number | null; w
 //   approved; the 6-day weekly plan lists 39. Elderly has no weekly rate, so weekly stays on WhatsApp.
 // - Client price list (Nov 2026): newborn care 39 an hour, 1,560 a week (5 × 8 h), 7,280 a month (8 h, 4 days
 //   off = 26 days × 35), live-out up to 12 h 10,500; elderly companionship 39 an hour, live-in 11,200, live-out
-//   10,500; dog & cat sitting 1,500 for 6 days; cleaning 600 for 3 visits a week. Mother & baby support keeps
+//   10,500; dog & cat sitting 1,500 for 6 days; cleaning 600 for 3 visits a week. Mother care keeps
 //   the babysitting rates (client decision, Oct 2026).
 // - TODO(client): newborn minHours and live-in price; days per week on live-in/live-out (6 assumed); elderly
 //   weekly rate (40 is above the 39 one-time rate); hours per day for pets and cleaning; extra-person prices;
 //   home-size adjustments for cleaning; driving vs accompanying and a per-trip price for pick-up; price lists
-//   for mother & baby support, pick-up and errands.
+//   for mother care, pick-up and errands.
 
 // Validated at build time (the content-validate integration in astro.config.mjs); the browser bundle gets the data only.
 const pricing = data as Pricing;

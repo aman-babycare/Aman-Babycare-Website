@@ -20,10 +20,10 @@ export const homeFaq: { q: L; a: L }[] = [
     },
   },
   {
-    q: { ar: 'هل الأفضل الحجز بالساعة أم بالشهر؟', en: 'Is it better to book hourly or monthly?' },
+    q: { ar: 'هل الأفضل الحجز بالساعة أم بالأسبوع أم بالشهر؟', en: 'Is it better to book hourly, weekly or monthly?' },
     a: {
-      ar: 'الحجز بالساعة يناسب حاجة عابرة: مناسبة، أو مشوار، أو يوم تنظيف قبل الضيوف. والخطة الشهرية تناسب من يحتاج رعاية أو مساعدة ثابتة كل أسبوع، مع الشخص نفسه وبسعر أقل للساعة.',
-      en: 'Hourly suits a one-off: an occasion, an errand, or a clean before guests. A monthly plan suits regular care or help every week, with the same person and a lower hourly rate.',
+      ar: 'الحجز بالساعة يناسب حاجة عابرة: مناسبة، أو مشوار، أو يوم تنظيف قبل الضيوف. والخطة الأسبوعية تناسب أسبوعاً أو أسابيع قليلة، والشهرية تناسب من يحتاج رعاية أو مساعدة ثابتة كل أسبوع، مع الشخص نفسه وبسعر أقل للساعة.',
+      en: 'Hourly suits a one-off: an occasion, an errand, or a clean before guests. A weekly plan suits a week or a few weeks, and a monthly plan suits regular care or help every week, with the same person and a lower hourly rate.',
     },
   },
   {

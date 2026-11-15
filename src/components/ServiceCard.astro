@@ -11,7 +11,7 @@ interface Props {
   service: ServiceContent;
   headingLevel?: 'h2' | 'h3' | 'h4';
   /** 'compact' is the smaller, side-by-side card for the "more help at home" row; 'featured' is the
-   *  wide card with a strip of sub-services (Newborn & Mother Care). */
+   *  wide card with a strip of sub-services (Newborn Care, Mother Care). */
   size?: 'large' | 'compact' | 'featured';
 }
 const { lang, service: s, headingLevel: H = 'h3', size = 'large' } = Astro.props;

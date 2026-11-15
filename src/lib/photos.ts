@@ -17,9 +17,14 @@ const meta: Record<string, { file: string; alt: L; focus?: string }> = {
   },
   'newborn-care': {
     file: 'newborn-mother-care-riyadh-home',
-    alt: { ar: 'رعاية المولود والأم في المنزل: مقدّمة رعاية بالحجاب تحمل مولوداً نائماً بجانب أمه المرتاحة', en: 'Newborn and mother care at home: a caregiver in a hijab holding a sleeping newborn beside the resting mother' },
+    alt: { ar: 'رعاية المواليد في المنزل: مقدّمة رعاية بالحجاب تحمل مولوداً نائماً بجانب أمه المرتاحة', en: 'Newborn care at home: a caregiver in a hijab holding a sleeping newborn beside the resting mother' },
     // Near-square photo in wide frames: keep both faces and the baby in view.
     focus: '50% 45%',
+  },
+  'mother-care': {
+    file: 'mother-coffee-caregiver-plays-son',
+    alt: { ar: 'رعاية الأم في المنزل: أم ترتاح مع فنجان قهوة بينما تهتم مقدّمة الرعاية بطفلها', en: 'Mother care at home: a mother resting with a cup of coffee while a caregiver looks after her son' },
+    focus: '30% 50%',
   },
   babysitting: {
     file: 'babysitter-riyadh-home-toddler',

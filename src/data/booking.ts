@@ -96,9 +96,9 @@ const allBookingServices: BookingService[] = [
     people: (a) => n(a, 'children'),
   },
   {
-    id: 'mother-baby-support',
-    page: 'newborn-care',
-    name: { ar: 'دعم الأم والطفل', en: 'Mother & Baby Support' },
+    id: 'mother-care',
+    page: 'mother-care',
+    name: { ar: 'رعاية الأم', en: 'Mother Care' },
     icon: 'mother',
     unit: 'days',
     steps: [
@@ -108,10 +108,10 @@ const allBookingServices: BookingService[] = [
         label: { ar: 'بماذا نساعدكم؟', en: 'What help do you need?' },
         options: [
           { id: 'rest', label: { ar: 'دعم الراحة والتعافي', en: 'Rest & recovery support' } },
-          { id: 'feeding', label: { ar: 'المساعدة في الرضاعة وفق تعليمات الأم', en: "Feeding support, following the mother's instructions" } },
-          { id: 'bathing', label: { ar: 'استحمام المولود ونظافته', en: 'Baby bathing & hygiene' } },
-          { id: 'sleep', label: { ar: 'النوم والراحة', en: 'Sleep & comfort' } },
+          { id: 'feeding', label: { ar: 'المساعدة وقت الرضعات وفق تعليمات الأم', en: "Help at feeding times, following the mother's instructions" } },
+          { id: 'meals', label: { ar: 'وجبات خفيفة للأم', en: 'Light meals for mum' } },
           { id: 'housework', label: { ar: 'أعمال منزلية خفيفة', en: 'Light housework' } },
+          { id: 'guests', label: { ar: 'استقبال المهنئين', en: 'Welcoming guests' } },
         ],
       },
       { kind: 'ages', key: 'ages', countKey: null, label: { ar: 'كم عمر المولود؟', en: "How old is your baby?" }, labelN: { ar: 'كم عمر المولود؟', en: "How old is your baby?" }, options: babyAges },
