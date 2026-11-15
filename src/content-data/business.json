@@ -105,5 +105,6 @@
   "aboutCompany": {
     "ar": "",
     "en": ""
-  }
+  },
+  "showStamp": true
 }

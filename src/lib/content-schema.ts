@@ -82,6 +82,8 @@ export const businessSchema = z.object({
   headerName: z.object({ text: text.max(60), show: z.boolean() }),
   // Short company text at the top of the About page's company block; "" renders nothing.
   aboutCompany: z.object({ ar: text.max(400), en: text.max(400) }),
+  // The company stamp beside the About page heading; false hides it. Absent (older files) = shown.
+  showStamp: z.boolean().default(true),
 });
 
 // ── Services ─────────────────────────────────────────────────────────────────────────────────────────────
