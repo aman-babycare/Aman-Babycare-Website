@@ -72,6 +72,35 @@
             "ar": "رعاية نهارية طويلة دون مبيت",
             "en": "Long days of care, home by night"
           }
+        },
+        {
+          "id": "test-package-delete-me",
+          "tier": "monthly",
+          "group": "newborn",
+          "timing": "stay-in",
+          "hoursPerDay": 12,
+          "daysPerWeek": 6,
+          "weeks": 4,
+          "price": 11000,
+          "name": {
+            "ar": "باقة تجربة (احذفوها)",
+            "en": "Test package delete me"
+          },
+          "detail": {
+            "ar": "للتجربة فقط",
+            "en": "For testing only"
+          },
+          "active": false,
+          "features": [
+            {
+              "ar": "ميزة أولى",
+              "en": "First feature"
+            },
+            {
+              "ar": "ميزة ثانية",
+              "en": "Second feature"
+            }
+          ]
         }
       ]
     },
