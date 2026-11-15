@@ -22,6 +22,20 @@ describe('content-data', () => {
     bad.services.babysitting.packages.push(bad.services.babysitting.packages[0]);
     expect(() => parseContent(pricingSchema, bad, 'pricing.json')).toThrow(/Duplicate package id/);
   });
+
+  it('takes up to 6 features, each in both languages', () => {
+    const ok = structuredClone(pricing) as Record<string, any>;
+    const f = { ar: 'ميزة', en: 'Feature' };
+    ok.services.babysitting.packages[0].features = Array(6).fill(f);
+    ok.services.babysitting.packages[0].active = false;
+    expect(() => parseContent(pricingSchema, ok, 'pricing.json')).not.toThrow();
+    const tooMany = structuredClone(ok);
+    tooMany.services.babysitting.packages[0].features = Array(7).fill(f);
+    expect(() => parseContent(pricingSchema, tooMany, 'pricing.json')).toThrow(/features/);
+    const halfEmpty = structuredClone(ok);
+    halfEmpty.services.babysitting.packages[0].features = [{ ar: 'ميزة', en: '' }];
+    expect(() => parseContent(pricingSchema, halfEmpty, 'pricing.json')).toThrow(/features\.0\.en/);
+  });
 });
 
 describe('offers', () => {

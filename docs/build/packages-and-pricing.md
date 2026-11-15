@@ -4,6 +4,7 @@ Per-service prices, hourly rates and packages (schedule, price, card name and de
 
 - The structure is modelled on the client-supplied Valeo Riyadh babysitting page (https://feelvaleo.com/en-sa/riyadh/babysitting).
 - **Prices are live** (Nov 2026, client confirmed with the site going live): `draft: false` on every service in `pricing.json`. A service can be set back to draft from the admin; while a service is draft, its package cards and any booking total that includes it say "Draft prices". `showPrice: false` on a service hides all its figures (cards, booking card, Service schema offers).
+- Packages are added, edited, hidden (`active: false`: off the cards, the booking card and the Service schema) and deleted from the admin's Packages page. Optional `features` (up to six, Arabic + English) show as ticks under the card's detail.
 - Elderly plans are named **companionship**, never "care" or "nursing".
 - Groups: On-demand (hourly, weekly, pet sitting, cleaning), Newborn care (weekly, monthly, live-out), Monthly babysitting (5/6/7 days, stay-in), Monthly elderly companionship (5/6/7 days, live-in, live-out), Welcome offer.
 - Currency: «ر.س» in Arabic, "SAR" in English. Prices use Western digits in both languages with thousands separators ("SAR 5,143" / "5,143 ر.س").

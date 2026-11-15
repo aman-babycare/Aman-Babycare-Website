@@ -108,6 +108,10 @@ export const packageSchema = z.object({
   perHour: sar.optional(), // "From X SAR per hour" on the card
   name: L,
   detail: L,
+  // Off: kept in the admin but left off the website (cards, booking card, Service schema). Absent = on.
+  active: z.boolean().optional(),
+  // Ticks under the detail on the package card, each in both languages.
+  features: z.array(z.object({ ar: text.min(1).max(80), en: text.min(1).max(80) })).max(6).optional(),
 });
 
 export const servicePricingSchema = z.object({

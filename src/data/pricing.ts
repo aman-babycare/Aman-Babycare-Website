@@ -74,10 +74,11 @@ export const TIMINGS: Record<TimingId, { label: L; hoursPerDay: number | null; w
 const pricing = data as Pricing;
 
 // The engine's shape: packages grouped by tier, the rate as hourlyRateOverride. A service with showPrice off
-// gets no packages and no rate, so every line for it reads "Price on WhatsApp".
+// gets no packages and no rate, so every line for it reads "Price on WhatsApp". A package switched off in the
+// admin (active: false) is not a reference package either.
 const toEngine = (s: ServicePricingEntry): ServicePricing => {
   const tiers: ServicePricing['tiers'] = {};
-  for (const p of s.showPrice ? s.packages : []) {
+  for (const p of s.showPrice ? s.packages.filter((k) => k.active !== false) : []) {
     (tiers[p.tier] ??= []).push({
       id: p.id,
       price: p.price,

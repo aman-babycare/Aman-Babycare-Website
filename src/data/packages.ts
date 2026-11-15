@@ -16,6 +16,7 @@ export interface Package {
   price: number | null; // SAR; null = ask on WhatsApp
   was?: number;
   perHour?: number;
+  features: L[]; // ticks on the card
   showPrice: boolean; // the service's "show price" switch
   draft: boolean; // the service's "draft price" switch
 }
@@ -60,14 +61,15 @@ export const groups: { id: PackageGroup; name: L; tab: L; intro: L }[] = [
   },
 ];
 
-// A service switched off in services.json has no page, so its packages are not listed either.
+// A service switched off in services.json has no page, so its packages are not listed either. A package
+// switched off in the admin (active: false) is left out too.
 const switchedOff = new Set(servicesData.filter((s) => !s.enabled).map((s) => s.slug));
 
 // Packages page order: tab by tab, then service order within a tab.
 export const packages: Package[] = groups.flatMap((g) =>
   Object.entries(PRICING_DATA).flatMap(([service, s]) =>
     (switchedOff.has(service) ? [] : s.packages)
-      .filter((p) => p.group === g.id)
+      .filter((p) => p.group === g.id && p.active !== false) // switched off in the admin: not listed
       .map((p) => ({
         id: p.id,
         group: p.group,
@@ -77,6 +79,7 @@ export const packages: Package[] = groups.flatMap((g) =>
         price: p.price,
         ...(p.was != null && { was: p.was }),
         ...(p.perHour != null && { perHour: p.perHour }),
+        features: p.features ?? [],
         showPrice: s.showPrice,
         draft: s.draft,
       })),
