@@ -105,7 +105,7 @@ const page: ServicePage = {
   },
   packages: {
     title: { ar: 'أسعار تنظيف المنزل بالساعة', en: 'Hourly home cleaning prices' },
-    text: { ar: 'يُسعّر التنظيف حسب حجم البيت وعدد الساعات، ونؤكد السعر على واتساب قبل الزيارة.', en: 'Cleaning is priced by the size of your home and the hours needed; we confirm the price on WhatsApp before the visit.' },
+    text: { ar: 'ثلاث زيارات أسبوعياً بسعر ثابت، أو زيارة واحدة تُسعّر حسب حجم البيت، ونؤكد السعر على واتساب قبل الزيارة.', en: 'Three visits a week at a set price, or a single visit priced by the size of your home; we confirm the price on WhatsApp before the visit.' },
   },
   riyadh: {
     title: { ar: 'تنظيف المنازل في كل أحياء الرياض', en: 'Home cleaning anywhere in Riyadh' },

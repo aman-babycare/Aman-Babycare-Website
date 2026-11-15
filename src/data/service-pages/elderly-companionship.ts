@@ -101,7 +101,7 @@ const page: ServicePage = {
   },
   packages: {
     title: { ar: 'باقات مرافقة كبار السن', en: 'Elderly companionship packages' },
-    text: { ar: 'يوم واحد عند الحاجة، أو خطط شهرية لخمسة أو ستة أو سبعة أيام في الأسبوع.', en: 'A single day when you need it, or monthly plans for five, six or seven days a week.' },
+    text: { ar: 'يوم واحد عند الحاجة، أو خطط شهرية لخمسة أو ستة أو سبعة أيام في الأسبوع، بإقامة أو بدونها.', en: 'A single day when you need it, monthly plans for five, six or seven days a week, or live-in and live-out care.' },
   },
   riyadh: {
     title: { ar: 'مرافقة كبار السن في الرياض كلها', en: 'Companionship for parents across Riyadh' },

@@ -5,9 +5,9 @@
       "showPrice": true,
       "draft": false,
       "hourlyRate": {
-        "oneTime": 45,
-        "weekly": 39.29,
-        "monthly": 33.82
+        "oneTime": 39,
+        "weekly": 39,
+        "monthly": 35
       },
       "minHours": 8,
       "extraPersonPercent": null,
@@ -16,7 +16,64 @@
         "24-hours": 0,
         "stay-in": 0
       },
-      "packages": []
+      "packages": [
+        {
+          "id": "newborn-weekly-5",
+          "tier": "weekly",
+          "group": "newborn",
+          "timing": "full-day",
+          "hoursPerDay": 8,
+          "daysPerWeek": 5,
+          "weeks": 1,
+          "price": 1560,
+          "perHour": 39,
+          "name": {
+            "ar": "أسبوعية: 5 أيام",
+            "en": "Weekly: 5 days"
+          },
+          "detail": {
+            "ar": "8 ساعات يومياً لخمسة أيام",
+            "en": "8 hours a day for five days"
+          }
+        },
+        {
+          "id": "newborn-monthly",
+          "tier": "monthly",
+          "group": "newborn",
+          "timing": "full-day",
+          "hoursPerDay": 8,
+          "daysPerWeek": 6,
+          "weeks": 4,
+          "price": 7280,
+          "perHour": 35,
+          "name": {
+            "ar": "شهرية: 8 ساعات يومياً",
+            "en": "Monthly: 8 hours a day"
+          },
+          "detail": {
+            "ar": "شهر كامل مع 4 أيام إجازة",
+            "en": "A full month with 4 days off"
+          }
+        },
+        {
+          "id": "newborn-live-out",
+          "tier": "monthly",
+          "group": "newborn",
+          "timing": "day-shift",
+          "hoursPerDay": 12,
+          "daysPerWeek": 6,
+          "weeks": 4,
+          "price": 10500,
+          "name": {
+            "ar": "شهرية بدون إقامة: حتى 12 ساعة",
+            "en": "Monthly live-out: up to 12 hours"
+          },
+          "detail": {
+            "ar": "رعاية نهارية طويلة دون مبيت",
+            "en": "Long days of care, home by night"
+          }
+        }
+      ]
     },
     "babysitting": {
       "unit": "hour",
@@ -200,7 +257,7 @@
       "showPrice": true,
       "draft": false,
       "hourlyRate": {
-        "oneTime": 45,
+        "oneTime": 39,
         "weekly": 40,
         "monthly": 36
       },
@@ -220,8 +277,8 @@
           "hoursPerDay": 8,
           "daysPerWeek": 1,
           "weeks": 1,
-          "price": 400,
-          "perHour": 50,
+          "price": 312,
+          "perHour": 39,
           "name": {
             "ar": "مرافقة كبار السن ليوم",
             "en": "Daily elderly companionship"
@@ -288,6 +345,42 @@
             "ar": "لا يمر يوم دون صحبة",
             "en": "Never a day without company"
           }
+        },
+        {
+          "id": "elderly-live-in",
+          "tier": "monthly",
+          "group": "elderly",
+          "timing": "stay-in",
+          "hoursPerDay": 12,
+          "daysPerWeek": 6,
+          "weeks": 4,
+          "price": 11200,
+          "name": {
+            "ar": "مرافقة مقيمة",
+            "en": "Live-in companionship"
+          },
+          "detail": {
+            "ar": "مرافق/ة يقيم في البيت مع والديكم",
+            "en": "A companion who lives in with your parents"
+          }
+        },
+        {
+          "id": "elderly-live-out",
+          "tier": "monthly",
+          "group": "elderly",
+          "timing": "day-shift",
+          "hoursPerDay": 12,
+          "daysPerWeek": 6,
+          "weeks": 4,
+          "price": 10500,
+          "name": {
+            "ar": "مرافقة بدون إقامة: حتى 12 ساعة",
+            "en": "Live-out: up to 12 hours a day"
+          },
+          "detail": {
+            "ar": "صحبة نهارية طويلة دون مبيت",
+            "en": "Long days of company, home by night"
+          }
         }
       ]
     },
@@ -299,7 +392,25 @@
       "extraPersonPercent": null,
       "timingPercent": null,
       "homeSizePercent": null,
-      "packages": []
+      "packages": [
+        {
+          "id": "cleaning-3-visits",
+          "tier": "weekly",
+          "group": "on-demand",
+          "hoursPerDay": null,
+          "daysPerWeek": 3,
+          "weeks": 1,
+          "price": 600,
+          "name": {
+            "ar": "تنظيف المنزل: 3 زيارات أسبوعياً",
+            "en": "Home cleaning: 3 visits a week"
+          },
+          "detail": {
+            "ar": "بيت مرتب طوال الأسبوع",
+            "en": "A tidy home all week long"
+          }
+        }
+      ]
     },
     "pet-sitting": {
       "unit": "hour",
@@ -308,7 +419,25 @@
       "minHours": null,
       "extraPersonPercent": null,
       "timingPercent": null,
-      "packages": []
+      "packages": [
+        {
+          "id": "pets-weekly-6",
+          "tier": "weekly",
+          "group": "on-demand",
+          "hoursPerDay": null,
+          "daysPerWeek": 6,
+          "weeks": 1,
+          "price": 1500,
+          "name": {
+            "ar": "رعاية القطط والكلاب: 6 أيام",
+            "en": "Cat & dog sitting: 6 days"
+          },
+          "detail": {
+            "ar": "رعاية يومية لحيوانكم الأليف في بيته",
+            "en": "Daily care for your pet, at home"
+          }
+        }
+      ]
     },
     "pick-up-drop-off": {
       "unit": "trip",
