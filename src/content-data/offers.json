@@ -10,7 +10,8 @@
       "ar": "نوفمبر 2026",
       "en": "November 2026"
     },
-    "startDate": "2026-11-16",
+    "hijri": true,
+    "startDate": "2026-11-01",
     "endsAt": "2028-01-31T23:59:00+03:00",
     "featured": true,
     "title": {
