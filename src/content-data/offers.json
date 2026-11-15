@@ -53,13 +53,7 @@
       "home-cleaning"
     ],
     "discount": "[DISCOUNT]",
-    "discountLicence": null,
-    "prices": [
-      {
-        "package": "monthly-6",
-        "price": 5400
-      }
-    ]
+    "discountLicence": null
   },
   {
     "id": "founding-day",
