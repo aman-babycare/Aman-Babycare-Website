@@ -93,7 +93,7 @@ export const servicesSchema = z
 // ── Packages & prices ────────────────────────────────────────────────────────────────────────────────────
 export const tierSchema = z.enum(['oneTime', 'weekly', 'monthly']);
 export const timingSchema = z.enum(['hourly', 'half-day', 'full-day', 'day-shift', 'night', '24-hours', 'stay-in']);
-export const packageGroupSchema = z.enum(['on-demand', 'monthly', 'elderly']);
+export const packageGroupSchema = z.enum(['on-demand', 'newborn', 'monthly', 'elderly']);
 
 export const packageSchema = z.object({
   id: z.string().regex(/^[a-z0-9-]+$/),

@@ -10,7 +10,7 @@ import Visual from '../Visual.astro';
 import { hasPhoto } from '../../lib/photos';
 import CtaBand from '../CtaBand.astro';
 import { personalizedCarePlans, whatsappUrl, type Locale } from '../../config/site';
-import { groups, packagesIn, welcomeOffer } from '../../data/packages';
+import { groups, packagesFor, packagesIn, welcomeOffer } from '../../data/packages';
 import { offers } from '../../data/offers';
 import { services } from '../../data/services';
 import { href, ui } from '../../i18n/ui';
@@ -26,7 +26,8 @@ const crumbs = [
   { name: ui.nav.home[lang], url: href(lang, '') },
   { name: ui.nav.packages[lang], url: href(lang, 'packages') },
 ];
-const unpriced = services.filter((s) => !['babysitting', 'elderly-companionship'].includes(s.slug));
+// Services with no package of their own yet (the admin adds them to pricing.json).
+const unpriced = services.filter((s) => packagesFor(s.slug).length === 0);
 // REVIEW-AR
 const t = {
   ar: {
@@ -38,7 +39,7 @@ const t = {
     lead: 'ساعات قليلة أو خطة شهرية ثابتة. كلما طالت الخطة، قلّ سعر الساعة.',
     confirmNote: 'نؤكد معكم تفاصيل الحجز والإجمالي على واتساب قبل البدء.',
     otherTitle: 'خدمات بسعر حسب الطلب',
-    otherText: 'التنظيف، رعاية الحيوانات، التوصيل، والمشتريات تُسعّر حسب حجم العمل.',
+    otherText: 'تُسعّر هذه الخدمات حسب حجم العمل، ونؤكد السعر معكم على واتساب.',
     planTitle: personalizedCarePlans.name.ar,
     planText: 'لعائلات تحتاج مزيجاً خاصاً من الخدمات والأوقات. نصمم الخطة معكم.',
     seasonTitle: 'عروض المواسم',
@@ -51,7 +52,7 @@ const t = {
     lead: 'A few hours or a steady monthly plan. The longer the plan, the lower the hourly rate.',
     confirmNote: 'We confirm the booking details and total with you on WhatsApp before you start.',
     otherTitle: 'Priced on request',
-    otherText: 'Cleaning, pet sitting, rides and errands are priced by the size of the job.',
+    otherText: 'These are priced by the size of the job; we confirm the price with you on WhatsApp.',
     planTitle: personalizedCarePlans.name.en,
     planText: 'For families who need their own mix of services and times. We design the plan with you.',
     seasonTitle: 'Seasonal offers',

@@ -5,7 +5,7 @@ import type { L } from '../i18n/ui';
 import { PRICING_DATA } from './pricing';
 import servicesData from '../content-data/services.json';
 
-export type PackageGroup = 'on-demand' | 'monthly' | 'elderly';
+export type PackageGroup = 'on-demand' | 'newborn' | 'monthly' | 'elderly';
 
 export interface Package {
   id: string;
@@ -32,9 +32,18 @@ export const groups: { id: PackageGroup; name: L; tab: L; intro: L }[] = [
     },
   },
   {
+    id: 'newborn',
+    name: { ar: 'رعاية المولود', en: 'Newborn care' },
+    tab: { ar: 'المولود', en: 'Newborn' },
+    intro: {
+      ar: 'أسبوع أو شهر مع الشخص نفسه من فريق الرعاية، في الأسابيع الأولى مع مولودكم.',
+      en: 'A week or a month with the same caregiver, through the first weeks with your baby.',
+    },
+  },
+  {
     id: 'monthly',
     name: { ar: 'رعاية الأطفال الشهرية', en: 'Monthly babysitting' },
-    tab: { ar: 'خطط الأطفال', en: 'Babysitting plans' },
+    tab: { ar: 'الأطفال', en: 'Children' },
     intro: {
       ar: 'الشخص نفسه من فريق الرعاية كل أسبوع، ليعتاد عليه أطفالكم وتطمئنوا.',
       en: 'The same caregiver every week, so your children settle in and you can relax.',
@@ -43,7 +52,7 @@ export const groups: { id: PackageGroup; name: L; tab: L; intro: L }[] = [
   {
     id: 'elderly',
     name: { ar: 'مرافقة كبار السن الشهرية', en: 'Monthly elderly companionship' },
-    tab: { ar: 'خطط كبار السن', en: 'Elderly plans' },
+    tab: { ar: 'كبار السن', en: 'Elderly' },
     intro: {
       ar: 'صحبة يومية ثابتة لوالديكم، بإيقاع يناسبهم.',
       en: 'Steady daily company for your parents, at a pace that suits them.',
