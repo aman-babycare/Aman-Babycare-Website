@@ -1,19 +1,19 @@
 {
   "brand": {
-    "en": "Aman Babycare & Home Services",
-    "ar": "أمان لرعاية المواليد والخدمات المنزلية"
+    "ar": "أمان لرعاية المواليد والخدمات المنزلية",
+    "en": "Aman Babycare & Home Services"
   },
   "shortName": {
-    "en": "Aman",
-    "ar": "أمان"
+    "ar": "أمان",
+    "en": "Aman"
   },
   "shortBrand": {
-    "en": "Aman Babycare",
-    "ar": "أمان لرعاية المواليد"
+    "ar": "أمان لرعاية المواليد",
+    "en": "Aman Babycare"
   },
   "tagline": {
-    "en": "Your Comfort, Our Priority",
-    "ar": "راحتكم أولويتنا"
+    "ar": "راحتكم أولويتنا",
+    "en": "Your Comfort, Our Priority"
   },
   "legalName": {
     "ar": "شركة هوسول ألمستقبل",
@@ -25,8 +25,8 @@
   "email": "[EMAIL]",
   "privacyEmail": "[PRIVACY_EMAIL]",
   "address": {
-    "en": "",
-    "ar": ""
+    "ar": "",
+    "en": ""
   },
   "hours": {
     "opens": "08:00",
@@ -41,12 +41,12 @@
     }
   },
   "areaServed": {
-    "en": "Riyadh",
-    "ar": "الرياض"
+    "ar": "الرياض",
+    "en": "Riyadh"
   },
   "country": {
-    "en": "Saudi Arabia",
-    "ar": "المملكة العربية السعودية"
+    "ar": "المملكة العربية السعودية",
+    "en": "Saudi Arabia"
   },
   "countryCode": "SA",
   "languages": {
@@ -79,12 +79,12 @@
   "liveOut": true,
   "caregiverGenderChoice": true,
   "backgroundChecked": {
-    "en": "Background-checked staff",
-    "ar": "فريق عمل خضع للتحقق من الخلفية"
+    "ar": "فريق عمل خضع للتحقق من الخلفية",
+    "en": "Background-checked staff"
   },
   "certified": {
-    "en": "Certified caregivers and nannies",
-    "ar": "مقدّمو رعاية ومربيات معتمدون"
+    "ar": "مقدّمو رعاية ومربيات معتمدون",
+    "en": "Certified caregivers and nannies"
   },
   "domesticWorkerKeywords": false,
   "caregiverNationalityChoice": null,
@@ -106,5 +106,5 @@
     "ar": "",
     "en": ""
   },
-  "showStamp": true
+  "showStamp": false
 }
