@@ -12,6 +12,7 @@
     },
     "startDate": "2027-01-01",
     "endsAt": "2028-01-31T23:59:00+03:00",
+    "featured": true,
     "title": {
       "ar": "أفضل أسعار السنة على الخطط الشهرية",
       "en": "Our best prices of the year on monthly plans"
