@@ -20,6 +20,7 @@ const testService: ServicePricing = {
 const cfg = (over: Partial<PricingConfig> = {}): PricingConfig => ({
   ...defaultConfig,
   services: { ...defaultConfig.services, test: testService },
+  offerPrices: {}, // rules tests never depend on a running offer
   ...over,
 });
 const sel = (s: Partial<Selection>): Selection => ({ service: 'test', tier: 'oneTime', timing: 'hourly', hours: 4, people: 1, days: 1, ...s });
@@ -47,7 +48,7 @@ describe('reference packages', () => {
               weeks: pkg.weeks,
               months: 1,
             },
-            defaultConfig,
+            { ...defaultConfig, offerPrices: {} }, // listed prices, whatever offer is running
           );
           expect(line.priced, pkg.id).toBe(true);
           expect(line.lineTotal, pkg.id).toBe(sar(pkg.price));
@@ -150,6 +151,46 @@ describe('rates', () => {
     const c = cfg({ services: { test: { ...testService, hourlyRateOverride: { oneTime: 30 } } } });
     const line = priceLine(sel({ hours: 5 }), c);
     expect(line.lineTotal).toBe(sar(150));
+  });
+});
+
+describe('offers in the booking card', () => {
+  const offer = { ar: 'الجمعة البيضاء', en: 'White Friday' };
+  // t-once is 4 hours for 100 (25/hr); its offer price 80 is 20% off.
+  const c = cfg({ offerPrices: { 't-once': { price: 80, offer }, 't-month': { price: 3000, offer } } });
+
+  it('a booking equal to the package is charged the offer price, with the regular price kept', () => {
+    const line = priceLine(sel({ hours: 4 }), c);
+    expect(line.lineTotal).toBe(sar(80));
+    expect(line.offer).toEqual({ regularTotal: sar(100), name: offer, percent: 20 });
+    expect(line.basisText.en).toBe('Offer price');
+  });
+
+  it('another booking of the same tier and shift gets the same percentage off', () => {
+    const line = priceLine(sel({ hours: 6 }), c); // 6 × 25 = 150 → 120
+    expect(line.lineTotal).toBe(sar(120));
+    expect(line.offer?.regularTotal).toBe(sar(150));
+    expect(line.rate).toBe(2000); // 20 SAR an hour instead of 25
+    expect(line.basisText.en).toContain('SAR 20/hr (instead of SAR 25)');
+  });
+
+  it('no offer on another shift, nor an offer price that is not cheaper', () => {
+    expect(priceLine(sel({ tier: 'weekly', timing: 'day-shift', daysPerWeek: 5, weeks: 1, hours: undefined }), c).offer).toBeNull();
+    // t-month's offer price equals its price: not an offer.
+    expect(priceLine(sel({ tier: 'monthly', timing: 'day-shift', daysPerWeek: 5, months: 1, hours: undefined }), { ...c, timings: { ...TIMINGS, 'day-shift': { ...TIMINGS['day-shift'], hoursPerDay: 8 } } }).offer).toBeNull();
+  });
+
+  it('the total adds up the savings', () => {
+    const lines = [priceLine(sel({ hours: 4 }), c), priceLine(sel({ hours: 6 }), c)];
+    const tot = total(lines, c);
+    expect(tot.total).toBe(sar(200));
+    expect(tot.saving).toBe(sar(50));
+  });
+
+  it('without offers nothing changes', () => {
+    const line = priceLine(sel({ hours: 4 }), cfg({ offerPrices: {} }));
+    expect(line.lineTotal).toBe(sar(100));
+    expect(line.offer).toBeNull();
   });
 });
 

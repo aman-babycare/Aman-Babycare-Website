@@ -32,14 +32,24 @@ export const upcomingOffers = offers.filter((o) => o !== featuredOffer);
 // Offer prices count only while the offer runs and has a discount licence (Ministry of Commerce).
 const licensedNow = (list: OfferEntry[], now: number) => list.filter((o) => isLive(o as Offer, now) && !!o.discountLicence);
 
+export type OfferPrices = Record<string, { price: number; offer: OfferEntry['event'] }>;
+
+/** Live offer prices by package id: the lowest from any licensed, running offer, with that offer's name. */
+export function offerPricesIn(list: OfferEntry[], now = Date.now()): OfferPrices {
+  const out: OfferPrices = {};
+  for (const o of licensedNow(list, now)) {
+    for (const p of o.prices ?? []) if (!out[p.package] || p.price < out[p.package].price) out[p.package] = { price: p.price, offer: o.event };
+  }
+  return out;
+}
+
 /** The offer price for a package: the lowest licensed, running offer price below its regular price, or null. */
 export function offerPriceIn(list: OfferEntry[], packageId: string, regular: number, now = Date.now()): number | null {
-  const prices = licensedNow(list, now)
-    .flatMap((o) => o.prices ?? [])
-    .filter((p) => p.package === packageId && p.price < regular)
-    .map((p) => p.price);
-  return prices.length ? Math.min(...prices) : null;
+  const o = offerPricesIn(list, now)[packageId];
+  return o && o.price < regular ? o.price : null;
 }
+/** Live offer prices for the booking card, read when the page runs (so an offer ends on time). */
+export const liveOfferPrices = (now = Date.now()) => offerPricesIn(all, now);
 export const offerPrice = (packageId: string, regular: number, now = Date.now()) => offerPriceIn(all, packageId, regular, now);
 
 /** Whether any licensed offer with prices is running (cards keep a badge row so prices line up). */

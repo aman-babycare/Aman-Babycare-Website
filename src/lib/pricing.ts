@@ -13,6 +13,7 @@ import {
   type Tier,
   type TimingId,
 } from '../data/pricing';
+import { liveOfferPrices, type OfferPrices } from '../data/offers';
 
 type L = { ar: string; en: string };
 type Lang = 'ar' | 'en';
@@ -24,6 +25,9 @@ export interface PricingConfig {
   vatRate: number | null;
   multiRule: 'sum' | 'highestPlusAddon';
   addonPercent: number | null;
+  // Offer prices by package id (running offers with a discount licence). A booking equal to that package is
+  // charged the offer price; any other booking of the same service, tier and shift gets the same percentage off.
+  offerPrices: OfferPrices;
 }
 
 export const defaultConfig: PricingConfig = {
@@ -33,6 +37,7 @@ export const defaultConfig: PricingConfig = {
   vatRate: VAT_RATE,
   multiRule: MULTI_SERVICE_RULE,
   addonPercent: ADDON_PERCENT,
+  offerPrices: liveOfferPrices(),
 };
 
 /** What the customer chose for one service. */
@@ -68,6 +73,8 @@ export interface Line {
   lineTotal: number | null; // halalas, whole SAR
   missing: string[]; // why the line is unpriced
   basisText: L;
+  // Under a running offer: what the line would cost at regular prices, the offer's name and the percentage off.
+  offer: { regularTotal: number; name: L; percent: number } | null;
 }
 
 export interface Total {
@@ -76,6 +83,7 @@ export interface Total {
   total: number;
   pricedCount: number;
   unpricedCount: number;
+  saving: number; // halalas saved by offers across the priced lines
 }
 
 // ---------- Money ----------
@@ -207,6 +215,27 @@ function exactMatch(sel: Selection, s: ServicePricing, hoursPerDay: number, cfg:
   return null;
 }
 
+// ---------- Offers ----------
+/** The offer on a listed package, when its price is below the package's. */
+function packageOffer(pkg: RefPackage, cfg: PricingConfig) {
+  const o = cfg.offerPrices[pkg.id];
+  return o && o.price < pkg.price ? { pkg, price: o.price, name: o.offer } : null;
+}
+
+/** For a booking that isn't a listed package: the deepest offer on a package of the same service, tier and
+ *  shift, whose percentage then applies to the booking. */
+function similarOffer(sel: Selection, s: ServicePricing, cfg: PricingConfig) {
+  let best: ReturnType<typeof packageOffer> = null;
+  for (const pkg of s.tiers[sel.tier] ?? []) {
+    if (s.unit === 'hour' && pkg.timing !== (sel.timing ?? undefined)) continue;
+    const o = packageOffer(pkg, cfg);
+    if (o && (!best || o.price / o.pkg.price < best.price / best.pkg.price)) best = o;
+  }
+  return best;
+}
+
+const percentOff = (offer: number, regular: number) => Math.round((1 - offer / regular) * 100);
+
 // ---------- Lines ----------
 const TIMING_LABEL = (t: TimingId, cfg: PricingConfig): L => cfg.timings[t].label;
 
@@ -231,6 +260,7 @@ export function priceLine(sel: Selection, cfg: PricingConfig = defaultConfig): L
     lineTotal: null,
     missing,
     basisText: { ar: 'السعر عبر واتساب', en: 'Price on WhatsApp' },
+    offer: null,
   });
   if (!s) return unpriced([`service:${sel.service}`]);
 
@@ -240,8 +270,9 @@ export function priceLine(sel: Selection, cfg: PricingConfig = defaultConfig): L
   // 1. Exact match with a listed package.
   const exact = s.unit === 'hour' && !minApplied ? exactMatch(sel, s, units, cfg) : null;
   if (exact) {
-    const total = exact.pkg.price * exact.periods * 100;
+    const regular = exact.pkg.price * exact.periods * 100;
     const times = exact.periods > 1 ? ` × ${exact.periods}` : '';
+    const o = packageOffer(exact.pkg, cfg);
     return {
       service: sel.service,
       priced: true,
@@ -251,9 +282,10 @@ export function priceLine(sel: Selection, cfg: PricingConfig = defaultConfig): L
       days,
       periods: exact.periods,
       adjustments: [],
-      lineTotal: total,
+      lineTotal: o ? o.price * exact.periods * 100 : regular,
       missing: [],
-      basisText: { ar: `سعر الباقة${times}`, en: `Package price${times}` },
+      basisText: o ? { ar: `سعر العرض${times}`, en: `Offer price${times}` } : { ar: `سعر الباقة${times}`, en: `Package price${times}` },
+      offer: o ? { regularTotal: regular, name: o.name, percent: percentOff(o.price, exact.pkg.price) } : null,
     };
   }
 
@@ -297,11 +329,18 @@ export function priceLine(sel: Selection, cfg: PricingConfig = defaultConfig): L
   }
   if (missing.length) return unpriced(missing, units);
 
-  const rate = Number((b.rate.num + b.rate.den / 2n) / b.rate.den);
-  const lineTotal = toWholeSar(num, den);
+  const regularRate = Number((b.rate.num + b.rate.den / 2n) / b.rate.den);
+  const regularTotal = toWholeSar(num, den);
+  // A running offer on a package of the same service, tier and shift: the same percentage off this booking.
+  const o = similarOffer(sel, s, cfg);
+  const scale = (n: bigint, d: bigint) => (o ? [n * BigInt(o.price), d * BigInt(o.pkg.price)] : [n, d]) as [bigint, bigint];
+  const [rn, rd] = scale(b.rate.num, b.rate.den);
+  const rate = Number((rn + rd / 2n) / rd);
+  const lineTotal = o ? toWholeSar(...scale(num, den)) : regularTotal;
   const perUnit = s.unit === 'hour' ? { ar: 'للساعة', en: '/hr' } : s.unit === 'visit' ? { ar: 'للزيارة', en: '/visit' } : { ar: 'للمشوار', en: '/trip' };
   const adj = (lang: Lang) => (adjustments.length ? ` · ${adjustments.map((a) => a.label[lang]).join(' · ')}` : '');
   const perDay = s.unit === 'hour' ? { ar: ` × ${arHours(units)} يومياً`, en: ` × ${units} hrs/day` } : { ar: ` × ${unitText(s.unit, units, 'ar')} يومياً`, en: ` × ${unitText(s.unit, units, 'en')}/day` };
+  const instead = o ? { ar: ` (بدلاً من ${formatRate(regularRate, 'ar')})`, en: ` (instead of ${formatRate(regularRate, 'en')})` } : { ar: '', en: '' };
   return {
     service: sel.service,
     priced: true,
@@ -314,9 +353,10 @@ export function priceLine(sel: Selection, cfg: PricingConfig = defaultConfig): L
     lineTotal,
     missing: [],
     basisText: {
-      ar: `${formatRate(rate, 'ar')} ${perUnit.ar}${perDay.ar} × ${arDays(days)}${adj('ar')}`,
-      en: `${formatRate(rate, 'en')}${perUnit.en}${perDay.en} × ${days} day${days === 1 ? '' : 's'}${adj('en')}`,
+      ar: `${formatRate(rate, 'ar')} ${perUnit.ar}${instead.ar}${perDay.ar} × ${arDays(days)}${adj('ar')}`,
+      en: `${formatRate(rate, 'en')}${perUnit.en}${instead.en}${perDay.en} × ${days} day${days === 1 ? '' : 's'}${adj('en')}`,
     },
+    offer: o && lineTotal < regularTotal ? { regularTotal, name: o.name, percent: percentOff(o.price, o.pkg.price) } : null,
   };
 }
 
@@ -339,5 +379,7 @@ export function total(lines: Line[], cfg: PricingConfig = defaultConfig): Total 
     subtotal = priced.reduce((a, b) => a + b, 0);
   }
   const vat = cfg.vatRate == null ? null : toWholeSar(BigInt(subtotal) * BigInt(Math.round(cfg.vatRate * 10000)), 10000n);
-  return { subtotal, vat, total: subtotal + (vat ?? 0), pricedCount: lines.length - unpricedCount, unpricedCount };
+  // Offer savings, before VAT: what the priced lines would cost at regular prices minus what they cost now.
+  const saving = lines.filter((l) => l.priced && l.offer && l.lineTotal != null).reduce((a, l) => a + (l.offer!.regularTotal - l.lineTotal!), 0);
+  return { subtotal, vat, total: subtotal + (vat ?? 0), pricedCount: lines.length - unpricedCount, unpricedCount, saving };
 }
