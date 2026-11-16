@@ -1,5 +1,6 @@
 ---
-// Careers strip: one quiet line at the very top of every page while at least one role is open (src/data/jobs.ts),
+// Careers strip (desktop; phones and tablets get the Careers box in the header): one quiet line at the very top
+// of every page while at least one role is open (src/data/jobs.ts),
 // so caregivers looking for work find the Careers page without parents being interrupted. Never a popup.
 // Closing it hides it on that device: BaseLayout's <head> adds `hide-job-strip` to <html> before the first paint
 // when the choice is stored, so it never flashes. Not shown on the Careers page itself.
@@ -18,7 +19,7 @@ const show = hiring && path !== 'careers';
 
 {
   show && (
-    <div class="border-b border-green-700/10 bg-cream-50 text-sm text-green-800 in-[.hide-job-strip]:hidden" data-job-strip>
+    <div class="hidden border-b border-green-700/10 bg-cream-50 text-sm text-green-800 lg:block in-[.hide-job-strip]:hidden" data-job-strip>
       <div class="container-x flex items-center gap-2">
         <a href={href(lang, 'careers')} class="flex min-h-11 flex-1 items-center justify-center gap-2 py-1.5 text-center hover:text-green-900">
           <Icon name="hands" class="size-4 shrink-0 text-gold-600" />

@@ -40,15 +40,30 @@ const companyName = business.headerName.show ? business.headerName.text.trim() :
 const active = path === '' ? 0 : path.startsWith('services') ? 1 : path === 'offers' ? 2 : path === 'packages' ? 3 : path === 'about' ? 4 : -1;
 ---
 
-<!-- Phones/tablets: the company-name strip and logo row scroll away (negative top); the ribbon row stays stuck. -->
-<header class:list={['sticky z-40 border-b border-green-700/5 bg-cream-100/90 backdrop-blur-md lg:top-0', companyName ? '-top-[6.25rem]' : '-top-[4.5rem]']}>
-  {
-    companyName && (
-      <p lang="ar" dir="rtl" class="flex h-7 items-center justify-center border-b border-green-700/5 font-arabic text-xs leading-none text-green-800 lg:hidden">
-        <span class="truncate px-4">{companyName}</span>
-      </p>
-    )
-  }
+<!-- Phones/tablets: the top row (Careers + company name) and the logo row scroll away (negative top); the ribbon
+     row stays stuck. -->
+<header class="sticky -top-[7.25rem] z-40 border-b border-green-700/5 bg-cream-100/90 backdrop-blur-md lg:top-0">
+  <!-- Phones/tablets: a small Careers box above the logo (start side) and the registered company name at the end
+       (client request, Nov 2026). It replaces the full-width careers strip and the centred name strip there. -->
+  <div class="container-x flex h-11 items-center justify-between gap-3 border-b border-green-700/5 lg:hidden">
+    <a
+      href={href(lang, 'careers')}
+      aria-current={path === 'careers' ? 'page' : undefined}
+      class="group -ms-1 flex min-h-11 shrink-0 items-center px-1"
+    >
+      <span class="inline-flex h-8 items-center gap-1.5 rounded-lg bg-cream-50 px-2.5 text-xs font-semibold text-green-800 ring-1 ring-green-700/15 group-hover:bg-green-50 group-active:scale-[0.98] group-aria-[current=page]:bg-green-50">
+        <Icon name="hands" class="size-3.5 text-gold-600" />
+        {ui.nav.careers[lang]}
+      </span>
+    </a>
+    {
+      companyName && (
+        <p lang="ar" dir="rtl" class="min-w-0 truncate font-arabic text-xs leading-none text-green-800">
+          {companyName}
+        </p>
+      )
+    }
+  </div>
   <div class="container-x flex flex-wrap items-center gap-x-4 lg:flex-nowrap">
     <div class="flex h-[4.5rem] shrink-0 items-center">
       <!-- Lockup mirrors brand_assets/Logo.png: name, English line, Arabic line. -->
@@ -84,11 +99,11 @@ const active = path === '' ? 0 : path.startsWith('services') ? 1 : path === 'off
     />
 
     <div class="ms-auto flex items-center gap-2 lg:ms-0">
-      <!-- Careers: a quiet pill for caregivers looking for work (phones get the strip above the header instead). -->
+      <!-- Careers: a quiet pill for caregivers looking for work (phones and tablets get the box in the top row). -->
       <a
         href={href(lang, 'careers')}
         aria-current={path === 'careers' ? 'page' : undefined}
-        class="hidden min-h-11 items-center whitespace-nowrap rounded-full px-4 text-sm font-semibold text-green-700 ring-1 ring-green-700/15 hover:bg-green-50 active:scale-[0.98] aria-[current=page]:bg-green-50 sm:inline-flex"
+        class="hidden min-h-11 items-center whitespace-nowrap rounded-full px-4 text-sm font-semibold text-green-700 ring-1 ring-green-700/15 hover:bg-green-50 active:scale-[0.98] aria-[current=page]:bg-green-50 lg:inline-flex"
       >
         {ui.nav.careers[lang]}
       </a>
