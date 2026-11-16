@@ -1,6 +1,6 @@
 # Offers & events
 
-Data: `src/content-data/offers.json` (read through `src/data/offers.ts`, edited from the admin panel). An offer is listed until `endsAt` and can be featured from `startDate`; dates are checked at each build, and a daily rebuild keeps them current. A real discount needs `discountLicence`. Seasonal offers layer a discount on top of the packages.
+Data: `src/content-data/offers.json` (read through `src/data/offers.ts`, edited from the admin panel). An offer is listed until `endsAt` and can be featured from `startDate`; dates are checked at each build, and a daily rebuild keeps them current. Seasonal offers layer a discount on top of the packages.
 
 ## Calendar (from Oct 2026)
 | Event | Arabic | Date | Type |
@@ -20,7 +20,8 @@ Data: `src/content-data/offers.json` (read through `src/data/offers.ts`, edited 
 - Offers panel layout (client request, Oct 2026): notification-style bars, not big cards. The live (featured) offer is one compact bar with its photo, event, date, text, included services, countdown and CTA; a slim welcome-offer bar follows; then a "Coming soon" row of smaller bars (about half the height) that scrolls sideways at every width.
 - `endsAt` (ISO date) drives the countdown. Once it has passed, the countdown hides itself.
 - `startDate` (ISO date) is when an offer goes live and takes the `featured` flag. Set it before the event: Ramadan 2027 starts on 1 Feb, a week ahead, because hourly-help searches peak just before Ramadan and the Eids.
-- Discounts stay `[DISCOUNT]` until the client sends real numbers.
-- Offer prices: `prices` lists packages (pricing.json ids) with their offer price, set from the admin's Offers page. They show on the package cards (offer price, regular price struck through) only while the offer runs and has a `discountLicence`.
+- `slogan` (Arabic and English, e.g. "Save up to 20%") shows on the offer cards: a gold pill in the live-offer bar, a gold line on the hero card and the "Coming soon" bars. Empty = none. `discountLicence` is only the owner's note: not shown and gates nothing (owner's decision, Nov 2026).
+- Offer prices: `prices` lists packages (pricing.json ids) with their offer price, set from the admin's Offers page. They show on the package cards (offer price, regular price struck through) while the offer runs.
+- `image`: a JPG (5 MB at most) uploaded on the admin's Offers page; Publish commits it to `src/assets/photos/offers/` and the build makes the AVIF/WebP sizes. It replaces the offer's built-in photo (`offer-<id>` in `src/lib/photos.ts`); without one, that photo or the line-art panel shows.
 - Motifs (SVG, brand colours): crescent for Ramadan & the Eids, palm for Founding/National Day, tag for White Friday, pencil for back to school.
 - No other religious occasions.

@@ -41,10 +41,10 @@ describe('content-data', () => {
 describe('offers', () => {
   const base = read('offers.json')[0];
 
-  it('a real discount needs a discount licence number', () => {
-    const bad = [{ ...base, discount: '20%', discountLicence: null }];
-    expect(() => parseContent(offersSchema, bad, 'offers.json')).toThrow(/0\.discountLicence: A discount needs a discount licence number/);
-    expect(() => parseContent(offersSchema, [{ ...base, discount: '20%', discountLicence: '123456' }], 'offers.json')).not.toThrow();
+  it('a slogan and offer prices need no licence number; a photo name must be a plain .jpg', () => {
+    const ok = [{ ...base, slogan: { ar: 'وفّروا حتى 20%', en: 'Save up to 20%' }, discountLicence: null, image: 'ramadan-0a1b2c3d4e.jpg' }];
+    expect(() => parseContent(offersSchema, ok, 'offers.json')).not.toThrow();
+    expect(() => parseContent(offersSchema, [{ ...base, image: '../x.png' }], 'offers.json')).toThrow(/image/);
   });
 
   it('the end date must follow the start date', () => {
@@ -61,12 +61,12 @@ describe('offers', () => {
     expect(isListed(o, Date.parse('2026-12-01T00:00:00Z'))).toBe(false);
   });
 
-  it('an offer price shows only while the offer runs, has a licence and is below the regular price', () => {
+  it('an offer price shows while the offer runs (licence or not) and is below the regular price', () => {
     const now = Date.parse('2026-11-15T12:00:00+03:00');
     const o = { ...base, startDate: '2026-11-01', endsAt: '2026-11-30T23:59:00+03:00', discountLicence: '123', prices: [{ package: 'monthly-6', price: 5400 }] };
     expect(offerPriceIn([o], 'monthly-6', 6000, now)).toBe(5400);
     expect(offerPriceIn([o], 'monthly-5', 5000, now)).toBeNull(); // not in the offer
-    expect(offerPriceIn([{ ...o, discountLicence: null }], 'monthly-6', 6000, now)).toBeNull(); // no licence
+    expect(offerPriceIn([{ ...o, discountLicence: null }], 'monthly-6', 6000, now)).toBe(5400); // the licence is only a note
     expect(offerPriceIn([o], 'monthly-6', 6000, Date.parse('2026-12-01T00:00:00+03:00'))).toBeNull(); // ended
     expect(offerPriceIn([o], 'monthly-6', 5400, now)).toBeNull(); // not below the regular price
     const cheaper = { ...o, id: 'other', prices: [{ package: 'monthly-6', price: 5100 }] };

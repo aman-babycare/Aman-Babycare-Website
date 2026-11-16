@@ -18,7 +18,7 @@ const message =
   lang === 'ar' ? `السلام عليكم، أرغب بالاستفسار عن باقة: ${p.name.ar}` : `Hello, I'd like to ask about the package: ${p.name.en}`;
 // The service's "show price" switch off: no figures at all, only "Price confirmed on WhatsApp".
 const regular = p.showPrice ? p.price : null;
-// Under a running offer with a discount licence and a price for this package: the offer price, regular struck through.
+// Under a running offer with a price for this package: the offer price, regular struck through.
 const deal = regular ? offerPrice(p.id, regular) : null;
 const price = deal ?? regular;
 const perHour = p.showPrice ? p.perHour : undefined;

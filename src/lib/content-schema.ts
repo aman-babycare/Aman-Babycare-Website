@@ -138,8 +138,6 @@ export const pricingSchema = z
   }, 'Duplicate package id');
 
 // ── Offers ───────────────────────────────────────────────────────────────────────────────────────────────
-const isPlaceholderValue = (s: string) => s === '' || /^\[.+\]$/.test(s);
-
 export const offerSchema = z
   .object({
     id: z.string().regex(/^[a-z0-9-]+$/),
@@ -153,16 +151,17 @@ export const offerSchema = z
     title: L,
     text: L,
     services: z.array(z.string()).min(1), // service slugs in the bundle
-    discount: text, // "[DISCOUNT]" until the client sends a real figure
-    // Ministry of Commerce discount licence number. Without it no strike-through price can go live.
+    // Short line shown on the offer card, e.g. "Save up to 20%". Empty in a language = not shown in it.
+    // (Older files also carry `discount: "[DISCOUNT]"`; it is no longer used and drops out on the next publish.)
+    slogan: L.optional(),
+    // The owner's own note of the discount licence number: not shown on the site, not needed for offer prices.
     discountLicence: text.nullable(),
-    // Offer prices for packages (pricing.json ids). While the offer runs and has a discount licence, each package
-    // card shows this price with its regular price struck through; otherwise the regular price.
+    // The offer's own photo: a JPG uploaded in the admin, which Publish commits to src/assets/photos/offers/.
+    // None = the site's built-in photo for the offer id (src/lib/photos.ts), or the line-art panel.
+    image: z.string().regex(/^[a-z0-9-]+\.jpg$/).optional(),
+    // Offer prices for packages (pricing.json ids). While the offer runs, each package card shows this price with
+    // its regular price struck through.
     prices: z.array(z.object({ package: z.string().regex(/^[a-z0-9-]+$/), price: sar })).optional(),
-  })
-  .refine((o) => isPlaceholderValue(o.discount) || !!o.discountLicence, {
-    message: 'A discount needs a discount licence number',
-    path: ['discountLicence'],
   })
   .refine((o) => !o.startDate || !o.endsAt || Date.parse(o.startDate) < Date.parse(o.endsAt), {
     message: 'The end date must be after the start date',

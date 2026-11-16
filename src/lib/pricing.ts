@@ -25,7 +25,7 @@ export interface PricingConfig {
   vatRate: number | null;
   multiRule: 'sum' | 'highestPlusAddon';
   addonPercent: number | null;
-  // Offer prices by package id (running offers with a discount licence). A booking equal to that package is
+  // Offer prices by package id (running offers). A booking equal to that package is
   // charged the offer price; any other booking of the same service, tier and shift gets the same percentage off.
   offerPrices: OfferPrices;
 }

@@ -91,3 +91,9 @@ const meta: Record<string, { file: string; alt: L; focus?: string }> = {
 export const photo = (slot: string) => (meta[slot] ? byName.get(meta[slot].file) : undefined);
 export const hasPhoto = (slot: string) => photo(slot) !== undefined;
 export const photoMeta = (slot: string) => meta[slot];
+
+// Offer photos uploaded from the admin panel: Publish commits them to src/assets/photos/offers/ and the offer's
+// `image` names the file. A name with no file (not published yet) falls back to the slot photo or the panel.
+const offerFiles = import.meta.glob<{ default: ImageMetadata }>('../assets/photos/offers/*.jpg', { eager: true });
+const offerByName = new Map(Object.entries(offerFiles).map(([path, mod]) => [path.split('/').pop()!, mod.default]));
+export const uploadedOfferPhoto = (file: string | undefined) => (file ? offerByName.get(file) : undefined);

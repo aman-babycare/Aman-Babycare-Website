@@ -2,6 +2,7 @@
 // A framed visual. If the photo slot has a file (src/lib/photos.ts) it is shown, with that photo's
 // own alt text and crop; otherwise a branded line-art panel stands in (docs/build/imagery.md).
 import { Image, Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import Icon from './Icon.astro';
 import type { IconName } from './icons';
 import logoMark from '../assets/logo-mark.png';
@@ -10,6 +11,8 @@ import { photo as photoFile, photoMeta } from '../lib/photos';
 
 interface Props {
   photo: string;
+  /** A photo that takes the slot's place when present (an offer photo uploaded from the admin). */
+  src?: ImageMetadata;
   /** Panel label while the slot has no photo (and the photo's alt if it has none of its own). */
   alt: string;
   /** Picks the photo's own alt text in this language. */
@@ -39,10 +42,12 @@ const {
   sizes = '(min-width: 1024px) 480px, 90vw',
   widths = [400, 640, 960, 1280],
   class: cls = '',
+  src,
 } = Astro.props;
 
-const image = photoFile(photo);
-const meta = photoMeta(photo);
+const image = src ?? photoFile(photo);
+// The slot's alt text and crop describe the slot's own photo, not an uploaded one.
+const meta = src ? undefined : photoMeta(photo);
 const photoAlt = (lang && meta?.alt[lang]) || alt;
 
 const panel = {
