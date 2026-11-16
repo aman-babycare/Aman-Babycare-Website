@@ -25,6 +25,8 @@ export const ui = {
   // Careers strip (top of every page while a role is open). REVIEW-AR
   jobStrip: { ar: 'تبحثون عن عمل في رعاية الأطفال أو البيوت؟', en: 'Looking for work as a caregiver?' },
   jobStripCta: { ar: 'قدّموا هنا', en: 'Apply here' },
+  // The Careers box in the phone header (Header.astro). REVIEW-AR
+  jobBox: { ar: 'تبحثون عن وظيفة؟', en: 'Looking for a job?' },
   jobStripClose: { ar: 'إخفاء إعلان الوظائف', en: 'Hide the jobs notice' },
   callUs: { ar: 'اتصلوا بنا', en: 'Call us' },
   langName: { ar: 'العربية', en: 'English' },
