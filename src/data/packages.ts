@@ -51,7 +51,7 @@ export const groups: { id: PackageGroup; name: L; tab: L; intro: L }[] = [
   },
   {
     id: 'elderly',
-    name: { ar: 'مرافقة كبار السن الشهرية', en: 'Monthly elderly companionship' },
+    name: { ar: 'مرافقة كبار السن أسبوعياً وشهرياً', en: 'Weekly and monthly elderly companionship' },
     tab: { ar: 'كبار السن', en: 'Elderly' },
     intro: {
       ar: 'صحبة يومية ثابتة لوالديكم، بإيقاع يناسبهم.',

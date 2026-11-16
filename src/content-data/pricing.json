@@ -61,7 +61,7 @@
           "group": "newborn",
           "timing": "day-shift",
           "hoursPerDay": 12,
-          "daysPerWeek": 6,
+          "daysPerWeek": 7,
           "weeks": 4,
           "price": 10500,
           "name": {
@@ -69,8 +69,26 @@
             "en": "Monthly live-out: up to 12 hours"
           },
           "detail": {
-            "ar": "رعاية نهارية طويلة دون مبيت",
-            "en": "Long days of care, home by night"
+            "ar": "12 ساعة يومياً طوال الأسبوع، ومع أيام إجازة بسعر أقل",
+            "en": "12 hours a day, every day; days off lower the price"
+          }
+        },
+        {
+          "id": "newborn-live-in",
+          "tier": "monthly",
+          "group": "newborn",
+          "timing": "stay-in",
+          "hoursPerDay": 12,
+          "daysPerWeek": 7,
+          "weeks": 4,
+          "price": 11200,
+          "name": {
+            "ar": "شهرية بإقامة: 12 ساعة",
+            "en": "Monthly live-in: 12 hours"
+          },
+          "detail": {
+            "ar": "مقيمة في البيت طوال الأسبوع، ومع أيام إجازة بسعر أقل",
+            "en": "Lives in, every day of the week; days off lower the price"
           }
         }
       ]
@@ -80,9 +98,9 @@
       "showPrice": true,
       "draft": false,
       "hourlyRate": {
-        "oneTime": 45,
-        "weekly": 39.29,
-        "monthly": 33.82
+        "oneTime": 39,
+        "weekly": 39,
+        "monthly": 35
       },
       "minHours": 8,
       "extraPersonPercent": null,
@@ -100,8 +118,8 @@
           "hoursPerDay": 8,
           "daysPerWeek": 1,
           "weeks": 1,
-          "price": 320,
-          "perHour": 45,
+          "price": 312,
+          "perHour": 39,
           "name": {
             "ar": "رعاية أطفال بالساعة",
             "en": "Hourly babysitting"
@@ -119,8 +137,8 @@
           "hoursPerDay": 8,
           "daysPerWeek": 5,
           "weeks": 1,
-          "price": 1400,
-          "perHour": 39.29,
+          "price": 1560,
+          "perHour": 39,
           "name": {
             "ar": "خطة أسبوعية: 5 أيام",
             "en": "Weekly plan: 5 days"
@@ -131,44 +149,6 @@
           }
         },
         {
-          "id": "weekly-6",
-          "tier": "weekly",
-          "group": "on-demand",
-          "timing": "full-day",
-          "hoursPerDay": 8,
-          "daysPerWeek": 6,
-          "weeks": 1,
-          "price": 1600,
-          "perHour": 39,
-          "name": {
-            "ar": "خطة أسبوعية: 6 أيام",
-            "en": "Weekly plan: 6 days"
-          },
-          "detail": {
-            "ar": "ستة أيام، ويوم الجمعة لكم",
-            "en": "Six days, with Friday kept for family"
-          }
-        },
-        {
-          "id": "monthly-5",
-          "tier": "monthly",
-          "group": "monthly",
-          "timing": "full-day",
-          "hoursPerDay": 8,
-          "daysPerWeek": 5,
-          "weeks": 4,
-          "price": 5000,
-          "perHour": 34.55,
-          "name": {
-            "ar": "5 أيام × 4 أسابيع",
-            "en": "5 days × 4 weeks"
-          },
-          "detail": {
-            "ar": "لأيام العمل والدراسة",
-            "en": "For school and work days"
-          }
-        },
-        {
           "id": "monthly-6",
           "tier": "monthly",
           "group": "monthly",
@@ -176,34 +156,33 @@
           "hoursPerDay": 8,
           "daysPerWeek": 6,
           "weeks": 4,
-          "price": 6000,
-          "perHour": 34,
+          "price": 7280,
+          "perHour": 35,
           "name": {
             "ar": "6 أيام × 4 أسابيع",
             "en": "6 days × 4 weeks"
           },
           "detail": {
-            "ar": "تغطية الأسبوع كله تقريباً",
-            "en": "Almost the whole week covered"
+            "ar": "8 ساعات يومياً، مع 4 أيام إجازة في الشهر",
+            "en": "8 hours a day, with 4 days off a month"
           }
         },
         {
-          "id": "monthly-7",
+          "id": "babysitting-live-out",
           "tier": "monthly",
           "group": "monthly",
-          "timing": "full-day",
-          "hoursPerDay": 8,
+          "timing": "day-shift",
+          "hoursPerDay": 12,
           "daysPerWeek": 7,
           "weeks": 4,
-          "price": 7075,
-          "perHour": 33.82,
+          "price": 10500,
           "name": {
-            "ar": "7 أيام × 4 أسابيع",
-            "en": "7 days × 4 weeks"
+            "ar": "بدون إقامة: حتى 12 ساعة يومياً",
+            "en": "Live-out: up to 12 hours a day"
           },
           "detail": {
-            "ar": "كل يوم من أيام الشهر",
-            "en": "Every day of the month"
+            "ar": "أيام رعاية طويلة دون مبيت، ومع أيام إجازة بسعر أقل",
+            "en": "Long days of care, home by night; days off lower the price"
           }
         },
         {
@@ -212,17 +191,16 @@
           "group": "monthly",
           "timing": "stay-in",
           "hoursPerDay": 12,
-          "daysPerWeek": 6,
+          "daysPerWeek": 7,
           "weeks": 4,
-          "price": 9500,
-          "perHour": 35.7,
+          "price": 11200,
           "name": {
-            "ar": "إقامة: 12 ساعة × 6 أيام × 4 أسابيع",
-            "en": "Stay-in: 12 hrs × 6 days × 4 weeks"
+            "ar": "إقامة: 12 ساعة × 7 أيام × 4 أسابيع",
+            "en": "Live-in: 12 hrs × 7 days × 4 weeks"
           },
           "detail": {
-            "ar": "رعاية مقيمة في بيتكم لأيام طويلة",
-            "en": "A live-in caregiver for long days"
+            "ar": "جليسة مقيمة طوال الأسبوع، ومع أيام إجازة بسعر أقل",
+            "en": "A live-in caregiver every day; days off lower the price"
           }
         }
       ]
@@ -232,11 +210,11 @@
       "showPrice": true,
       "draft": false,
       "hourlyRate": {
-        "oneTime": 45,
-        "weekly": 39.29,
-        "monthly": 33.82
+        "oneTime": 39,
+        "weekly": 39,
+        "monthly": 35
       },
-      "minHours": null,
+      "minHours": 8,
       "extraPersonPercent": null,
       "timingPercent": {
         "night": 0,
@@ -251,8 +229,8 @@
       "draft": false,
       "hourlyRate": {
         "oneTime": 39,
-        "weekly": 40,
-        "monthly": 36
+        "weekly": 39,
+        "monthly": 39
       },
       "minHours": null,
       "extraPersonPercent": null,
@@ -282,17 +260,75 @@
           }
         },
         {
+          "id": "elderly-weekly-5",
+          "tier": "weekly",
+          "group": "elderly",
+          "timing": "full-day",
+          "hoursPerDay": 8,
+          "daysPerWeek": 5,
+          "weeks": 1,
+          "price": 1560,
+          "perHour": 39,
+          "name": {
+            "ar": "أسبوعية: 8 ساعات × 5 أيام",
+            "en": "Weekly: 8 hrs × 5 days"
+          },
+          "detail": {
+            "ar": "صحبة في أيام الأسبوع",
+            "en": "Company on weekdays"
+          }
+        },
+        {
+          "id": "elderly-weekly-6",
+          "tier": "weekly",
+          "group": "elderly",
+          "timing": "day-shift",
+          "hoursPerDay": 12,
+          "daysPerWeek": 6,
+          "weeks": 1,
+          "price": 2808,
+          "perHour": 39,
+          "name": {
+            "ar": "أسبوعية: 12 ساعة × 6 أيام",
+            "en": "Weekly: 12 hrs × 6 days"
+          },
+          "detail": {
+            "ar": "أيام طويلة من الصحبة طوال الأسبوع",
+            "en": "Long days of company, all week"
+          }
+        },
+        {
+          "id": "elderly-weekly-7",
+          "tier": "weekly",
+          "group": "elderly",
+          "timing": "day-shift",
+          "hoursPerDay": 12,
+          "daysPerWeek": 7,
+          "weeks": 1,
+          "price": 3276,
+          "perHour": 39,
+          "name": {
+            "ar": "أسبوعية: 12 ساعة × 7 أيام",
+            "en": "Weekly: 12 hrs × 7 days"
+          },
+          "detail": {
+            "ar": "لا يمر يوم دون صحبة",
+            "en": "Never a day without company"
+          }
+        },
+        {
           "id": "elderly-5",
           "tier": "monthly",
           "group": "elderly",
-          "hoursPerDay": null,
+          "timing": "full-day",
+          "hoursPerDay": 8,
           "daysPerWeek": 5,
           "weeks": 4,
-          "price": 5715,
-          "perHour": 36,
+          "price": 6240,
+          "perHour": 39,
           "name": {
-            "ar": "5 أيام × 4 أسابيع",
-            "en": "5 days × 4 weeks"
+            "ar": "8 ساعات × 5 أيام × 4 أسابيع",
+            "en": "8 hrs × 5 days × 4 weeks"
           },
           "detail": {
             "ar": "صحبة في أيام الأسبوع",
@@ -303,14 +339,15 @@
           "id": "elderly-6",
           "tier": "monthly",
           "group": "elderly",
-          "hoursPerDay": null,
+          "timing": "full-day",
+          "hoursPerDay": 8,
           "daysPerWeek": 6,
           "weeks": 4,
-          "price": 6858,
-          "perHour": 36,
+          "price": 7488,
+          "perHour": 39,
           "name": {
-            "ar": "6 أيام × 4 أسابيع",
-            "en": "6 days × 4 weeks"
+            "ar": "8 ساعات × 6 أيام × 4 أسابيع",
+            "en": "8 hrs × 6 days × 4 weeks"
           },
           "detail": {
             "ar": "روتين ثابت طوال الأسبوع",
@@ -325,11 +362,11 @@
           "hoursPerDay": 8,
           "daysPerWeek": 7,
           "weeks": 4,
-          "price": 7500,
-          "perHour": 36,
+          "price": 8736,
+          "perHour": 39,
           "name": {
-            "ar": "7 أيام × 4 أسابيع",
-            "en": "7 days × 4 weeks"
+            "ar": "8 ساعات × 7 أيام × 4 أسابيع",
+            "en": "8 hrs × 7 days × 4 weeks"
           },
           "detail": {
             "ar": "لا يمر يوم دون صحبة",
@@ -337,21 +374,22 @@
           }
         },
         {
-          "id": "elderly-live-in",
+          "id": "elderly-5-12h",
           "tier": "monthly",
           "group": "elderly",
-          "timing": "stay-in",
+          "timing": "day-shift",
           "hoursPerDay": 12,
-          "daysPerWeek": 6,
+          "daysPerWeek": 5,
           "weeks": 4,
-          "price": 11200,
+          "price": 9360,
+          "perHour": 39,
           "name": {
-            "ar": "مرافقة مقيمة",
-            "en": "Live-in companionship"
+            "ar": "12 ساعة × 5 أيام × 4 أسابيع",
+            "en": "12 hrs × 5 days × 4 weeks"
           },
           "detail": {
-            "ar": "مرافق/ة يقيم في البيت مع والديكم",
-            "en": "A companion who lives in with your parents"
+            "ar": "أيام طويلة في أيام الأسبوع",
+            "en": "Long days on weekdays"
           }
         },
         {
@@ -360,7 +398,7 @@
           "group": "elderly",
           "timing": "day-shift",
           "hoursPerDay": 12,
-          "daysPerWeek": 6,
+          "daysPerWeek": 7,
           "weeks": 4,
           "price": 10500,
           "name": {
@@ -368,8 +406,26 @@
             "en": "Live-out: up to 12 hours a day"
           },
           "detail": {
-            "ar": "صحبة نهارية طويلة دون مبيت",
-            "en": "Long days of company, home by night"
+            "ar": "كل يوم دون مبيت، ومع أيام إجازة بسعر أقل",
+            "en": "Every day, home by night; days off lower the price"
+          }
+        },
+        {
+          "id": "elderly-live-in",
+          "tier": "monthly",
+          "group": "elderly",
+          "timing": "stay-in",
+          "hoursPerDay": 12,
+          "daysPerWeek": 7,
+          "weeks": 4,
+          "price": 11200,
+          "name": {
+            "ar": "مرافقة مقيمة",
+            "en": "Live-in companionship"
+          },
+          "detail": {
+            "ar": "يقيم مع والديكم طوال الأسبوع، ومع أيام إجازة بسعر أقل",
+            "en": "Lives in with your parents every day; days off lower the price"
           }
         }
       ]
@@ -380,14 +436,26 @@
       "draft": false,
       "minHours": null,
       "extraPersonPercent": null,
-      "timingPercent": null,
-      "homeSizePercent": null,
+      "timingPercent": {
+        "night": 0,
+        "24-hours": 0,
+        "stay-in": 0
+      },
+      "homeSizePercent": {
+        "apartment:1-2": 0,
+        "apartment:3-4": 0,
+        "apartment:5+": 0,
+        "villa:1-2": 0,
+        "villa:3-4": 0,
+        "villa:5+": 0
+      },
       "packages": [
         {
           "id": "cleaning-3-visits",
           "tier": "weekly",
           "group": "on-demand",
-          "hoursPerDay": null,
+          "timing": "hourly",
+          "hoursPerDay": 4,
           "daysPerWeek": 3,
           "weeks": 1,
           "price": 600,
@@ -396,11 +464,16 @@
             "en": "Home cleaning: 3 visits a week"
           },
           "detail": {
-            "ar": "بيت مرتب طوال الأسبوع",
-            "en": "A tidy home all week long"
-          }
+            "ar": "3 زيارات أسبوعياً، 4 ساعات لكل زيارة",
+            "en": "3 visits a week, 4 hours each"
+          },
+          "perHour": 50
         }
-      ]
+      ],
+      "hourlyRate": {
+        "oneTime": 50,
+        "weekly": 50
+      }
     },
     "pet-sitting": {
       "unit": "hour",
@@ -408,26 +481,35 @@
       "draft": false,
       "minHours": null,
       "extraPersonPercent": null,
-      "timingPercent": null,
+      "timingPercent": {
+        "night": 0,
+        "24-hours": 0,
+        "stay-in": 0
+      },
       "packages": [
         {
           "id": "pets-weekly-6",
           "tier": "weekly",
           "group": "on-demand",
-          "hoursPerDay": null,
+          "timing": "hourly",
+          "hoursPerDay": 6,
           "daysPerWeek": 6,
           "weeks": 1,
-          "price": 1500,
+          "price": 1440,
           "name": {
             "ar": "رعاية القطط والكلاب: 6 أيام",
             "en": "Cat & dog sitting: 6 days"
           },
           "detail": {
-            "ar": "رعاية يومية لحيوانكم الأليف في بيته",
-            "en": "Daily care for your pet, at home"
-          }
+            "ar": "6 ساعات يومياً، 6 أيام في الأسبوع",
+            "en": "6 hours a day, six days a week"
+          },
+          "perHour": 40
         }
-      ]
+      ],
+      "hourlyRate": {
+        "weekly": 40
+      }
     },
     "pick-up-drop-off": {
       "unit": "trip",
@@ -444,8 +526,15 @@
       "draft": false,
       "minHours": null,
       "extraPersonPercent": null,
-      "timingPercent": null,
-      "packages": []
+      "timingPercent": {
+        "night": 0,
+        "24-hours": 0,
+        "stay-in": 0
+      },
+      "packages": [],
+      "hourlyRate": {
+        "oneTime": 50
+      }
     }
   }
 }

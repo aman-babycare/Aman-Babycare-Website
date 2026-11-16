@@ -1,6 +1,7 @@
 // Live-in Nanny. Keyword: مربية مقيمة. 12 working hours a day (pricing.ts TIMINGS['stay-in'],
 // TODO(client): confirm 12 billable hours/day). Shows the stay-in package; booking preselects Babysitting.
-// TODO(client): confirm what live-in families provide (room, meals, weekly day off). REVIEW-AR
+// Live-in is 7 days a week at the listed price; days off are agreed per family and lower it (client, Nov 2026).
+// TODO(client): confirm what live-in families provide (room, meals). REVIEW-AR
 import type { ServicePage } from '../services';
 import { business } from '../business';
 
@@ -58,8 +59,8 @@ const page: ServicePage = {
   shifts: {
     title: { ar: 'إقامة كاملة أو دوام يومي', en: 'Live-in or live-out' },
     text: {
-      ar: `المربية المقيمة تعمل 12 ساعة يومياً، ستة أيام في الأسبوع في باقة الإقامة. ولمن يفضّل دواماً يومياً: ${day.label.ar} ${day.time.ar} أو ${night.label.ar} ${night.time.ar}.`,
-      en: `A live-in nanny works 12 hours a day, six days a week on the stay-in package. If you prefer live-out: day shift ${day.time.en} or night shift ${night.time.en}.`,
+      ar: `المربية المقيمة تعمل 12 ساعة يومياً، سبعة أيام في الأسبوع في باقة الإقامة، وأيام الإجازة باتفاق معكم وبسعر أقل. ولمن يفضّل دواماً يومياً: ${day.label.ar} ${day.time.ar} أو ${night.label.ar} ${night.time.ar}.`,
+      en: `A live-in nanny works 12 hours a day, seven days a week on the live-in package; days off are agreed with you and lower the price. If you prefer live-out: day shift ${day.time.en} or night shift ${night.time.en}.`,
     },
     options: ['live-in', 'live-out', 'day', 'night', 'monthly'],
   },
@@ -67,7 +68,7 @@ const page: ServicePage = {
     title: { ar: 'كيف تحجزون مربية مقيمة', en: 'How to book a live-in nanny' },
     items: [
       { title: { ar: 'حدثونا عن بيتكم', en: 'Tell us about your home' }, text: { ar: 'عدد الأطفال وأعمارهم، والغرفة المتاحة، وموعد البدء.', en: 'How many children and their ages, the room available, and a start date.' } },
-      { title: { ar: 'نرشّح ونتفق', en: 'We match and agree terms' }, text: { ar: 'نقترح الشخص المناسب، ونتفق على الساعات والإجازة الأسبوعية والسعر.', en: 'We suggest the right person and agree hours, the weekly day off and the price.' } },
+      { title: { ar: 'نرشّح ونتفق', en: 'We match and agree terms' }, text: { ar: 'نقترح الشخص المناسب، ونتفق على الساعات وأيام الإجازة والسعر.', en: 'We suggest the right person and agree hours, days off and the price.' } },
       { title: { ar: 'أسبوع أول هادئ', en: 'A gentle first week' }, text: { ar: 'تتعرف المربية على البيت والأطفال، ونتابع معكم حتى يستقر الروتين.', en: 'The nanny gets to know the home and children, and we check in until the routine settles.' } },
     ],
   },
@@ -80,7 +81,7 @@ const page: ServicePage = {
   },
   packages: {
     title: { ar: 'باقة المربية المقيمة', en: 'The live-in nanny package' },
-    text: { ar: '12 ساعة يومياً، 6 أيام في الأسبوع، لمدة 4 أسابيع.', en: '12 hours a day, 6 days a week, for 4 weeks.' },
+    text: { ar: '12 ساعة يومياً، 7 أيام في الأسبوع، لمدة 4 أسابيع. أيام الإجازة باتفاق معكم وبسعر أقل.', en: '12 hours a day, 7 days a week, for 4 weeks. Days off are agreed with you and lower the price.' },
     ids: ['stay-in'],
   },
   riyadh: {
@@ -101,7 +102,7 @@ const page: ServicePage = {
     rows: [
       [{ ar: 'أين تسكن', en: 'Where they stay' }, { ar: 'في بيتكم', en: 'In your home' }, { ar: 'في بيتها، وتأتي للدوام', en: 'Their own home; comes in for the shift' }],
       [{ ar: 'ساعات العمل', en: 'Working hours' }, { ar: '12 ساعة يومياً', en: '12 hours a day' }, { ar: `الفترة المتفق عليها (${day.time.ar} أو ${night.time.ar})`, en: `The agreed shift (${day.time.en} or ${night.time.en})` }],
-      [{ ar: 'الأيام', en: 'Days' }, { ar: '6 أيام في الأسبوع', en: '6 days a week' }, { ar: 'حسب خطتكم', en: 'As your plan sets' }],
+      [{ ar: 'الأيام', en: 'Days' }, { ar: '7 أيام في الأسبوع، أو أقل باتفاق', en: '7 days a week, or fewer by agreement' }, { ar: 'حسب خطتكم', en: 'As your plan sets' }],
       [{ ar: 'ما تجهزونه', en: 'What you provide' }, { ar: 'غرفة خاصة ووجبات', en: 'A private room and meals' }, { ar: 'لا شيء غير مكان العمل', en: 'Nothing beyond the workplace' }],
       [{ ar: 'الأنسب لـ', en: 'Best for' }, { ar: 'رعاية طويلة كل يوم', en: 'Long daily care' }, { ar: 'ساعات محددة دون إقامة', en: 'Set hours without hosting' }],
     ],
@@ -111,7 +112,7 @@ const page: ServicePage = {
     items: [
       { ar: 'غرفة خاصة بباب، وسرير، ومكان لحفظ الأغراض', en: 'A private room with a door, a bed and storage' },
       { ar: 'الاتفاق على الوجبات من البداية', en: 'Meals agreed from the start' },
-      { ar: 'يوم إجازة أسبوعي متفق عليه', en: 'An agreed weekly day off' },
+      { ar: 'أيام الإجازة إن أردتموها، متفق عليها معنا', en: 'Any days off you want, agreed with us' },
       { ar: 'قواعد البيت مكتوبة: الضيوف، والشاشات، والطعام', en: 'House rules in writing: guests, screens and food' },
       { ar: 'روتين كل طفل وحساسياته إن وُجدت', en: "Each child's routine and any allergies" },
       { ar: 'أرقام الطوارئ وطبيب الأطفال', en: "Emergency contacts and your paediatrician's number" },
@@ -125,7 +126,7 @@ const page: ServicePage = {
     },
     {
       q: { ar: 'كم ساعة تعمل المربية المقيمة؟', en: 'How many hours does a live-in nanny work?' },
-      a: { ar: '12 ساعة يومياً، ستة أيام في الأسبوع، ولها وقت راحة ونوم كامل في غرفتها.', en: '12 hours a day, six days a week, with rest time and a full night’s sleep in their own room.' },
+      a: { ar: '12 ساعة يومياً، سبعة أيام في الأسبوع (أو أقل باتفاق وبسعر أقل)، ولها وقت راحة ونوم كامل في غرفتها.', en: '12 hours a day, seven days a week (or fewer by agreement, at a lower price), with rest time and a full night’s sleep in their own room.' },
     },
     {
       q: { ar: 'هل الأفضل مربية مقيمة أم بدوام يومي؟', en: 'Is a live-in or live-out nanny better?' },

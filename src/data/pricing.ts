@@ -37,7 +37,7 @@ export interface ServicePricing {
 }
 
 export const WEEKS_PER_MONTH = 4; // TODO(client): confirm a month is billed as 4 weeks
-export const VAT_RATE: number | null = null; // TODO(client): VAT-registered? e.g. 0.15 adds a VAT line
+export const VAT_RATE: number | null = null; // client: VAT not applicable (Nov 2026); e.g. 0.15 would add a VAT line
 // TODO(client): when one caregiver does several services in the same hours, is the price summed, or the
 // highest line plus an add-on percentage for the others?
 export const MULTI_SERVICE_RULE: 'sum' | 'highestPlusAddon' = 'sum';
@@ -56,19 +56,23 @@ export const TIMINGS: Record<TimingId, { label: L; hoursPerDay: number | null; w
 };
 
 // Client decisions and open questions behind pricing.json (JSON has no comments):
-// - Shifts are billed at the tier's hourly rate: night 12 h, 24 hours 24 h, live-in 12 h (client decision,
-//   Oct 2026), hence timingPercent { night: 0, 24-hours: 0, stay-in: 0 }.
-// - hourlyRate: the DRAFT "From X SAR per hour" figures on the Packages page (the reference's "as low as"
-//   rates), approved as booking-card rates until the final price list. Babysitting weekly uses 39.29 as
-//   approved; the 6-day weekly plan lists 39. Elderly has no weekly rate, so weekly stays on WhatsApp.
-// - Client price list (Nov 2026): newborn care 39 an hour, 1,560 a week (5 × 8 h), 7,280 a month (8 h, 4 days
-//   off = 26 days × 35), live-out up to 12 h 10,500; elderly companionship 39 an hour, live-in 11,200, live-out
-//   10,500; dog & cat sitting 1,500 for 6 days; cleaning 600 for 3 visits a week. Mother care keeps
-//   the babysitting rates (client decision, Oct 2026).
-// - TODO(client): newborn minHours and live-in price; days per week on live-in/live-out (6 assumed); elderly
-//   weekly rate (40 is above the 39 one-time rate); hours per day for pets and cleaning; extra-person prices;
-//   home-size adjustments for cleaning; driving vs accompanying and a per-trip price for pick-up; price lists
-//   for mother care, pick-up and errands.
+// - Shifts are billed at the tier's hourly rate: night 12 h, 24 hours 24 h, live-in 12 h (client, Oct 2026,
+//   confirmed Nov 2026: "all is the same"), hence timingPercent { night: 0, 24-hours: 0, stay-in: 0 } everywhere.
+// - Client answers (Nov 2026):
+//   · Newborn care: 39 an hour, 1,560 a week (5 × 8 h), 7,280 a month (8 h, 4 days off = 26 days × 35);
+//     live-out 10,500 and live-in 11,200, both 12 h × 7 days. Days off depend on the family and lower the
+//     price (agreed on WhatsApp), so the listed live-in/live-out prices are the 7-day ones.
+//   · Babysitting and mother care follow the newborn prices. Babysitting's plans without a newborn price
+//     (6-day weekly, 5- and 7-day monthly) were taken off; mother care has the newborn rates, no packages.
+//   · Elderly companionship: 39 an hour throughout. Weekly 1,560 (8 h × 5), 2,808 (12 h × 6), 3,276 (12 h × 7);
+//     monthly 6,240 / 7,488 / 8,736 (8 h × 5/6/7 days), 9,360 (12 h × 5); live-out 10,500, live-in 11,200
+//     (12 h × 7 days; days off by agreement).
+//   · Dog & cat sitting: 40 an hour, 6 h a day × 6 days = 1,440 a week; no hourly, single-visit or monthly price.
+//   · Home cleaning: 50 an hour, apartment or villa alike (homeSizePercent 0); 600 = 3 visits a week of 4 h.
+//   · Errands: 50 an hour. Pick-up & drop-off: off the website (services.json enabled: false).
+//   · VAT: not applicable (VAT_RATE stays null).
+// - TODO(client): newborn minHours (8 kept); extra-person prices; monthly prices for pets, cleaning and errands;
+//   newborn/babysitting 5- and 6-day monthly and 6-/7-day weekly prices.
 
 // Validated at build time (the content-validate integration in astro.config.mjs); the browser bundle gets the data only.
 const pricing = data as Pricing;

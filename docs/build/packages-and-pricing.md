@@ -17,29 +17,34 @@ Per-service prices, hourly rates and packages (schedule, price, card name and de
 2. Rate per tier (one-time / weekly / monthly): `hourlyRateOverride[tier]`, else the tier's reference package with the most hours (price ÷ hours/day × days/week × weeks). A tier never borrows another tier's rate.
 3. Exact match first: a selection equal to a reference package (tier, timing, hours/day, days/week, weeks, one person) is charged the listed price × periods.
 4. Otherwise rate × hours/day × days, then in order: `timingPercent`, `extraPersonPercent` × (people − 1), `homeSizePercent`. A needed rule that is null makes the line unpriced. `minHours` raises short hourly bookings.
-6. Offers (running, with a discount licence): a selection equal to a package with an offer price is charged the offer price; any other selection of the same service, tier and shift gets that package's percentage off (the deepest one if several). The card shows the regular price struck through, a gold "<offer> offer · save X%" badge, an "offer saving" row above the total, and the WhatsApp message says "SAR 280 (instead of SAR 320, White Friday)" plus the saving. The price sent to the admin is the offer price.
+6. Offers (running): a selection equal to a package with an offer price is charged the offer price; any other selection of the same service, tier and shift gets that package's percentage off (the deepest one if several). The card shows the regular price struck through, a gold "<offer> offer · save X%" badge, an "offer saving" row above the total, and the WhatsApp message says "SAR 280 (instead of SAR 320, White Friday)" plus the saving. The price sent to the admin is the offer price.
 5. Hours/day: hourly = chosen hours; full day 8; day shift 12; night 12; 24 hours 24; live-in 12; half day from `TIMINGS` (hidden while null). Days: one-time = days; weekly = days/week × weeks; monthly = days/week × `WEEKS_PER_MONTH` × months.
 
 ## Current rates
 | Service | One-time | Weekly | Monthly |
 | --- | --- | --- | --- |
-| Babysitting (approved Oct 2026) | 45 | 39.29 | 33.82 |
-| Newborn care (client price list, Nov 2026) | 39 | 39 | 35 |
-| Mother care (babysitting rate) | 45 | 39.29 | 33.82 |
-| Elderly companionship | 39 (Nov 2026) | 40 (set in the admin; above one-time, to confirm) | 36 |
-| Cleaning, Pets, Pick-up, Errands | Price on WhatsApp | Price on WhatsApp | Price on WhatsApp |
+| Newborn care | 39 | 39 | 35 |
+| Babysitting (follows newborn care) | 39 | 39 | 35 |
+| Mother care (follows newborn care) | 39 | 39 | 35 |
+| Elderly companionship | 39 | 39 | 39 |
+| Dog & cat sitting | Price on WhatsApp | 40 | Price on WhatsApp |
+| Home cleaning (apartment or villa) | 50 | 50 | Price on WhatsApp |
+| Errands | 50 | Price on WhatsApp | Price on WhatsApp |
 
-SAR per hour. Night shift, 24 hours and live-in are billed at the same hourly rate. The packages are exact matches at their listed price.
+SAR per hour. Night shift, 24 hours and live-in are billed at the same hourly rate (client: "all is the same"). The packages are exact matches at their listed price. Pick-up & drop-off is off the website (client, Nov 2026). No VAT.
 
-Client price list (Nov 2026), as entered in `pricing.json`:
-- Newborn care: weekly 5 days × 8 h = 1,560; monthly 8 h a day with 4 days off a month = 7,280 (26 days × 8 h × 35; listed as 6 days × 4 weeks, the closest the schedule fields allow); live-out up to 12 h = 10,500 a month.
-- Elderly companionship: 39 an hour (the one-day package is 8 h × 39 = 312); live-in 11,200 and live-out (up to 12 h) 10,500 a month.
-- Dog & cat sitting: 1,500 for 6 days. Home cleaning: 600 for 3 visits a week. Neither has hours per day yet, so the booking card still says "Price on WhatsApp" for them.
+Client answers (Nov 2026), as entered in `pricing.json`:
+- Newborn care: weekly 5 days × 8 h = 1,560; monthly 8 h a day with 4 days off a month = 7,280 (26 days × 8 h × 35; listed as 6 days × 4 weeks, the closest the schedule fields allow); live-out up to 12 h = 10,500 and live-in 12 h = 11,200 a month, both 7 days a week. Days off depend on the family and lower the price, agreed on WhatsApp.
+- Babysitting follows the newborn prices: hourly 8 h = 312, weekly 5 days = 1,560, monthly 6 days = 7,280, live-out 10,500, live-in 11,200. Its 6-day weekly and 5-/7-day monthly plans had no newborn price and were taken off. Mother care has the newborn rates for the booking card and no packages.
+- Elderly companionship: 39 an hour throughout. One day 8 h = 312; weekly 1,560 (8 h × 5), 2,808 (12 h × 6), 3,276 (12 h × 7); monthly 6,240 / 7,488 / 8,736 (8 h × 5 / 6 / 7 days), 9,360 (12 h × 5); live-out 10,500 and live-in 11,200 (12 h × 7 days, days off by agreement).
+- Dog & cat sitting: 40 an hour, 6 h a day × 6 days = 1,440 a week. No hourly or single-visit price.
+- Home cleaning: 50 an hour, the same for an apartment or a villa (`homeSizePercent` 0); 600 = 3 visits a week of 4 hours.
+- Errands: 50 an hour.
 
-A package with hours per day needs its `timing` (the shift those hours belong to): `full-day` for 8 hours, `day-shift` for 12, `hourly` for an hourly booking (no shorter than the service's `minHours`). `npm test` fails the build otherwise, because the booking card couldn't reproduce the listed price. The admin panel's Packages page picks the shift and checks this on save.
+A package with hours per day needs its `timing` (the shift those hours belong to): `full-day` for 8 hours, `day-shift` for 12, `hourly` for an hourly booking or a set number of hours (cleaning visits, pet sitting). `npm test` fails the build otherwise, because the booking card couldn't reproduce the listed price. The admin panel's Packages page picks the shift and checks this on save.
 
 ## TODO(client)
-Hours per day for the reference packages that still have none; `extraPersonPercent` `extraPersonPercent` (extra child, baby, elder or pet: unpriced until set); `homeSizePercent`; half-day hours; live-in billable hours; `WEEKS_PER_MONTH`; `VAT_RATE`; `MULTI_SERVICE_RULE` and `ADDON_PERCENT`; newborn care minimum hours and live-in price; days per week for the live-in/live-out plans (6 assumed); elderly weekly rate and monthly plans (5/6/7 days still from Oct 2026); hours per visit/day and single-visit prices for cleaning and pets; a price list for mother & baby support, pick-up (and whether it's driving or accompanying; never "driver" wording) and errands. The reference "as low as" rates don't reconcile with the package prices (e.g. 6 days × 4 weeks at 33.82/hr × 12 h = 9,740 vs the 8,500 stay-in package), and weekly uses 39.29 although the 6-day plan lists 39.
+`extraPersonPercent` (extra child, baby, elder or pet: unpriced until set); newborn care minimum hours (8 kept); monthly prices for pets, cleaning and errands; weekly errands; newborn/babysitting 6-/7-day weekly and 5-/6-day monthly prices; half-day hours; live-in billable hours; `WEEKS_PER_MONTH`; `MULTI_SERVICE_RULE` and `ADDON_PERCENT`.
 
 ## Page layout
 - A glass-ribbon bar (`GlassRibbon`, `current="location"`) sticks under the nav with links to `#on-demand`, `#newborn`, `#monthly`, `#elderly` and `#booking` (Book Your Service). All sections stay on the page; the glass follows the section you scroll through, and tapping an item scrolls to it (client request: not tabs).

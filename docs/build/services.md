@@ -10,7 +10,7 @@ The site's services are the **"Other services"** block of `brand_assets/referenc
 | core | `elderly-companionship` | Elderly Companionship | مرافقة كبار السن |
 | core | `home-cleaning` | Home Cleaning | تنظيف المنازل |
 | more | `errands` | Errands & Personal Assistance | المشتريات والمساعدة الشخصية |
-| more | `pick-up-drop-off` | Pick-up & Drop-off | التوصيل والاستقبال |
+| more | `pick-up-drop-off` | Pick-up & Drop-off (switched off, client Nov 2026) | التوصيل والاستقبال |
 | more | `pet-sitting` | Dog & Cat Sitting | رعاية الكلاب والقطط |
 | (card only) | | And more | والمزيد → opens WhatsApp to ask |
 

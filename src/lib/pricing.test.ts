@@ -246,7 +246,8 @@ describe('lines', () => {
 describe('totals', () => {
   const lines = () => {
     const c = cfg();
-    return [priceLine(sel({ hours: 4 }), c), priceLine(sel({ hours: 8 }), c), priceLine({ service: 'errands', tier: 'oneTime', timing: 'hourly', hours: 3, people: 1, days: 1 }, c)];
+    // Errands has no weekly price, so that line stays "Price on WhatsApp".
+    return [priceLine(sel({ hours: 4 }), c), priceLine(sel({ hours: 8 }), c), priceLine({ service: 'errands', tier: 'weekly', timing: 'hourly', hours: 3, people: 1, daysPerWeek: 1, weeks: 1 }, c)];
   };
 
   it('sums priced lines and counts unpriced ones', () => {

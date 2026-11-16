@@ -129,7 +129,7 @@
   },
   {
     "slug": "pick-up-drop-off",
-    "enabled": true,
+    "enabled": false,
     "name": {
       "ar": "التوصيل والاستقبال",
       "en": "Pick-up & Drop-off"

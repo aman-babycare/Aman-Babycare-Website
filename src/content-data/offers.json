@@ -26,7 +26,6 @@
       "babysitting",
       "elderly-companionship"
     ],
-    "discount": "[DISCOUNT]",
     "discountLicence": null
   },
   {
@@ -54,7 +53,6 @@
       "babysitting",
       "home-cleaning"
     ],
-    "discount": "[DISCOUNT]",
     "discountLicence": null
   },
   {
@@ -69,18 +67,16 @@
       "en": "22 February"
     },
     "title": {
-      "ar": "يوم للعائلة: توصيل ورعاية أطفال",
-      "en": "A family day out: rides and babysitting"
+      "ar": "يوم للعائلة: رعاية الأطفال وأنتم تحتفلون",
+      "en": "A family day out: babysitting while you celebrate"
     },
     "text": {
-      "ar": "احتفلوا بيوم التأسيس براحة: نوصلكم ونرعى الصغار حين تحتاجون.",
-      "en": "Celebrate Founding Day with ease: we handle the rides and look after the little ones when you need."
+      "ar": "احتفلوا بيوم التأسيس براحة: نرعى الصغار في البيت حين تخرجون.",
+      "en": "Celebrate Founding Day with ease: we look after the little ones at home while you are out."
     },
     "services": [
-      "pick-up-drop-off",
       "babysitting"
     ],
-    "discount": "[DISCOUNT]",
     "discountLicence": null
   },
   {
@@ -107,7 +103,6 @@
       "home-cleaning",
       "errands"
     ],
-    "discount": "[DISCOUNT]",
     "discountLicence": null
   },
   {
@@ -134,7 +129,6 @@
       "pet-sitting",
       "home-cleaning"
     ],
-    "discount": "[DISCOUNT]",
     "discountLicence": null
   },
   {
@@ -149,18 +143,16 @@
       "en": "August"
     },
     "title": {
-      "ar": "مشوار المدرسة وما بعده",
-      "en": "The school run, and the afternoon after"
+      "ar": "بعد المدرسة: رعاية في البيت",
+      "en": "After school: care at home"
     },
     "text": {
-      "ar": "توصيل يومي للمدرسة، ورعاية في البيت حتى عودتكم من الدوام.",
-      "en": "Daily school runs, and care at home until you are back from work."
+      "ar": "جليسة في البيت بعد المدرسة حتى عودتكم من الدوام.",
+      "en": "A babysitter at home after school, until you are back from work."
     },
     "services": [
-      "pick-up-drop-off",
       "babysitting"
     ],
-    "discount": "[DISCOUNT]",
     "discountLicence": null
   },
   {
@@ -185,7 +177,6 @@
     "services": [
       "babysitting"
     ],
-    "discount": "[DISCOUNT]",
     "discountLicence": null
   }
 ]
