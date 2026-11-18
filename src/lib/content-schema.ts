@@ -89,7 +89,18 @@ export const businessSchema = z.object({
 // ── Services ─────────────────────────────────────────────────────────────────────────────────────────────
 // Array order is the order on the site. Long-form page copy stays in src/data/service-pages/<slug>.ts.
 export const servicesSchema = z
-  .array(z.object({ slug: z.string().regex(/^[a-z0-9-]+$/), enabled: z.boolean(), name: L, card: L, tagline: L }))
+  .array(
+    z.object({
+      slug: z.string().regex(/^[a-z0-9-]+$/),
+      enabled: z.boolean(),
+      name: L,
+      card: L,
+      tagline: L,
+      // A photo uploaded from the admin (src/assets/photos/services/<file>); it replaces the service's built-in
+      // photo on its cards and page. Absent = the built-in photo.
+      image: z.string().regex(/^[a-z0-9-]+\.jpg$/).optional(),
+    }),
+  )
   .refine((list) => new Set(list.map((s) => s.slug)).size === list.length, 'Duplicate service');
 
 // ── Packages & prices ────────────────────────────────────────────────────────────────────────────────────

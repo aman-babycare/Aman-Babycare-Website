@@ -35,6 +35,8 @@ export interface ServiceContent {
   photo?: string;
   /** Alt text for this page when it borrows another page's photo. */
   photoAlt?: L;
+  /** A photo uploaded from the admin panel (services.json `image`); it replaces the slot photo. */
+  image?: string;
   name: L;
   card: L; // one line for cards
   tagline: L; // the emotional promise, shown as the lead under the keyword H1
@@ -88,7 +90,7 @@ export const services: ServiceContent[] = (servicesData as ServiceEntry[])
   .map((e) => {
     const page = pages.find((p) => p.slug === e.slug);
     if (!page) throw new Error(`services.json: no page module for "${e.slug}"`);
-    return { ...page, name: e.name, card: e.card, tagline: e.tagline };
+    return { ...page, name: e.name, card: e.card, tagline: e.tagline, ...(e.image && { image: e.image }) };
   });
 
 // Pages under /packages/ built on the service layout. Only enabled ones are built, listed or linked.

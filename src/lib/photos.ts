@@ -97,3 +97,9 @@ export const photoMeta = (slot: string) => meta[slot];
 const offerFiles = import.meta.glob<{ default: ImageMetadata }>('../assets/photos/offers/*.jpg', { eager: true });
 const offerByName = new Map(Object.entries(offerFiles).map(([path, mod]) => [path.split('/').pop()!, mod.default]));
 export const uploadedOfferPhoto = (file: string | undefined) => (file ? offerByName.get(file) : undefined);
+
+// Service photos uploaded from the admin panel, the same way: src/assets/photos/services/<file>, named by the
+// service's `image` in services.json. It replaces the service's slot photo on its cards and page.
+const serviceFiles = import.meta.glob<{ default: ImageMetadata }>('../assets/photos/services/*.jpg', { eager: true });
+const serviceByName = new Map(Object.entries(serviceFiles).map(([path, mod]) => [path.split('/').pop()!, mod.default]));
+export const uploadedServicePhoto = (file: string | undefined) => (file ? serviceByName.get(file) : undefined);

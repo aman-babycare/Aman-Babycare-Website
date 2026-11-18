@@ -5,6 +5,7 @@ import type { Locale } from '../config/site';
 import type { ServiceContent } from '../data/services';
 import { href } from '../i18n/ui';
 import { anchorFor } from '../data/seo';
+import { uploadedServicePhoto } from '../lib/photos';
 
 interface Props {
   lang: Locale;
@@ -17,6 +18,8 @@ interface Props {
 const { lang, service: s, headingLevel: H = 'h3', size = 'large' } = Astro.props;
 // Keyword anchor (seo.ts), never a bare "service details".
 const more = anchorFor(s.slug, lang, s.name[lang]);
+// A photo uploaded from the admin panel takes the place of the built-in one.
+const uploaded = uploadedServicePhoto(s.image);
 ---
 
 {
@@ -25,7 +28,7 @@ const more = anchorFor(s.slug, lang, s.name[lang]);
       href={href(lang, `services/${s.slug}`)}
       class="group grid gap-6 rounded-[2rem] bg-pink-100 p-3 shadow-soft ring-1 ring-gold-500/15 transition-transform duration-300 hover:-translate-y-1 active:scale-[0.99] md:grid-cols-[2fr_3fr] md:items-center md:gap-8"
     >
-      <Visual lang={lang} photo={s.slug} alt={s.name[lang]} icon={s.icon} tone="cream" shape="rounded" sizes="(min-width: 768px) 440px, 90vw" />
+      <Visual lang={lang} photo={s.slug} src={uploaded} alt={s.name[lang]} icon={s.icon} tone="cream" shape="rounded" sizes="(min-width: 768px) 440px, 90vw" />
       <div class="px-3 pb-3 md:py-4 md:pe-6 md:ps-0">
         <div class="flex items-center gap-3">
           <span class="flex size-11 items-center justify-center rounded-full bg-cream-50 text-green-700">
@@ -56,7 +59,7 @@ const more = anchorFor(s.slug, lang, s.name[lang]);
       data-tilt
       class="group flex h-full flex-col rounded-3xl bg-cream-50 p-3 shadow-soft ring-1 ring-green-700/5 transition-transform duration-300 hover:-translate-y-1 active:scale-[0.99]"
     >
-      <Visual lang={lang} photo={s.slug} alt={s.name[lang]} icon={s.icon} shape="rounded" sizes="(min-width: 1024px) 360px, 90vw" />
+      <Visual lang={lang} photo={s.slug} src={uploaded} alt={s.name[lang]} icon={s.icon} shape="rounded" sizes="(min-width: 1024px) 360px, 90vw" />
       <div class="flex flex-1 flex-col px-3 pb-3 pt-5">
         <div class="flex items-center gap-3">
           <span class="flex size-10 items-center justify-center rounded-full bg-green-50 text-green-700">
@@ -77,7 +80,7 @@ const more = anchorFor(s.slug, lang, s.name[lang]);
       data-tilt
       class="group grid h-full grid-cols-[6rem_1fr] items-center gap-4 rounded-3xl bg-cream-50 p-3 shadow-soft ring-1 ring-green-700/5 transition-transform duration-300 hover:-translate-y-1 active:scale-[0.99]"
     >
-      <Visual lang={lang} photo={s.slug} alt={s.name[lang]} icon={s.icon} shape="square" sizes="96px" />
+      <Visual lang={lang} photo={s.slug} src={uploaded} alt={s.name[lang]} icon={s.icon} shape="square" sizes="96px" />
       <div class="pe-2">
         <H class="text-lg text-green-800">{s.name[lang]}</H>
         <p class="mt-1 text-sm text-ink-600">{s.card[lang]}</p>

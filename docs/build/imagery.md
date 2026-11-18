@@ -15,6 +15,7 @@ If no fitting photo exists, use a branded illustration panel. Never fill a gap w
 
 ## Technical
 - Files in `src/assets/photos/`, served through Astro `<Picture>` (AVIF + WebP) with width/height.
+- Photos uploaded from the admin panel: offers in `src/assets/photos/offers/`, services in `src/assets/photos/services/` (JPG, 5 MB at most; Publish commits them, the `image` field in offers.json / services.json names the file). An uploaded service photo replaces the slot photo on that service's cards and page, with the service name as its alt text. The checklist above still applies to them.
 - Hero image: `loading="eager"` + `fetchpriority="high"`; everything else lazy.
 
 ## Alt text
