@@ -1,0 +1,27 @@
+---
+// "Our prices are negotiable": a bold line at the top of the packages (Packages page and the home teaser), so
+// families feel free to ask instead of leaving over a price (client request, Nov 2026). REVIEW-AR
+import Icon from './Icon.astro';
+import { whatsappUrl, type Locale } from '../config/site';
+import { ui } from '../i18n/ui';
+
+interface Props {
+  lang: Locale;
+  class?: string;
+}
+const { lang, class: cls } = Astro.props;
+const msg = lang === 'ar' ? 'السلام عليكم، أرغب بالتفاهم على سعر باقة.' : "Hello, I'd like to talk about a package price.";
+---
+
+<div class:list={['flex max-w-2xl items-start gap-3 rounded-2xl bg-cream-50 p-4 ring-1 ring-gold-500/40', cls]}>
+  <Icon name="tag" class="mt-0.5 size-6 text-gold-600" />
+  <div class="min-w-0">
+    <p class="text-lg font-bold leading-snug text-green-800">{ui.negotiable.title[lang]}</p>
+    <p class="mt-1 text-sm text-ink-600">{ui.negotiable.text[lang]}</p>
+    <a href={whatsappUrl(msg)} rel="noopener" class="-ms-1 mt-1 inline-flex min-h-11 items-center gap-2 rounded-full px-1 text-sm font-semibold text-green-700 underline-offset-4 hover:underline">
+      <Icon name="whatsapp" class="size-4" />
+      {ui.negotiable.cta[lang]}
+      <Icon name="arrow" class="size-3.5" flip />
+    </a>
+  </div>
+</div>

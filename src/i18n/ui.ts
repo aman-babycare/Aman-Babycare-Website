@@ -27,6 +27,15 @@ export const ui = {
   jobStripCta: { ar: 'قدّموا هنا', en: 'Apply here' },
   // The Careers box in the phone header (Header.astro). REVIEW-AR
   jobBox: { ar: 'تبحثون عن وظيفة؟', en: 'Looking for a job?' },
+  // REVIEW-AR
+  negotiable: {
+    title: { ar: 'جميع أسعارنا قابلة للتفاوض.', en: 'All our prices are negotiable.' },
+    text: {
+      ar: 'أخبرونا بما تحتاجونه وبميزانيتكم، ونتفق معكم على خطة وسعر يناسبانكم.',
+      en: "Tell us what you need and your budget, and we'll agree on a plan and price that suit you.",
+    },
+    cta: { ar: 'تفاهموا معنا على السعر', en: 'Talk to us about the price' },
+  },
   jobStripClose: { ar: 'إخفاء إعلان الوظائف', en: 'Hide the jobs notice' },
   callUs: { ar: 'اتصلوا بنا', en: 'Call us' },
   langName: { ar: 'العربية', en: 'English' },

@@ -9,6 +9,7 @@ import GlassRibbon, { type RibbonItem } from '../GlassRibbon.astro';
 import Visual from '../Visual.astro';
 import { hasPhoto } from '../../lib/photos';
 import CtaBand from '../CtaBand.astro';
+import NegotiableNote from '../NegotiableNote.astro';
 import { personalizedCarePlans, whatsappUrl, type Locale } from '../../config/site';
 import { groups, packagesFor, packagesIn, welcomeOffer } from '../../data/packages';
 import { offers } from '../../data/offers';
@@ -76,6 +77,7 @@ const planMsg = lang === 'ar' ? 'السلام عليكم، أرغب بخطة ر�
       <h1 class="max-w-[20ch] text-4xl text-green-800 sm:text-5xl">{tr(seo.packages.h1, lang)}</h1>
       <p class="lead mt-6 max-w-xl text-xl font-medium text-green-700">{t.tagline}</p>
       <p class="mt-4 max-w-xl text-lg text-ink-600">{t.lead}</p>
+      <NegotiableNote lang={lang} class="mt-6" />
       <p class="mt-4 flex items-center gap-2 text-sm text-ink-500">
         <Icon name="clock" class="size-4 text-gold-600" />
         {t.confirmNote}
