@@ -11,8 +11,6 @@ const page: ServicePage = {
   slug: 'live-in-nanny',
   tier: 'more',
   icon: 'home',
-  photo: 'babysitting',
-  photoAlt: { ar: 'مربية مقيمة تبني بيتاً من المكعبات الخشبية مع طفل صغير في بيت العائلة بالرياض', en: 'A live-in nanny building a wooden block house with a toddler in a Riyadh family home' },
   intro: {
     title: { ar: 'المربية المقيمة: رعاية يومية دون مواعيد وصول', en: 'A live-in nanny: daily care without the commute' },
     text: [

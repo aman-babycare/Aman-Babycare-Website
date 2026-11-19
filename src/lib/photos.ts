@@ -52,6 +52,12 @@ const meta: Record<string, { file: string; alt: L; focus?: string }> = {
     // The nanny and baby sit right of centre; the crib fills the left.
     focus: '62% 50%',
   },
+  'live-in-nanny': {
+    file: 'live-in-nanny-school-morning-riyadh',
+    alt: { ar: 'مربية مقيمة بالحجاب تجهّز طفلاً بحقيبته المدرسية بينما تتناول أخته الفطور في مطبخ مشمس بالرياض', en: 'A live-in nanny in a hijab getting a boy ready for school with his backpack while his sister eats breakfast in a sunny Riyadh kitchen' },
+    // The girl, the nanny and the boy fill the right two-thirds; the counter fills the left.
+    focus: '66% 50%',
+  },
   'pick-up-drop-off': {
     file: 'school-pick-up-riyadh',
     alt: { ar: 'مرافقة طفل إلى المدرسة: مقدّمة رعاية تمشي مع تلميذ يداً بيد في شارع تحفّه النخيل بالرياض', en: 'School pick-up in Riyadh: a caregiver walking hand in hand with a schoolboy along a palm-lined street' },
