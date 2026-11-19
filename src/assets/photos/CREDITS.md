@@ -23,13 +23,14 @@ Each photo slot maps to a descriptively named file here (the name carries into t
 | 17 | `offer-eid-al-adha` | `eid-al-adha-offer-travel-pet-care.jpg` | Offers |
 | 18 | `offer-back-to-school` | `back-to-school-offer-bag.jpg` | Offers |
 | 19 | `offer-national-day` | `national-day-offer-living-room.jpg` | Offers |
-| 20 | `newborn-care` | `newborn-mother-care-riyadh-home.jpg` | Newborn & mother care card + page; Night Nanny page |
+| 20 | `newborn-care` | `newborn-mother-care-riyadh-home.jpg` | Newborn care card + page; the 40-day package page |
+| 21 | `night-nanny` | `night-nanny-riyadh-nursery.jpg` | Night Nanny card + page |
 
-The client delivers numbered files in `brand_assets/Website photos/` (`1.png` … `20.png`, numbers as above); they are converted and saved here under the file name above.
+The client delivers numbered files in `brand_assets/Website photos/` (`1.png` … `21.png`, numbers as above); they are converted and saved here under the file name above.
 
 Rules: see `docs/build/imagery.md` (modest, Gulf home settings, bright and warm).
 
 ## Credits
 | Files | Source | Author | Licence |
 | --- | --- | --- | --- |
-| All 20 files above | AI-generated (Google Gemini, "Nano Banana"), supplied by the client, Oct 2026 | Client | Client-owned; illustrative, not real staff or clients |
+| All files above | AI-generated (Google Gemini, "Nano Banana"), supplied by the client, Oct–Nov 2026 | Client | Client-owned; illustrative, not real staff or clients |

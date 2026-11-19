@@ -46,6 +46,12 @@ const meta: Record<string, { file: string; alt: L; focus?: string }> = {
     alt: { ar: 'رعاية القطط في المنزل: مقدّمة رعاية تضع الطعام لقطة في فناء البيت بينما تنام قطة أخرى على الأريكة', en: 'Cat sitting at home: a caregiver feeding a cat in the courtyard while another cat naps on the bench' },
     focus: '92% 50%',
   },
+  'night-nanny': {
+    file: 'night-nanny-riyadh-nursery',
+    alt: { ar: 'مربية ليلية بالحجاب تهدهد مولوداً نائماً في قماطه على كرسي هزاز بجانب سريره في غرفة نوم دافئة الإضاءة', en: 'A night nanny in a hijab rocking a sleeping, swaddled newborn in a nursery chair beside the crib, by warm lamplight' },
+    // The nanny and baby sit right of centre; the crib fills the left.
+    focus: '62% 50%',
+  },
   'pick-up-drop-off': {
     file: 'school-pick-up-riyadh',
     alt: { ar: 'مرافقة طفل إلى المدرسة: مقدّمة رعاية تمشي مع تلميذ يداً بيد في شارع تحفّه النخيل بالرياض', en: 'School pick-up in Riyadh: a caregiver walking hand in hand with a schoolboy along a palm-lined street' },

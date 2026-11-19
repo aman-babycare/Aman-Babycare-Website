@@ -10,8 +10,6 @@ const page: ServicePage = {
   slug: 'night-nanny',
   tier: 'more',
   icon: 'sleep',
-  photo: 'newborn-care',
-  photoAlt: { ar: 'مربية ليلية بالحجاب تحمل مولوداً نائماً في قماطه بجانب أمه المرتاحة', en: 'A night nanny in a hijab holding a sleeping, swaddled newborn beside the resting mother' },
   intro: {
     title: { ar: 'ماذا تفعل المربية الليلية للمولود؟', en: 'What a night nanny does for your newborn' },
     text: [
