@@ -6,7 +6,7 @@ Each photo slot maps to a descriptively named file here (the name carries into t
 | --- | --- | --- | --- |
 | 1 | `hero` | `caregiver-reading-with-girl-riyadh-home.jpg` | Home page hero |
 | 2 | `babysitting` | `babysitter-riyadh-home-toddler.jpg` | Babysitting card + page |
-| 3 | `home-cleaning` | `hourly-home-cleaning-riyadh-kitchen.jpg` | Home cleaning card + page |
+| 3 | (retired) | `hourly-home-cleaning-riyadh-kitchen.jpg` | Replaced by 28 in Nov 2026 (deep-clean rewrite) |
 | 4 | `elderly-companionship` | `elderly-companionship-riyadh-majlis.jpg` | Elderly companionship card + page |
 | 5 | `pet-sitting` | `cat-sitting-riyadh-home.jpg` | Dog & cat sitting card + page |
 | 6 | `pick-up-drop-off` | `school-pick-up-riyadh.jpg` | Pick-up & drop-off card + page |
@@ -26,8 +26,14 @@ Each photo slot maps to a descriptively named file here (the name carries into t
 | 20 | `newborn-care` | `newborn-mother-care-riyadh-home.jpg` | Newborn care card + page; the 40-day package page |
 | 21 | `night-nanny` | `night-nanny-riyadh-nursery.jpg` | Night Nanny card + page |
 | 22 | `live-in-nanny` | `live-in-nanny-school-morning-riyadh.jpg` | Live-in Nanny card + page |
+| 23 | `personal-care` | `personal-care-caregiver-elderly-woman-bedroom-riyadh.jpg` | Personal Care card + page |
+| 24 | `medication-support` | `medication-support-elderly-couple-riyadh-living-room.jpg` | Medication Support card + page |
+| 25 | `health-monitoring` | `health-monitoring-blood-pressure-check-riyadh-home.jpg` | Health Monitoring card + page |
+| 26 | `meal-preparation` | `meal-preparation-kabsa-riyadh-kitchen.jpg` | Meal Preparation card + page |
+| 27 | `household-support` | `household-support-ironing-laundry-riyadh-villa.jpg` | Daily Household Support card + page |
+| 28 | `home-cleaning` | `home-cleaning-deep-clean-fridge-riyadh-kitchen.jpg` | Home cleaning card + page |
 
-The client delivers numbered files in `brand_assets/Website photos/` (`1.png` … `22.png`, numbers as above); they are converted and saved here under the file name above.
+The client delivers numbered files in `brand_assets/Website photos/` (`1.png` … `28.png`, numbers as above); they are converted and saved here under the file name above.
 
 Rules: see `docs/build/imagery.md` (modest, Gulf home settings, bright and warm).
 

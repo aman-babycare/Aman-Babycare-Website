@@ -32,9 +32,9 @@ const meta: Record<string, { file: string; alt: L; focus?: string }> = {
     focus: '52% 50%',
   },
   'home-cleaning': {
-    file: 'hourly-home-cleaning-riyadh-kitchen',
-    alt: { ar: 'تنظيف المنزل بالساعة: مقدّمة رعاية تمسح سطح المطبخ الرخامي في مطبخ مشرق', en: 'Hourly home cleaning: a caregiver wiping a marble kitchen island in a bright kitchen' },
-    focus: '45% 50%',
+    file: 'home-cleaning-deep-clean-fridge-riyadh-kitchen',
+    alt: { ar: 'تنظيف المنزل: مقدّمة رعاية بالحجاب والقفازات تنظف رفوف الثلاجة من الداخل في مطبخ مشرق', en: 'Home cleaning: a caregiver in a hijab and gloves deep-cleaning the shelves inside a fridge in a bright kitchen' },
+    focus: '45% 45%',
   },
   'elderly-companionship': {
     file: 'elderly-companionship-riyadh-majlis',
@@ -57,6 +57,31 @@ const meta: Record<string, { file: string; alt: L; focus?: string }> = {
     alt: { ar: 'مربية مقيمة بالحجاب تجهّز طفلاً بحقيبته المدرسية بينما تتناول أخته الفطور في مطبخ مشمس بالرياض', en: 'A live-in nanny in a hijab getting a boy ready for school with his backpack while his sister eats breakfast in a sunny Riyadh kitchen' },
     // The girl, the nanny and the boy fill the right two-thirds; the counter fills the left.
     focus: '66% 50%',
+  },
+  'personal-care': {
+    file: 'personal-care-caregiver-elderly-woman-bedroom-riyadh',
+    alt: { ar: 'مقدّمة رعاية بالحجاب تساعد سيدة مسنّة على ارتداء سترتها وهما تتبادلان الابتسام على طرف السرير في غرفة نوم مشرقة', en: 'A caregiver in a hijab helping an elderly woman into her cardigan as they smile at each other on the edge of the bed in a bright bedroom' },
+    focus: '52% 45%',
+  },
+  'medication-support': {
+    file: 'medication-support-elderly-couple-riyadh-living-room',
+    alt: { ar: 'مقدّمة رعاية بالحجاب تناول سيدة مسنّة كوب ماء ودواءها من علبة الأدوية الأسبوعية، وزوجها يبتسم بجانبهما في مجلس مشرق', en: 'A caregiver in a hijab handing an elderly woman a glass of water and her medicine from a weekly pill organiser, her husband smiling nearby in a bright living room' },
+    focus: '48% 45%',
+  },
+  'health-monitoring': {
+    file: 'health-monitoring-blood-pressure-check-riyadh-home',
+    alt: { ar: 'مقدّمة رعاية بالحجاب تقيس ضغط سيدة مسنّة بجهاز منزلي على طاولة الطعام، وبجانبهما جهاز السكر ودفتر القراءات', en: 'A caregiver in a hijab checking an elderly woman’s blood pressure with a home monitor at the dining table, a glucose meter and a notebook of readings beside them' },
+    focus: '55% 50%',
+  },
+  'meal-preparation': {
+    file: 'meal-preparation-kabsa-riyadh-kitchen',
+    alt: { ar: 'مقدّمة رعاية بالحجاب والمريلة تطبخ الكبسة في مطبخ مشرق، وأمامها سلطة طازجة وعلب وجبات الأسبوع', en: 'A caregiver in a hijab and apron cooking kabsa in a bright kitchen, with fresh salad and the week’s meal-prep boxes in front of her' },
+    focus: '60% 45%',
+  },
+  'household-support': {
+    file: 'household-support-ironing-laundry-riyadh-villa',
+    alt: { ar: 'مقدّمة رعاية بالحجاب تكوي الملابس في غرفة غسيل مرتبة، وخلفها ثياب مكوية معلّقة وسلة مناشف مطوية', en: 'A caregiver in a hijab ironing in a tidy laundry room, with pressed thobes on a rail behind her and a basket of folded towels' },
+    focus: '60% 45%',
   },
   'pick-up-drop-off': {
     file: 'school-pick-up-riyadh',
