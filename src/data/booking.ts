@@ -257,6 +257,146 @@ const allBookingServices: BookingService[] = [
     ],
     people: () => 1,
   },
+  {
+    id: 'medication-support',
+    page: 'medication-support',
+    name: { ar: 'متابعة الأدوية', en: 'Medication Support' },
+    icon: 'pill',
+    unit: 'days',
+    steps: [
+      { kind: 'count', key: 'people', label: { ar: 'لكم شخص؟', en: 'For how many people?' }, min: 1, max: 2 },
+      {
+        kind: 'single',
+        key: 'doses',
+        label: { ar: 'كم مرة في اليوم يؤخذ الدواء؟', en: 'How many times a day are medicines taken?' },
+        options: [
+          { id: '1-2', label: { ar: 'مرة أو مرتان', en: 'Once or twice' } },
+          { id: '3-4', label: { ar: '3–4 مرات', en: '3–4 times' } },
+          { id: '5+', label: { ar: '5 مرات فأكثر', en: '5 or more' } },
+        ],
+      },
+      { kind: 'timing', options: supportTimings },
+    ],
+    people: (a) => n(a, 'people'),
+  },
+  {
+    id: 'personal-care',
+    page: 'personal-care',
+    name: { ar: 'العناية الشخصية', en: 'Personal Care' },
+    icon: 'hands',
+    unit: 'days',
+    steps: [
+      {
+        kind: 'multi',
+        key: 'help',
+        label: { ar: 'بماذا نساعد؟', en: 'What help is needed?' },
+        options: [
+          { id: 'bathing', label: { ar: 'الاستحمام', en: 'Bathing' } },
+          { id: 'dressing', label: { ar: 'الملابس والعناية بالمظهر', en: 'Dressing & grooming' } },
+          { id: 'toileting', label: { ar: 'دخول الحمام', en: 'Using the bathroom' } },
+          { id: 'moving', label: { ar: 'النهوض والتنقل', en: 'Getting up & moving' } },
+          { id: 'meals', label: { ar: 'وقت الأكل', en: 'Mealtimes' } },
+        ],
+      },
+      {
+        kind: 'single',
+        key: 'mobility',
+        label: { ar: 'كيف هي الحركة؟', en: 'How is their mobility?' },
+        options: [
+          { id: 'independent', label: { ar: 'يتحرك باستقلالية', en: 'Independent' } },
+          { id: 'assisted', label: { ar: 'يحتاج بعض المساعدة', en: 'Needs some help' } },
+          { id: 'wheelchair', label: { ar: 'يستخدم كرسياً متحركاً', en: 'Uses a wheelchair' } },
+        ],
+      },
+      { kind: 'timing', options: supportTimings },
+    ],
+    people: () => 1,
+  },
+  {
+    id: 'health-monitoring',
+    page: 'health-monitoring',
+    name: { ar: 'متابعة الحالة الصحية', en: 'Health Monitoring' },
+    icon: 'pulse',
+    unit: 'days',
+    steps: [
+      { kind: 'count', key: 'people', label: { ar: 'لكم شخص؟', en: 'For how many people?' }, min: 1, max: 2 },
+      {
+        kind: 'multi',
+        key: 'checks',
+        label: { ar: 'ما القياسات المطلوبة؟', en: 'Which readings are needed?' },
+        options: [
+          { id: 'pressure', label: { ar: 'الضغط والنبض', en: 'Blood pressure & pulse' } },
+          { id: 'sugar', label: { ar: 'السكر', en: 'Blood sugar' } },
+          { id: 'temperature', label: { ar: 'الحرارة', en: 'Temperature' } },
+          { id: 'oxygen', label: { ar: 'الأكسجين', en: 'Oxygen' } },
+        ],
+      },
+      { kind: 'timing', options: supportTimings },
+    ],
+    people: (a) => n(a, 'people'),
+  },
+  {
+    id: 'meal-preparation',
+    page: 'meal-preparation',
+    name: { ar: 'تحضير الوجبات', en: 'Meal Preparation' },
+    icon: 'meal',
+    unit: 'visits',
+    steps: [
+      {
+        kind: 'single',
+        key: 'family',
+        label: { ar: 'لكم شخص نطبخ؟', en: 'Cooking for how many people?' },
+        options: [
+          { id: '1-2', label: { ar: '1–2', en: '1–2' } },
+          { id: '3-5', label: { ar: '3–5', en: '3–5' } },
+          { id: '6+', label: { ar: '6 فأكثر', en: '6+' } },
+        ],
+      },
+      {
+        kind: 'single',
+        key: 'kind',
+        label: { ar: 'ماذا تحتاجون؟', en: 'What do you need?' },
+        options: [
+          { id: 'daily', label: { ar: 'وجبة اليوم', en: "The day's meals" } },
+          { id: 'week', label: { ar: 'وجبات الأسبوع', en: "The week's meals" } },
+          { id: 'guests', label: { ar: 'تجهيز للضيوف', en: 'Cooking for guests' } },
+        ],
+      },
+      { kind: 'timing', options: ['hourly', 'half-day', 'full-day'] },
+    ],
+    people: () => 1,
+  },
+  {
+    id: 'household-support',
+    page: 'household-support',
+    name: { ar: 'المساعدة المنزلية اليومية', en: 'Daily Household Support' },
+    icon: 'hanger',
+    unit: 'days',
+    steps: [
+      {
+        kind: 'single',
+        key: 'home',
+        label: { ar: 'ما نوع البيت؟', en: 'What type of home?' },
+        options: [
+          { id: 'apartment', label: { ar: 'شقة', en: 'Apartment' } },
+          { id: 'villa', label: { ar: 'فيلا', en: 'Villa' } },
+        ],
+      },
+      {
+        kind: 'multi',
+        key: 'tasks',
+        label: { ar: 'ما الأعمال المطلوبة؟', en: 'Which tasks?' },
+        options: [
+          { id: 'laundry', label: { ar: 'الغسيل والكوي', en: 'Laundry & ironing' } },
+          { id: 'dishes', label: { ar: 'الأطباق والمطبخ', en: 'Dishes & kitchen' } },
+          { id: 'tidying', label: { ar: 'ترتيب الغرف', en: 'Tidying rooms' } },
+          { id: 'meals', label: { ar: 'وجبات بسيطة', en: 'Simple meals' } },
+        ],
+      },
+      { kind: 'timing', options: ['hourly', 'half-day', 'full-day', 'stay-in'] },
+    ],
+    people: () => 1,
+  },
 ];
 
 // A service switched off in services.json (admin panel) can't be booked either.

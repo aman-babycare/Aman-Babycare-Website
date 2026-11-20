@@ -50,6 +50,11 @@ export const icons = {
     '<path d="M4.5 11h15v9h-15z"/><path d="M3.5 7.5h17V11h-17z"/><path d="M12 7.5V20"/><path d="M12 7.5C10.5 4.5 7 4.3 7 6.2s3.2 1.3 5 1.3c1.8 0 5 .6 5-1.3s-3.5-1.7-5 1.3z"/>',
   calendar: '<rect x="4" y="5.5" width="16" height="14.5" rx="2"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/>',
   chat: '<path d="M5 18.5V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H8.5z"/><path d="M9 9.5h6M9 12.5h4"/>',
+  // Home & health help
+  pill: '<rect x="3.2" y="8.3" width="17.6" height="7.4" rx="3.7" transform="rotate(-45 12 12)"/><path d="m9.4 9.4 5.2 5.2"/>',
+  pulse: '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/><path d="M5.5 12.5h3l1.5-2.5 2 4 1.5-2h5"/>',
+  meal: '<path d="M4 12h16a8 8 0 0 1-16 0z"/><path d="M3 12h18"/><path d="M9 4.5c-.8 1 .8 2-.1 3M12 4c-.8 1 .8 2-.1 3M15 4.5c-.8 1 .8 2-.1 3"/>',
+  hanger: '<path d="M10 6.5a2 2 0 1 1 2.8 1.8c-.5.3-.8.7-.8 1.2V10.5"/><path d="M12 10.5 3.5 16.5c-.7.5-.4 1.5.5 1.5h16c.9 0 1.2-1 .5-1.5z"/>',
   home: '<path d="M4 11 12 4l8 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5h4v5"/>',
   // Newborn & mother care
   baby:

@@ -71,8 +71,8 @@
       "en": "Home Cleaning"
     },
     "card": {
-      "ar": "بيت مرتب ونظيف دون أن تشغلوا بالكم",
-      "en": "A clean, calm home without the effort"
+      "ar": "تنظيف يومي أو عميق، وغسيل وكوي، بخطة أسبوعية",
+      "en": "Everyday or deep cleaning, laundry and ironing, weekly plans"
     },
     "tagline": {
       "ar": "بيت نظيف يستقبلكم ويستقبل ضيوفكم",
@@ -157,6 +157,86 @@
     "tagline": {
       "ar": "قطتكم وكلبكم في بيتهما، وأنتم مطمئنون",
       "en": "Your cat or dog stays home, and you stay at ease"
+    }
+  },
+  {
+    "slug": "medication-support",
+    "enabled": true,
+    "name": {
+      "ar": "متابعة الأدوية",
+      "en": "Medication Support"
+    },
+    "card": {
+      "ar": "كل دواء في وقته، مع سجل يومي يصلكم",
+      "en": "Every dose on time, with a daily log sent to you"
+    },
+    "tagline": {
+      "ar": "أدوية والديكم في وقتها، وأنتم مطمئنون",
+      "en": "Your parents' medicines on time, and your mind at rest"
+    }
+  },
+  {
+    "slug": "personal-care",
+    "enabled": true,
+    "name": {
+      "ar": "العناية الشخصية",
+      "en": "Personal Care"
+    },
+    "card": {
+      "ar": "مساعدة في الاستحمام والملابس والتنقل، بكرامة",
+      "en": "Help with bathing, dressing and moving, with dignity"
+    },
+    "tagline": {
+      "ar": "عناية يومية تحفظ الكرامة والراحة",
+      "en": "Everyday care that keeps dignity and comfort"
+    }
+  },
+  {
+    "slug": "health-monitoring",
+    "enabled": true,
+    "name": {
+      "ar": "متابعة الحالة الصحية",
+      "en": "Health Monitoring"
+    },
+    "card": {
+      "ar": "قياس الضغط والسكر يومياً، وإبلاغكم بأي تغيّر",
+      "en": "Daily blood pressure and sugar checks, and a call if anything changes"
+    },
+    "tagline": {
+      "ar": "عين ساهرة على صحة من تحبون",
+      "en": "A watchful eye on your loved one's health"
+    }
+  },
+  {
+    "slug": "meal-preparation",
+    "enabled": true,
+    "name": {
+      "ar": "تحضير الوجبات",
+      "en": "Meal Preparation"
+    },
+    "card": {
+      "ar": "أكل البيت يُطبخ في مطبخكم، لليوم أو للأسبوع",
+      "en": "Home-cooked meals made in your kitchen, for the day or the week"
+    },
+    "tagline": {
+      "ar": "أكل البيت، جاهز حين تعودون",
+      "en": "Home-cooked food, ready when you get home"
+    }
+  },
+  {
+    "slug": "household-support",
+    "enabled": true,
+    "name": {
+      "ar": "المساعدة المنزلية اليومية",
+      "en": "Daily Household Support"
+    },
+    "card": {
+      "ar": "غسيل وكوي وأطباق وترتيب، كل يوم",
+      "en": "Laundry, ironing, dishes and tidying, every day"
+    },
+    "tagline": {
+      "ar": "بيت يسير بهدوء، كل يوم",
+      "en": "A home that runs calmly, every day"
     }
   }
 ]

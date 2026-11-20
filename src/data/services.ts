@@ -2,7 +2,8 @@
 // order, on/off switch, name, card line and tagline live in src/content-data/services.json (edited from the
 // admin panel), checked against src/lib/content-schema.ts.
 // Titles, descriptions and H1s live in src/data/seo.ts. Rules: docs/build/service-pages.md,
-// docs/build/culture-and-copy.md. Help and companionship only: never nursing, medical or clinical care.
+// docs/build/culture-and-copy.md. Medication Support, Personal Care and Health Monitoring (client request,
+// Nov 2026) are hands-on care at home; diagnosis, prescribing and clinical procedures stay with doctors.
 // REVIEW-AR: all Arabic copy in src/data/service-pages/ is a first draft and needs a native review.
 import type { L } from '../i18n/ui';
 import type { IconName } from '../components/icons';
@@ -21,6 +22,11 @@ import petSitting from './service-pages/pet-sitting';
 import nightNanny from './service-pages/night-nanny';
 import liveInNanny from './service-pages/live-in-nanny';
 import fortyDays from './service-pages/40-days';
+import medicationSupport from './service-pages/medication-support';
+import personalCare from './service-pages/personal-care';
+import healthMonitoring from './service-pages/health-monitoring';
+import mealPreparation from './service-pages/meal-preparation';
+import householdSupport from './service-pages/household-support';
 
 export type ShiftId = 'day' | 'night' | 'live-in' | 'live-out' | 'hourly' | 'weekly' | 'monthly';
 type Block = { title: L; text: L };
@@ -81,7 +87,7 @@ export interface ServiceContent {
 /** A service page module: everything except the fields edited in services.json. */
 export type ServicePage = Omit<ServiceContent, 'name' | 'card' | 'tagline'>;
 
-const pages: ServicePage[] = [newbornCare, motherCare, babysitting, elderlyCompanionship, homeCleaning, nightNanny, liveInNanny, errands, pickUpDropOff, petSitting];
+const pages: ServicePage[] = [newbornCare, motherCare, babysitting, elderlyCompanionship, homeCleaning, nightNanny, liveInNanny, errands, pickUpDropOff, petSitting, medicationSupport, personalCare, healthMonitoring, mealPreparation, householdSupport];
 
 // Order and copy from services.json (client-approved order: Newborn Care and Mother Care first, then the core
 // services, then "more help at home"). Only enabled services are built, listed or linked.

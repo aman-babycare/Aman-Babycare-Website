@@ -159,7 +159,7 @@ const page: ServicePage = {
     },
   ],
   relatedTitle: { ar: 'خدمات تُجمع مع المقاضي', en: 'Services that pair with errands' },
-  related: ['home-cleaning', 'elderly-companionship', 'pet-sitting'],
+  related: ['home-cleaning', 'meal-preparation', 'elderly-companionship'],
   whatsapp: { ar: 'السلام عليكم، أرغب بحجز مساعدة شخصية ومقاضي للبيت.', en: 'Hello, I would like to book errands and personal assistance.' },
   booking: 'errands',
   hub: {

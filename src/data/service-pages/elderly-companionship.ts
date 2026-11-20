@@ -165,13 +165,13 @@ const page: ServicePage = {
     },
   ],
   relatedTitle: { ar: 'خدمات تريح والديكم أكثر', en: 'More help for your parents' },
-  related: ['pick-up-drop-off', 'errands', 'home-cleaning'],
+  related: ['personal-care', 'medication-support', 'meal-preparation'],
   whatsapp: { ar: 'السلام عليكم، أرغب بحجز مرافقة كبار السن في المنزل.', en: 'Hello, I would like to book elderly companionship at home.' },
   booking: 'elderly-companionship',
   hub: {
     bestFor: { ar: 'والدان يحتاجان صحبة ومساعدة يومية', en: 'Parents who need daily company and help' },
     shifts: { ar: 'بالساعة، يومي، شهري، ليلي، إقامة', en: 'Hourly, daily, monthly, night, live-in' },
-    combine: ['errands', 'pick-up-drop-off'],
+    combine: ['personal-care', 'medication-support'],
   },
 };
 

@@ -160,7 +160,7 @@ const page: ServicePage = {
     },
   ],
   relatedTitle: { ar: 'خدمات تكمّل رعاية الأم', en: 'Services that go well with mother care' },
-  related: ['newborn-care', 'home-cleaning', 'errands'],
+  related: ['newborn-care', 'meal-preparation', 'home-cleaning'],
   whatsapp: { ar: 'السلام عليكم، أرغب بحجز رعاية الأم في المنزل.', en: 'Hello, I would like to book mother care at home.' },
   booking: 'mother-care',
   hub: {

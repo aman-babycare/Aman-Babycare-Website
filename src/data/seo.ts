@@ -2,8 +2,8 @@
 //
 // Research summary (Google Trends, Saudi Arabia, last 12 months; client brief of 30 Oct 2026):
 // - Saudis search for household workers (عاملة منزلية، عاملات بالساعة), not for "care services".
-// - "شركة تنظيف" means specialist deep cleaning (tanks, sofas, AC). That is not what Aman does, so it is
-//   never targeted; Aman is everyday home help.
+// - "شركة تنظيف" means specialist cleaning with machines (tanks, sofas, AC). Aman doesn't do that, so it is
+//   never targeted; Aman is home help, including a deep clean of the home itself (Nov 2026).
 // - Babysitting, elderly, newborn and pet terms have low volume but high intent: they get focused pages.
 // - Expats search "maid riyadh", not "nanny riyadh" or "babysitter riyadh", so English titles lead with "maid".
 // - Hourly-help searches peak just before Ramadan and the Eids (blog and offer timing follow this).
@@ -141,12 +141,12 @@ export const seo = {
     },
     description: {
       care: {
-        ar: 'تنظيف وترتيب المنزل بالساعة في الرياض: تنظيف شقق وفلل، المطبخ ودورات المياه، وتجهيز البيت قبل الضيوف. احجزوا عبر واتساب.',
-        en: 'An hourly maid for everyday home cleaning in Riyadh: apartments and villas, kitchens, bathrooms and a tidy home before guests. Book on WhatsApp.',
+        ar: 'تنظيف وترتيب المنزل بالساعة في الرياض: تنظيف شقق وفلل يومي أو عميق، وغسيل وكوي، بزيارة واحدة أو خطة أسبوعية. احجزوا عبر واتساب.',
+        en: 'Hourly maid and home cleaning in Riyadh: everyday or deep cleaning, laundry and ironing, one visit or a weekly plan. Book on WhatsApp.',
       },
       worker: {
-        ar: 'عاملات نظافة بالساعة في الرياض: عاملة منزلية بالساعة لتنظيف الشقق والفلل وترتيب البيت قبل الضيوف. احجزوا عبر واتساب.',
-        en: 'An hourly maid for everyday home cleaning in Riyadh: apartments and villas, kitchens, bathrooms and a tidy home before guests. Book on WhatsApp.',
+        ar: 'عاملات نظافة بالساعة في الرياض: عاملة منزلية لتنظيف الشقق والفلل يومياً أو تنظيفاً عميقاً، مع الغسيل والكوي. احجزوا عبر واتساب.',
+        en: 'Hourly maid and home cleaning in Riyadh: everyday or deep cleaning, laundry and ironing, one visit or a weekly plan. Book on WhatsApp.',
       },
     },
     h1: {
@@ -185,6 +185,51 @@ export const seo = {
     },
     h1: { ar: 'رعاية القطط والكلاب في المنزل بالرياض', en: 'Cat & Dog Sitting at Home in Riyadh' },
     anchor: { ar: 'رعاية القطط والكلاب في المنزل', en: 'Cat and dog sitting at home' },
+  },
+  'medication-support': {
+    title: { ar: 'متابعة الأدوية في المنزل بالرياض | أمان', en: 'Medication Support at Home in Riyadh | Aman' },
+    description: {
+      ar: 'متابعة الأدوية في المنزل بالرياض: إعطاء الأدوية في وقتها حسب الوصفة، وترتيب علب الدواء، وسجل يومي يصلكم. احجزوا عبر واتساب.',
+      en: 'Medication support at home in Riyadh: every dose on time by the prescription, weekly pill boxes and a daily log sent to you. Book on WhatsApp.',
+    },
+    h1: { ar: 'متابعة الأدوية في المنزل بالرياض', en: 'Medication Support at Home in Riyadh' },
+    anchor: { ar: 'متابعة الأدوية في المنزل', en: 'Medication support at home' },
+  },
+  'personal-care': {
+    title: { ar: 'العناية الشخصية في المنزل بالرياض | أمان', en: 'Personal Care at Home in Riyadh | Aman' },
+    description: {
+      ar: 'العناية الشخصية في المنزل بالرياض: مساعدة في الاستحمام والملابس ودخول الحمام والتنقل، من مقدّم رعاية من الجنس نفسه. احجزوا عبر واتساب.',
+      en: 'Personal care at home in Riyadh: help with bathing, dressing, the bathroom and moving around, from a same-gender carer. Book on WhatsApp.',
+    },
+    h1: { ar: 'العناية الشخصية في المنزل بالرياض', en: 'Personal Care at Home in Riyadh' },
+    anchor: { ar: 'العناية الشخصية في المنزل', en: 'Personal care at home' },
+  },
+  'health-monitoring': {
+    title: { ar: 'متابعة الحالة الصحية في المنزل بالرياض | أمان', en: 'Health Monitoring at Home in Riyadh | Aman' },
+    description: {
+      ar: 'متابعة الحالة الصحية في المنزل بالرياض: قياس الضغط والسكر والحرارة والأكسجين، وسجل يومي، واتصال فوري عند أي تغيّر. احجزوا عبر واتساب.',
+      en: 'Health monitoring at home in Riyadh: blood pressure, sugar, temperature and oxygen checks, a daily record and a call if anything changes.',
+    },
+    h1: { ar: 'متابعة الحالة الصحية في المنزل بالرياض', en: 'Health Monitoring at Home in Riyadh' },
+    anchor: { ar: 'متابعة الحالة الصحية في المنزل', en: 'Health monitoring at home' },
+  },
+  'meal-preparation': {
+    title: { ar: 'طبخ وتحضير الوجبات في المنزل بالرياض | أمان', en: 'Home-Cooked Meal Preparation in Riyadh | Aman' },
+    description: {
+      ar: 'طبخ وتحضير الوجبات في المنزل بالرياض: أطباقكم المفضلة تُطبخ في مطبخكم، لليوم أو للأسبوع كله، وبنظام غذائي خاص. احجزوا عبر واتساب.',
+      en: 'Meal preparation at home in Riyadh: your favourite dishes cooked in your kitchen, for the day or the whole week, special diets too. Book on WhatsApp.',
+    },
+    h1: { ar: 'طبخ وتحضير الوجبات في المنزل بالرياض', en: 'Home-Cooked Meal Preparation in Riyadh' },
+    anchor: { ar: 'طبخ وتحضير الوجبات في المنزل', en: 'Meal preparation at home' },
+  },
+  'household-support': {
+    title: { ar: 'مساعدة منزلية يومية في الرياض | أمان', en: 'Daily Household Support in Riyadh | Aman' },
+    description: {
+      ar: 'مساعدة منزلية يومية في الرياض: الغسيل والكوي والأطباق وترتيب الغرف واستلام الطلبات، في أيام ثابتة أو كل يوم. احجزوا عبر واتساب.',
+      en: 'Daily household support in Riyadh: laundry, ironing, dishes, tidying and deliveries, on set days or every day, live-in or live-out. Book on WhatsApp.',
+    },
+    h1: { ar: 'مساعدة منزلية يومية في الرياض', en: 'Daily Household Support in Riyadh' },
+    anchor: { ar: 'مساعدة منزلية يومية', en: 'Daily household support' },
   },
   'night-nanny': {
     title: { ar: 'مربية ليلية للمولود في الرياض | أمان', en: 'Night Nanny for Newborns in Riyadh | Aman' },
