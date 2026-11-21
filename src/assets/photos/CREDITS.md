@@ -33,7 +33,7 @@ Each photo slot maps to a descriptively named file here (the name carries into t
 | 27 | `household-support` | `household-support-ironing-laundry-riyadh-villa.jpg` | Daily Household Support card + page |
 | 28 | `home-cleaning` | `home-cleaning-deep-clean-fridge-riyadh-kitchen.jpg` | Home cleaning card + page |
 
-The client delivers numbered files in `brand_assets/Website photos/` (`1.png` … `28.png`, numbers as above); they are converted and saved here under the file name above.
+The client delivers numbered files in `brand_assets/Website photos/` (`1.png` … `28.jpg`, numbers as above; 23–28 replaced in Nov 2026 by full-size 2528 × 1696 downloads, as the first copies were small previews); they are converted and saved here under the file name above.
 
 Rules: see `docs/build/imagery.md` (modest, Gulf home settings, bright and warm).
 
