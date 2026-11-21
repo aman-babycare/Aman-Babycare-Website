@@ -165,9 +165,11 @@ const schema = [
         <a href="#packages" class="btn btn-ghost min-h-14 px-8 text-base">{ui.seePackages[lang]}</a>
       </div>
     </div>
+    <!-- The arch (4:5, 240px wide, 384px from sm) crops a wide photo, which is drawn about 1.9× the arch's width:
+         sizes describes that drawn width, so phones and retina screens fetch a sharp enough file. -->
     <div class="relative mx-auto w-full max-w-[15rem] rise [animation-delay:150ms] sm:max-w-sm">
       <HeartLine class="absolute -top-6 end-0 z-10 hidden w-40 text-gold-500 sm:block" />
-      <Visual lang={s.photoAlt ? undefined : lang} photo={s.photo ?? slug} src={uploadedServicePhoto(s.image)} alt={(!s.image && s.photoAlt?.[lang]) || s.name[lang]} icon={s.icon} eager class="shadow-card" sizes="(min-width: 1024px) 384px, 90vw" />
+      <Visual lang={s.photoAlt ? undefined : lang} photo={s.photo ?? slug} src={uploadedServicePhoto(s.image)} alt={(!s.image && s.photoAlt?.[lang]) || s.name[lang]} icon={s.icon} eager class="shadow-card" sizes="(min-width: 640px) 720px, 450px" widths={[640, 960, 1280, 1600]} />
     </div>
   </section>
 
