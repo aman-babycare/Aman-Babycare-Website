@@ -29,6 +29,13 @@ const t = {
     description: 'أمان شركة سعودية في الرياض تقدّم رعاية المواليد والأطفال ومرافقة كبار السن وخدمات البيت، بفريق خضع للتحقق من الخلفية.',
     h1: 'عن أمان',
     lead: 'بدأنا أمان لأن العائلة في الرياض تحتاج أحياناً يداً إضافية في البيت: في الأسابيع الأولى بعد الولادة، أو في يوم عمل طويل، أو حين يحتاج الوالدان صحبة. نريد أن تكون هذه اليد قريبة وموثوقة وسهلة الحجز.',
+    // REVIEW-AR: the name's meaning (client's message, Nov 2026), written for Arabic readers rather than translated.
+    nameTitle: 'لماذا اخترنا اسم «أمان»؟',
+    name: [
+      '«أمان» كلمة تحمل معنى الطمأنينة والثقة وراحة البال، واخترناها اسماً لنا لأنها ما نريد أن تشعروا به حين يعتني أحدٌ غيركم بمن تحبّون: مولودكم، أو أطفالكم، أو والديكم، أو بيتكم.',
+      'فلسفتنا بسيطة: من حقّ كل عائلة أن تشعر بالأمان والراحة حين يرعى أحدٌ أحبّاءها.',
+    ],
+    promise: '«أمان» ليس مجرد اسم، بل وعدٌ نلتزم به.',
     whatTitle: 'ما نقدّمه',
     whatText: 'يمكن لشخص واحد من فريق الرعاية أن يجمع أكثر من خدمة في الزيارة نفسها، فتختارون ما يحتاجه بيتكم وتدفعون مقابل زيارة واحدة.',
     packagesLink: 'اطّلعوا على الباقات والأسعار',
@@ -48,6 +55,13 @@ const t = {
     description: 'Aman is a Riyadh company offering newborn care, babysitting, elderly companionship and home help, with background-checked staff.',
     h1: 'About Aman',
     lead: 'We started Aman because families in Riyadh sometimes need an extra pair of hands at home: in the first weeks with a newborn, on a long working day, or when parents would welcome some company. We want that help to be close, trustworthy and easy to book.',
+    // The name's meaning (client's message, Nov 2026). The page puts "Aman (أمان)" before the first paragraph.
+    nameTitle: 'Why we’re called Aman',
+    name: [
+      'is the Arabic word for safety, trust and peace of mind. We chose it because that’s what we want every family to feel when someone else is caring for the people they love: a newborn, a child, an elderly parent, or the home itself.',
+      'Our philosophy is simple: every family deserves to feel safe and comfortable when someone takes care of their loved ones.',
+    ],
+    promise: 'Aman is not just our name. It’s our promise.',
     whatTitle: 'What we do',
     whatText: 'One caregiver can combine several services in the same visit, so you choose what your home needs and book a single visit for it.',
     packagesLink: 'See packages and prices',
@@ -88,6 +102,31 @@ const t = {
         }
       </div>
       <p class="mt-6 text-lg text-ink-600">{t.lead}</p>
+
+      <!-- What the name means, and the promise behind it (client's own words, lightly edited). -->
+      <section class="mt-12 border-t border-gold-500/20 pt-8">
+        <h2 class="text-2xl text-green-800">{t.nameTitle}</h2>
+        {
+          t.name.map((p, i) => (
+            <p class="mt-4 text-ink-700">
+              {lang === 'en' && i === 0 && (
+                <>
+                  Aman (<span lang="ar" dir="rtl" class="font-arabic">أمان</span>){' '}
+                </>
+              )}
+              {p}
+            </p>
+          ))
+        }
+        <p
+          class:list={[
+            'mt-8 border-s-2 border-gold-500/40 ps-5 text-2xl leading-snug text-balance text-green-800 sm:text-3xl',
+            lang === 'ar' ? 'font-arabic font-bold' : 'font-display font-semibold tracking-[-0.02em]',
+          ]}
+        >
+          {t.promise}
+        </p>
+      </section>
 
       <section class="mt-12 border-t border-gold-500/20 pt-8">
         <h2 class="text-2xl text-green-800">{t.whatTitle}</h2>
